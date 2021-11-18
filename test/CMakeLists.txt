@@ -13,7 +13,7 @@ IF (WIN32)
 ENDIF()
 
 # build and run the tests
-file(GLOB files "./*/test_*.c" "./*/*/test_*.c")
+file(GLOB files "./test_*.c" "./*/test_*.c" "./*/*/test_*.c")
 foreach(filepath ${files})
     message(STATUS "FilePath: " ${filepath}  )
     get_filename_component(filename ${filepath} NAME)

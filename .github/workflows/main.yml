@@ -1,0 +1,73 @@
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        platform: [x86, x64]
+        compiler: [gcc, clang]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Setup Exotic Libraries And Run Regression
+        uses: exoticlibraries/exotic-action@v1.3
+        with:
+          download-exotic-libraries: true
+          run-regression: true
+          test-folder-recursive: true
+          selected-exotic-libraries: |
+            libcester
+          test-folders: |
+            test/
+          test-exclude-file-pattern: |
+            crash_test.c
+          compiler-options-for-tests: |
+            -I. -I../include -I../../include -I../../../include -I./include
+          regression-cli-options: |
+            --cester-printversion
+            
+  execute-cmake-regression:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        platform: [x64]
+        compiler: [gcc]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Setup Exotic Libraries
+        uses: exoticlibraries/exotic-action@v1.3
+        with:
+          download-exotic-libraries: true
+          run-regression: false
+          selected-exotic-libraries: |
+            libcester
+        
+      - name: Download Dependencies
+        run: |
+          sudo apt-get purge --auto-remove cmake
+          sudo mkdir /opt/cmake
+          sudo wget https://github.com/Kitware/CMake/releases/download/v3.17.2/cmake-3.17.2-Linux-x86_64.sh
+          sudo sh cmake-3.17.2-Linux-x86_64.sh --prefix=/opt/cmake --skip-license
+        
+      - name: Run Cmake Regression
+        run: |
+          cd ./test/
+          /opt/cmake/bin/cmake CMakeLists.txt -G"Unix Makefiles"
+          make
+            
+        
