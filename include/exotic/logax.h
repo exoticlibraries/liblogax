@@ -14,6 +14,7 @@ extern "C" {
 #endif
 
 #include <stdio.h>
+#include <stdarg.h>
 
 #ifndef LOGAX_NO_TIME
 #include <time.h>
