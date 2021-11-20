@@ -77,18 +77,18 @@ CESTER_TEST(logger_log_json_format, test_inst, {
 	logax_logger_error(&logax_logger, "%s", "Logging the test for ERROR");
 	logax_logger_fatal(&logax_logger, "%s", "Logging the test for FATAL");
 
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"TRACE\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"DEBUG\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"INFO\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"WARN\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"ERROR\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"FATAL\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"Logging the test for TRACE\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"Logging the test for DEBUG\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"Logging the test for INFO\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"Logging the test for WARN\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"Logging the test for ERROR\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"Logging the test for FATAL\"");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"TRACE\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"DEBUG\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"INFO\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"WARN\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"ERROR\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"FATAL\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"Logging the test for TRACE\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"Logging the test for DEBUG\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"Logging the test for INFO\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"Logging the test for WARN\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"Logging the test for ERROR\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"Logging the test for FATAL\"\x1B[0m");
 
 	CESTER_RELEASE_STDOUT();
 })

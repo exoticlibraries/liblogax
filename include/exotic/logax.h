@@ -20,6 +20,10 @@ extern "C" {
 #include <time.h>
 #endif
 
+#if defined(_WIN32) && defined(LOGAX_USE_OLD_CONSOLE_MODE)
+#include <windows.h>
+#endif
+
 /** 
     The inline keyword to optimize the function. In 
     C89 and C90 the inline keyword semantic is 
@@ -57,7 +61,7 @@ extern "C" {
 #define LOGAX_FOREGROUND_WARN          6                                                 /**< warn terminal foreground color - yellow    */
 #define LOGAX_FOREGROUND_ERROR         4                                                 /**< error terminal foreground color - red      */
 #define LOGAX_FOREGROUND_FATAL         4                                                 /**< fatal terminal foreground color - red      */
-#define LOGAX_RESET_TERMINAL_ATTR()    SetConsoleTextAttribute(hConsole, default_color); /**< reset the terminal color                   */
+#define LOGAX_RESET_TERMINAL_ATTR()    SetConsoleTextAttribute(logax_hConsole, logax_default_color); /**< reset the terminal color                   */
 
 #else
 
@@ -68,11 +72,11 @@ extern "C" {
 #define LOGAX_FOREGROUND_WARN          "\x1B[33m"                                        /**< warn terminal foreground color - yellow    */
 #define LOGAX_FOREGROUND_ERROR         "\x1B[31m"                                        /**< error terminal foreground color - red      */
 #define LOGAX_FOREGROUND_FATAL         "\x1B[31m"                                        /**< fatal terminal foreground color - red      */
-#define LOGAX_RESET_TERMINAL_ATTR()                                                      /**< reset the terminal color                   */
+#define LOGAX_RESET_TERMINAL_ATTR()    fprintf(stream, "%s", LOGAX_RESET_TERMINAL)       /**< reset the terminal color                   */
 
 #endif
 
-#ifndef LOGAX_NO_CALLBACK
+#ifndef LOGAX_LOGGER_NO_CALLBACK
 /**
     
 */
@@ -134,7 +138,7 @@ struct logax_logger_s {
 #if !defined(LOGAX_NO_OUTPUT_STREAM)
     FILE *output_stream;        /**<  ? */
 #endif
-#ifndef LOGAX_NO_CALLBACK
+#ifndef LOGAX_LOGGER_NO_CALLBACK
     logax_callback callbacks[LOGAX_MAX_CALLBACKS];
 #endif
 };
@@ -156,7 +160,7 @@ static void logax_init_logger(LogaxLogger *logax_logger) {
 #if defined(stdout) && !defined(LOGAX_NO_OUTPUT_STREAM)
     logax_logger->output_stream = stdout;
 #endif
-#ifndef LOGAX_NO_CALLBACK
+#ifndef LOGAX_LOGGER_NO_CALLBACK
     for (; index < LOGAX_MAX_CALLBACKS; index++) {
         logax_logger->callbacks[index] = LOGAX_NULL;
     }
@@ -174,7 +178,7 @@ static void logax_init_logger_ws(LogaxLogger *logax_logger, FILE *output_stream)
     logax_logger->flags |= LOGAX_OPTION_DATE_TIME;
 #endif
     logax_logger->output_stream = output_stream;
-#ifndef LOGAX_NO_CALLBACK
+#ifndef LOGAX_LOGGER_NO_CALLBACK
     for (; index < LOGAX_MAX_CALLBACKS; index++) {
         logax_logger->callbacks[index] = LOGAX_NULL;
     }
@@ -234,6 +238,7 @@ static unsigned logax_logger_add_callback(LogaxLogger *logax_logger, logax_callb
         else if (make_quite && !((logax_logger)->flags & LOGAX_OPTION_QUITE)) { logax_add_flag((logax_logger)->flags, LOGAX_OPTION_QUITE); }\
     }
 
+#ifndef LOGAX_NO_OUTPUT_STREAM
 /*
 
 */
@@ -280,18 +285,74 @@ static void logax_extract_name_only(char const* const file_path, char formatted_
 }
 
 #if defined(_WIN32) && defined(LOGAX_USE_OLD_CONSOLE_MODE)
+int logax_default_color = LOGAX_RESET_TERMINAL;
+int initialized_h_console = 0;
+HANDLE logax_hConsole;
 
 /**
 
 */
-#define LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(flags)
+#define LOGAX_INITIALIZE_HCONSOLE() if (!initialized_h_console) {\
+		CONSOLE_SCREEN_BUFFER_INFO info;\
+		if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info)) {\
+			logax_default_color = info.wAttributes;\
+		}\
+		logax_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);\
+		initialized_h_console = 1;\
+	}
+
+#ifndef LOGAX_NO_COLORING
+#define LOGAX_DELEGATE_FPRINT_STR(foreground, text) if (is_colored) { SetConsoleTextAttribute(logax_hConsole, foreground); } fprintf(stream, "%s", text); if (is_colored) { LOGAX_RESET_TERMINAL_ATTR(); }
+#define LOGAX_DELEGATE_FPRINT_SIZE_T(foreground, text) if (is_colored) { SetConsoleTextAttribute(logax_hConsole, foreground); } fprintf(stream, "%zu", text); if (is_colored) {LOGAX_RESET_TERMINAL_ATTR(); }
 #else
+#define LOGAX_DELEGATE_FPRINT_STR(foreground, text) fprintf(stream, "%s", text);
+#define LOGAX_DELEGATE_FPRINT_SIZE_T(foreground, text) fprintf(stream, "%zu", text);
+#endif
+
+#ifndef LOGAX_NO_COLORING
+/**
+
+*/
+#define LOGAX_WRITE_COLOR_CODE(color) SetConsoleTextAttribute(logax_hConsole, color);
+#else
+#define LOGAX_WRITE_COLOR_CODE(color)
+#endif
 
 /**
 
 */
 #define LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(prefix_value, level, suffix_value)\
-    if (is_colored) fprintf(stream, "%s%s%s%s%s", prefix_value, LOGAX_FOREGROUND_##level, #level, LOGAX_RESET_TERMINAL, suffix_value);\
+	if (is_colored) {\
+		fprintf(stream, "%s", prefix_value); LOGAX_DELEGATE_FPRINT_STR(LOGAX_FOREGROUND_##level, #level); fprintf(stream, "%s", suffix_value);\
+	} else {\
+		fprintf(stream, "%s%s%s", prefix_value, #level, suffix_value);\
+	}
+#else
+
+#define LOGAX_INITIALIZE_HCONSOLE()
+
+#ifndef LOGAX_NO_COLORING
+#define LOGAX_DELEGATE_FPRINT_STR(foreground, text) if (is_colored) { fprintf(stream, "%s%s%s", foreground, text, LOGAX_RESET_TERMINAL); } else { fprintf(stream, "%s", text); }
+#define LOGAX_DELEGATE_FPRINT_SIZE_T(foreground, text) if (is_colored) { fprintf(stream, "%s%zu%s", foreground, text, LOGAX_RESET_TERMINAL); } else { fprintf(stream, "%zu", text); }
+#else
+#define LOGAX_DELEGATE_FPRINT_STR(foreground, text) fprintf(stream, "%s", text);
+#define LOGAX_DELEGATE_FPRINT_SIZE_T(foreground, text) fprintf(stream, "%zu", text);
+#endif
+
+#ifndef LOGAX_NO_COLORING
+/**
+
+*/
+#define LOGAX_WRITE_COLOR_CODE(color) if (is_colored) { fprintf(stream, "%s", color); }
+#else
+#define LOGAX_WRITE_COLOR_CODE(color)
+#endif
+
+/**
+
+*/
+#define LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(prefix_value, level, suffix_value)\
+    if (is_colored) { LOGAX_DELEGATE_FPRINT_STR(LOGAX_FOREGROUND_##level, #level); fprintf(stream, "%s", suffix_value); }\
     else fprintf(stream, "%s%s%s", prefix_value, #level, suffix_value);
 #endif
 
@@ -300,7 +361,11 @@ static void logax_extract_name_only(char const* const file_path, char formatted_
 */
 static void logax_write_text_format_to_stream_final__internal__(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args) {
     if (flags & LOGAX_OPTION_QUITE) return;
+	LOGAX_INITIALIZE_HCONSOLE();
     unsigned is_colored = (flags & LOGAX_OPTION_COLORED || (flags & LOGAX_OPTION_ALL));
+	unsigned print_comma = 0;
+	unsigned has_any_level = (flags & LOGAX_LEVEL_TRACE) || (flags & LOGAX_LEVEL_DEBUG) || (flags & LOGAX_LEVEL_INFO) || 
+		(flags & LOGAX_LEVEL_WARN) || (flags & LOGAX_LEVEL_ERROR) || (flags & LOGAX_LEVEL_FATAL);
     /* date and time */
 #ifndef LOGAX_NO_TIME
     time_t time_raw = time(LOGAX_NULL);
@@ -308,52 +373,52 @@ static void logax_write_text_format_to_stream_final__internal__(FILE *stream, in
     if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE || (flags & LOGAX_OPTION_ALL))) {
         char date_buffer[16];
         date_buffer[strftime(date_buffer, sizeof(date_buffer), "%Y-%m-%d", current_time)] = '\0';
+		print_comma = 1;
         fprintf(stream, "%s", date_buffer);
     }
     if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_TIME || (flags & LOGAX_OPTION_ALL))) {
         char time_buffer[16];
         time_buffer[strftime(time_buffer, sizeof(time_buffer), "%H:%M:%S", current_time)] = '\0';
-        if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE || (flags & LOGAX_OPTION_ALL))) {
-            fprintf(stream, " ");
-        }
+		if (print_comma) { fprintf(stream, " "); } else { print_comma = 1; }
         fprintf(stream, "%s", time_buffer);
     }
 #endif
-    /* logging level *//* todo conditional space before level text */
+    /* logging level */
+	if (print_comma && has_any_level) { fprintf(stream, " "); } else if (has_any_level) { print_comma = 1; }
     if (flags & LOGAX_LEVEL_TRACE) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" ", TRACE, "");
+        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__("", TRACE, "");
     } else if (flags & LOGAX_LEVEL_DEBUG) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" ", DEBUG, "");
+        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__("", DEBUG, "");
     } else if (flags & LOGAX_LEVEL_INFO) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__("  ", INFO, "");
+        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" ", INFO, "");
     } else if (flags & LOGAX_LEVEL_WARN) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__("  ", WARN, "");
+        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" ", WARN, "");
     } else if (flags & LOGAX_LEVEL_ERROR) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" ", ERROR, "");
+        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__("", ERROR, "");
     } else if (flags & LOGAX_LEVEL_FATAL) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" ", FATAL, "");
+        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__("", FATAL, "");
     }
     /* file path and line number */
     if ((flags & LOGAX_OPTION_FILE_PATH) || (flags & LOGAX_OPTION_FILE_NAME_ONLY) || (flags & LOGAX_OPTION_ALL)) {
         char formatted_file_name[logax_cstr_length((char *)file_path)];
         if (flags & LOGAX_OPTION_FILE_PATH) {
             logax_replace_char((char *)file_path, formatted_file_name, '\\', '/');
-            fprintf(stream, " %s", formatted_file_name);
         } else {
             logax_extract_name_only(file_path, formatted_file_name);
-            fprintf(stream, " %s", formatted_file_name);
         }
+		if (print_comma) { fprintf(stream, " "); } else { print_comma = 1; }
+		fprintf(stream, "%s", formatted_file_name);
+		if (flags & LOGAX_OPTION_LINE_NUMBER || (flags & LOGAX_OPTION_ALL)) { fprintf(stream, ":"); }
     }
     if (flags & LOGAX_OPTION_LINE_NUMBER || (flags & LOGAX_OPTION_ALL)) {
-        if (!((flags & LOGAX_OPTION_FILE_PATH) || (flags & LOGAX_OPTION_FILE_NAME_ONLY) || (flags & LOGAX_OPTION_ALL))) {
-            fprintf(stream, " ");
-        }
-        fprintf(stream, ":%zu", line_number);
+        fprintf(stream, "%zu", line_number);
+		if (flags & LOGAX_OPTION_FUNCTION || (flags & LOGAX_OPTION_ALL)) { fprintf(stream, " "); }
     }
     if (flags & LOGAX_OPTION_FUNCTION || (flags & LOGAX_OPTION_ALL)) {
-        fprintf(stream, " --- [%s\t]", function_name);
+		if (print_comma) { fprintf(stream, " "); } else { print_comma = 1; }
+        fprintf(stream, "--- [%s\t]", function_name);
     }
-    fprintf(stream, " ");
+	if (print_comma) { fprintf(stream, " "); }
     vfprintf(stream, fmt, va_args);
     fprintf(stream, "\n");
 }
@@ -378,7 +443,11 @@ static void logax_write_text_format_to_stream__internal__(FILE *stream, int flag
 */
 static void logax_write_key_value_format_to_stream_final__internal__(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args) {
     if (flags & LOGAX_OPTION_QUITE) return;
-    unsigned is_colored = 0; /* TODO conditional key value no color */
+	LOGAX_INITIALIZE_HCONSOLE();
+    unsigned is_colored = 0;
+	unsigned print_comma = 0;
+	unsigned has_any_level = (flags & LOGAX_LEVEL_TRACE) || (flags & LOGAX_LEVEL_DEBUG) || (flags & LOGAX_LEVEL_INFO) || 
+		(flags & LOGAX_LEVEL_WARN) || (flags & LOGAX_LEVEL_ERROR) || (flags & LOGAX_LEVEL_FATAL);
     /* date and time */
 #ifndef LOGAX_NO_TIME
     time_t time_raw = time(LOGAX_NULL);
@@ -386,49 +455,52 @@ static void logax_write_key_value_format_to_stream_final__internal__(FILE *strea
     if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE || (flags & LOGAX_OPTION_ALL))) {
         char date_buffer[16];
         date_buffer[strftime(date_buffer, sizeof(date_buffer), "%Y-%m-%d", current_time)] = '\0';
+		print_comma = 1;
         fprintf(stream, "date=\"%s\"", date_buffer);
     }
     if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_TIME || (flags & LOGAX_OPTION_ALL))) {
         char time_buffer[16];
         time_buffer[strftime(time_buffer, sizeof(time_buffer), "%H:%M:%S", current_time)] = '\0';
-        if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE || (flags & LOGAX_OPTION_ALL))) {
-            fprintf(stream, " ");
-        }
+		if (print_comma) { fprintf(stream, " "); } else { print_comma = 1; }
         fprintf(stream, "time=\"%s\"", time_buffer);
     }
 #endif
     /* logging level */
+	if (print_comma && has_any_level) { fprintf(stream, " "); } else if (has_any_level) { print_comma = 1; }
     if (flags & LOGAX_LEVEL_TRACE) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" level=\"", TRACE, "\"");
+        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__("level=\"", TRACE, "\"");
     } else if (flags & LOGAX_LEVEL_DEBUG) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" level=\"", DEBUG, "\"");
+        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__("level=\"", DEBUG, "\"");
     } else if (flags & LOGAX_LEVEL_INFO) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" level=\"", INFO, "\"");
+        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__("level=\"", INFO, "\"");
     } else if (flags & LOGAX_LEVEL_WARN) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" level=\"", WARN, "\"");
+        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__("level=\"", WARN, "\"");
     } else if (flags & LOGAX_LEVEL_ERROR) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" level=\"", ERROR, "\"");
+        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__("level=\"", ERROR, "\"");
     } else if (flags & LOGAX_LEVEL_FATAL) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" level=\"", FATAL, "\"");
+        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__("level=\"", FATAL, "\"");
     }
     /* file path and line number */
     if ((flags & LOGAX_OPTION_FILE_PATH) || (flags & LOGAX_OPTION_FILE_NAME_ONLY) || (flags & LOGAX_OPTION_ALL)) {
         char formatted_file_name[logax_cstr_length((char *)file_path)];
         if (flags & LOGAX_OPTION_FILE_PATH) {
             logax_replace_char((char *)file_path, formatted_file_name, '\\', '/');
-            fprintf(stream, " file=\"%s\"", formatted_file_name);
         } else {
             logax_extract_name_only(file_path, formatted_file_name);
-            fprintf(stream, " file=\"%s\"", formatted_file_name);
         }
+		if (print_comma) { fprintf(stream, " "); } else { print_comma = 1; }
+		fprintf(stream, "file=\"%s\"", formatted_file_name);
     }
     if (flags & LOGAX_OPTION_LINE_NUMBER || (flags & LOGAX_OPTION_ALL)) {
-        fprintf(stream, " line_number=%zu", line_number);
+		if (print_comma) { fprintf(stream, " "); } else { print_comma = 1; }
+        fprintf(stream, "line_number=%zu", line_number);
     }
     if (flags & LOGAX_OPTION_FUNCTION || (flags & LOGAX_OPTION_ALL)) {
-        fprintf(stream, " function=\"%s\"", function_name);
+		if (print_comma) { fprintf(stream, " "); } else { print_comma = 1; }
+        fprintf(stream, "function=\"%s\"", function_name);
     }
-    fprintf(stream, " message=\"");
+	if (print_comma) { fprintf(stream, " "); }
+    fprintf(stream, "message=\"");
     vfprintf(stream, fmt, va_args);
     fprintf(stream, "\"\n");
 }
@@ -451,10 +523,27 @@ static void logax_write_key_value_format_to_stream__internal__(FILE *stream, int
 /**
 
 */
+#define LOGAX_INTERNAL_WRITE_JSON_STR(key, value)\
+	LOGAX_DELEGATE_FPRINT_STR(LOGAX_FOREGROUND_DEBUG, "\"" key "\""); fprintf(stream, ":");\
+	LOGAX_WRITE_COLOR_CODE(LOGAX_FOREGROUND_TRACE); fprintf(stream, "\"%s\"", value); if (is_colored) { LOGAX_RESET_TERMINAL_ATTR(); }
+
+/**
+
+*/
+#define LOGAX_INTERNAL_WRITE_JSON_SIZE_T(key, value)\
+	LOGAX_DELEGATE_FPRINT_STR(LOGAX_FOREGROUND_DEBUG, "\"" key "\""); fprintf(stream, ":");\
+	LOGAX_DELEGATE_FPRINT_SIZE_T(LOGAX_FOREGROUND_TRACE, value);
+
+/**
+
+*/
 static void logax_write_json_format_to_stream_final__internal__(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args) {
     if (flags & LOGAX_OPTION_QUITE) return;
-    unsigned is_colored = 0;
-    unsigned print_with_colored = (flags & LOGAX_OPTION_COLORED || (flags & LOGAX_OPTION_ALL));
+	LOGAX_INITIALIZE_HCONSOLE();
+    unsigned is_colored = (flags & LOGAX_OPTION_COLORED || (flags & LOGAX_OPTION_ALL));
+	unsigned print_comma = 0;
+	unsigned has_any_level = (flags & LOGAX_LEVEL_TRACE) || (flags & LOGAX_LEVEL_DEBUG) || (flags & LOGAX_LEVEL_INFO) || 
+		(flags & LOGAX_LEVEL_WARN) || (flags & LOGAX_LEVEL_ERROR) || (flags & LOGAX_LEVEL_FATAL);
     /* date and time */
     fprintf(stream, "{");
 #ifndef LOGAX_NO_TIME
@@ -463,51 +552,61 @@ static void logax_write_json_format_to_stream_final__internal__(FILE *stream, in
     if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE || (flags & LOGAX_OPTION_ALL))) {
         char date_buffer[16];
           date_buffer[strftime(date_buffer, sizeof(date_buffer), "%Y-%m-%d", current_time)] = '\0';
-        fprintf(stream, "\"date\":\"%s\"", date_buffer);
+
+		print_comma = 1;
+		LOGAX_INTERNAL_WRITE_JSON_STR("date", date_buffer);
     }
-    if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_TIME)) {
+    if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_TIME) || (flags & LOGAX_OPTION_ALL)) {
         char time_buffer[16];
           time_buffer[strftime(time_buffer, sizeof(time_buffer), "%H:%M:%S", current_time)] = '\0';
-        if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE || (flags & LOGAX_OPTION_ALL))) {
-            fprintf(stream, ",");
-        }
-        fprintf(stream, "\"time\":\"%s\"", time_buffer);
+        if (print_comma) { fprintf(stream, ","); } else { print_comma = 1; }
+		LOGAX_INTERNAL_WRITE_JSON_STR("time", time_buffer);
     }
 #endif
     /* logging level */
+	if (print_comma && has_any_level) { fprintf(stream, ","); } else if (has_any_level) { print_comma = 1; }
     if (flags & LOGAX_LEVEL_TRACE) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(",\"level\":\"", TRACE, "\"");
+		LOGAX_INTERNAL_WRITE_JSON_STR("level", "TRACE");
     } else if (flags & LOGAX_LEVEL_DEBUG) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(",\"level\":\"", DEBUG, "\"");
+		LOGAX_INTERNAL_WRITE_JSON_STR("level", "DEBUG");
     } else if (flags & LOGAX_LEVEL_INFO) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(",\"level\":\"", INFO, "\"");
+		LOGAX_INTERNAL_WRITE_JSON_STR("level", "INFO");
     } else if (flags & LOGAX_LEVEL_WARN) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(",\"level\":\"", WARN, "\"");
+		LOGAX_INTERNAL_WRITE_JSON_STR("level", "WARN");
     } else if (flags & LOGAX_LEVEL_ERROR) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(",\"level\":\"", ERROR, "\"");
+		LOGAX_INTERNAL_WRITE_JSON_STR("level", "ERROR");
     } else if (flags & LOGAX_LEVEL_FATAL) {
-        LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(",\"level\":\"", FATAL, "\"");
+		LOGAX_INTERNAL_WRITE_JSON_STR("level", "FATAL");
     }
     /* file path and line number */
     if ((flags & LOGAX_OPTION_FILE_PATH) || (flags & LOGAX_OPTION_FILE_NAME_ONLY) || (flags & LOGAX_OPTION_ALL)) {
         char formatted_file_name[logax_cstr_length((char *)file_path)];
         if (flags & LOGAX_OPTION_FILE_PATH) {
             logax_replace_char((char *)file_path, formatted_file_name, '\\', '/');
-            fprintf(stream, ",\"file\":\"%s\"", formatted_file_name);
         } else {
             logax_extract_name_only(file_path, formatted_file_name);
-            fprintf(stream, ",\"file\":\"%s\"", formatted_file_name);
         }
+		if (print_comma) { fprintf(stream, ","); } else { print_comma = 1; }
+		LOGAX_INTERNAL_WRITE_JSON_STR("file", formatted_file_name);
     }
     if (flags & LOGAX_OPTION_LINE_NUMBER || (flags & LOGAX_OPTION_ALL)) {
-        fprintf(stream, ",\"line_number\":%zu", line_number);
+		if (print_comma) { fprintf(stream, ","); } else { print_comma = 1; }
+		LOGAX_INTERNAL_WRITE_JSON_SIZE_T("line_number", line_number);
     }
     if (flags & LOGAX_OPTION_FUNCTION || (flags & LOGAX_OPTION_ALL)) {
-        fprintf(stream, ",\"function\":\"%s\"", function_name);
+		if (print_comma) { fprintf(stream, ","); } else { print_comma = 1; }
+		LOGAX_INTERNAL_WRITE_JSON_STR("function", function_name);
     }
-    fprintf(stream, ",\"message\":\"");
-    vfprintf(stream, fmt, va_args);
-    fprintf(stream, "\"}\n");
+	if (print_comma) { fprintf(stream, ","); }
+    LOGAX_DELEGATE_FPRINT_STR(LOGAX_FOREGROUND_DEBUG, "\"message\""); fprintf(stream, ":");
+    if (is_colored) {
+		LOGAX_WRITE_COLOR_CODE(LOGAX_FOREGROUND_TRACE); 
+		fprintf(stream, "\""); vfprintf(stream, fmt, va_args); fprintf(stream, "\"");
+		LOGAX_RESET_TERMINAL_ATTR();
+	} else {
+		fprintf(stream, "\""); vfprintf(stream, fmt, va_args); fprintf(stream, "\"");
+	}
+    fprintf(stream, "},\n");
 }
 
 /**
@@ -524,12 +623,14 @@ static void logax_write_json_format_to_stream__internal__(FILE *stream, int flag
 
 */
 #define logax_write_json_format_to_stream(stream, flags, fmt, ...) logax_write_json_format_to_stream__internal__(stream, flags, __FILE__, __LINE__, __LOGAX_FUNCTION__, fmt, __VA_ARGS__)
+#else
+#define logax_write_text_format_to_stream(stream, flags, fmt, ...)
+#define logax_write_key_value_format_to_stream(stream, flags, fmt, ...)
+#define logax_write_json_format_to_stream(stream, flags, fmt, ...)
 
-/**
-    
-*/
-#ifndef LOGAX_NO_FUNCTIONAL_LOGGING
+#endif
 
+#if !defined(LOGAX_NO_OUTPUT_STREAM) && !defined(LOGAX_LOGGER_NO_OUTPUT_STREAM)
 /**
     
 */
@@ -548,8 +649,11 @@ static void logax_logger_write(LogaxLogger *logax_logger, int level, const char 
     va_end(args);
     logax_logger->flags &= ~level;
 }
+#else
+#define logax_logger_write(logax_logger, level, file_path, line_number, function_name, fmt, ...)
+#endif
 
-#ifndef LOGAX_NO_CALLBACK
+#ifndef LOGAX_LOGGER_NO_CALLBACK
 /**
     
 *//* TODO: Refractor to a function */
@@ -583,7 +687,6 @@ static void logax_logger_write(LogaxLogger *logax_logger, int level, const char 
             }\
         }
 #endif
-
 
 /**
     
@@ -620,7 +723,6 @@ static void logax_logger_write(LogaxLogger *logax_logger, int level, const char 
 */
 #define logax_logger_fatal(logax_logger, fmt, ...) logax_logger_write(logax_logger, LOGAX_LEVEL_FATAL, __FILE__, __LINE__, __LOGAX_FUNCTION__, fmt, __VA_ARGS__);\
     logax_logger_report_to_callback(logax_logger, LOGAX_LEVEL_FATAL, fmt, __VA_ARGS__)
-#endif
 
 
 #ifdef __cplusplus

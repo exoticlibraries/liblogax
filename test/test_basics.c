@@ -61,8 +61,8 @@ CESTER_TEST(logax_callback, test_inst, {
 	logax_logger_error(&logax_logger, "%s", "Logging the test for ERROR");
 	logax_logger_fatal(&logax_logger, "%s", "Logging the test for FATAL");
 
-	cester_assert_stdout_stream_content_contain((char *) "level=1024");
-	cester_assert_stdout_stream_content_contain((char *) "level=2048");
+	cester_assert_stdout_stream_content_contain((char *) "level=262144");
+	cester_assert_stdout_stream_content_contain((char *) "level=524288");
 	cester_assert_stdout_stream_content_contain((char *) "line_number=5");
 	cester_assert_stdout_stream_content_contain((char *) "LOG:::57\n");
 	cester_assert_stdout_stream_content_contain((char *) "LOG:::58\n");

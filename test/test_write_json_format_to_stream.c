@@ -21,24 +21,24 @@ CESTER_TEST(logax_write_json_format_to_stream_verbose, test_inst, {
 	logax_write_json_format_to_stream(stdout, LOGAX_OPTIONS_VERBOSE | LOGAX_LEVEL_ERROR, "%s", "This is an error output");
 	logax_write_json_format_to_stream(stdout, LOGAX_OPTIONS_VERBOSE | LOGAX_LEVEL_FATAL, "%s", "This is a fatal output");
 
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"TRACE\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"DEBUG\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"INFO\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"WARN\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"ERROR\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"FATAL\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"line_number\":17");
-	cester_assert_stdout_stream_content_contain((char *) "\"line_number\":18");
-	cester_assert_stdout_stream_content_contain((char *) "\"line_number\":19");
-	cester_assert_stdout_stream_content_contain((char *) "\"line_number\":20");
-	cester_assert_stdout_stream_content_contain((char *) "\"line_number\":21");
-	cester_assert_stdout_stream_content_contain((char *) "\"line_number\":22");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"This is a trace output\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"This is a debug output\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"This is an info output\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"This is a warning output\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"This is an error output\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"This is a fatal output\"");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"TRACE\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"DEBUG\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"INFO\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"WARN\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"ERROR\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"FATAL\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"line_number\"\x1B[0m:\x1B[36m17\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"line_number\"\x1B[0m:\x1B[36m18\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"line_number\"\x1B[0m:\x1B[36m19\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"line_number\"\x1B[0m:\x1B[36m20\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"line_number\"\x1B[0m:\x1B[36m21\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"line_number\"\x1B[0m:\x1B[36m22\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"This is a trace output\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"This is a debug output\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"This is an info output\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"This is a warning output\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"This is an error output\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"This is a fatal output\"\x1B[0m");
 
 	CESTER_RELEASE_STDOUT();
 })
@@ -53,25 +53,25 @@ CESTER_TEST(logax_write_json_format_to_stream_minimal, test_inst, {
 	logax_write_json_format_to_stream(stdout, LOGAX_OPTIONS_MINIMAL | LOGAX_LEVEL_ERROR, "%s", "This is an error output");
 	logax_write_json_format_to_stream(stdout, LOGAX_OPTIONS_MINIMAL | LOGAX_LEVEL_FATAL, "%s", "This is a fatal output");
 
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"TRACE\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"DEBUG\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"INFO\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"WARN\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"ERROR\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"level\":\"FATAL\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"file\":\"test_write_json_format_to_stream.c\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"line_number\":49");
-	cester_assert_stdout_stream_content_contain((char *) "\"line_number\":50");
-	cester_assert_stdout_stream_content_contain((char *) "\"line_number\":51");
-	cester_assert_stdout_stream_content_contain((char *) "\"line_number\":52");
-	cester_assert_stdout_stream_content_contain((char *) "\"line_number\":53");
-	cester_assert_stdout_stream_content_contain((char *) "\"line_number\":54");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"This is a trace output\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"This is a debug output\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"This is an info output\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"This is a warning output\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"This is an error output\"");
-	cester_assert_stdout_stream_content_contain((char *) "\"message\":\"This is a fatal output\"");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"TRACE\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"DEBUG\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"INFO\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"WARN\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"ERROR\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"level\"\x1B[0m:\x1B[36m\"FATAL\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"file\"\x1B[0m:\x1B[36m\"test_write_json_format_to_stream.c\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"line_number\"\x1B[0m:\x1B[36m49\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"line_number\"\x1B[0m:\x1B[36m50\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"line_number\"\x1B[0m:\x1B[36m51\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"line_number\"\x1B[0m:\x1B[36m52\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"line_number\"\x1B[0m:\x1B[36m53\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"line_number\"\x1B[0m:\x1B[36m54\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"This is a trace output\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"This is a debug output\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"This is an info output\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"This is a warning output\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"This is an error output\"\x1B[0m");
+	cester_assert_stdout_stream_content_contain((char *) "\x1B[32m\"message\"\x1B[0m:\x1B[36m\"This is a fatal output\"\x1B[0m");
 
 	CESTER_RELEASE_STDOUT();
 })
