@@ -76,7 +76,9 @@ extern "C" {
 /**
     
 */
-#define LOGAX_MAX_CALLBACKS 20
+#ifndef LOGAX_MAX_CALLBACKS
+#define LOGAX_MAX_CALLBACKS 5
+#endif
 
 /*
     
@@ -85,7 +87,8 @@ typedef void (*logax_callback)(const char *date, const char *time, const int lev
 #endif
 
 /**
-    
+    More bit location is reserved till 15 to accomodate new options without breaking 
+	backward compatibility
 */
 enum LogaxOption {
     LOGAX_OPTION_QUITE           = 1 << 1, /**<  binary 0010 */
@@ -98,28 +101,29 @@ enum LogaxOption {
     LOGAX_OPTION_FILE_NAME_ONLY  = 1 << 6,
     LOGAX_OPTION_LINE_NUMBER     = 1 << 7,
     LOGAX_OPTION_COLORED         = 1 << 8,
-    LOGAX_OPTION_FUNCTION        = 1 << 9
+    LOGAX_OPTION_FUNCTION        = 1 << 9,
+    LOGAX_OPTION_ALL             = 1 << 15
 };
 
 /**
     
 */
 enum LogaxLevel {
-    LOGAX_LEVEL_TRACE   = 1 << 10, /**<  ? */
-    LOGAX_LEVEL_DEBUG   = 1 << 11, /**<  ? */
-    LOGAX_LEVEL_INFO    = 1 << 12, /**<  ? */
-    LOGAX_LEVEL_WARN    = 1 << 13,
-    LOGAX_LEVEL_ERROR   = 1 << 14,
-    LOGAX_LEVEL_FATAL   = 1 << 15
+    LOGAX_LEVEL_TRACE   = 1 << 16, /**<  ? */
+    LOGAX_LEVEL_DEBUG   = 1 << 17, /**<  ? */
+    LOGAX_LEVEL_INFO    = 1 << 18, /**<  ? */
+    LOGAX_LEVEL_WARN    = 1 << 19,
+    LOGAX_LEVEL_ERROR   = 1 << 20,
+    LOGAX_LEVEL_FATAL   = 1 << 21
 };
 
 /**
     
 */
 enum LogaxFormatter {
-    LOGAX_FORMATTER_TEXT         = 1 << 20, /**<  ? */
-    LOGAX_FORMATTER_KEY_VALUE    = 1 << 21, /**<  ? */
-    LOGAX_FORMATTER_JSON         = 1 << 23 /**<  ? */
+    LOGAX_FORMATTER_TEXT         = 1 << 25, /**<  ? */
+    LOGAX_FORMATTER_KEY_VALUE    = 1 << 26, /**<  ? */
+    LOGAX_FORMATTER_JSON         = 1 << 27 /**<  ? */
 };
 
 /**
@@ -144,6 +148,7 @@ typedef struct logax_logger_s LogaxLogger;
 
 */
 static void logax_init_logger(LogaxLogger *logax_logger) {
+    int index = 0;
     logax_logger->flags = LOGAX_FORMATTER_TEXT | LOGAX_OPTION_COLORED | LOGAX_OPTION_FILE_NAME_ONLY | LOGAX_OPTION_LINE_NUMBER;
 #ifndef LOGAX_NO_TIME
     logax_logger->flags |= LOGAX_OPTION_DATE_TIME;
@@ -152,7 +157,7 @@ static void logax_init_logger(LogaxLogger *logax_logger) {
     logax_logger->output_stream = stdout;
 #endif
 #ifndef LOGAX_NO_CALLBACK
-    for (int index = 0; index < LOGAX_MAX_CALLBACKS; index++) {
+    for (; index < LOGAX_MAX_CALLBACKS; index++) {
         logax_logger->callbacks[index] = LOGAX_NULL;
     }
 #endif
@@ -163,13 +168,14 @@ static void logax_init_logger(LogaxLogger *logax_logger) {
 
 */
 static void logax_init_logger_ws(LogaxLogger *logax_logger, FILE *output_stream) {
+    int index = 0;
     logax_logger->flags = LOGAX_FORMATTER_TEXT | LOGAX_OPTION_COLORED | LOGAX_OPTION_FILE_NAME_ONLY | LOGAX_OPTION_LINE_NUMBER;
 #ifndef LOGAX_NO_TIME
     logax_logger->flags |= LOGAX_OPTION_DATE_TIME;
 #endif
     logax_logger->output_stream = output_stream;
 #ifndef LOGAX_NO_CALLBACK
-    for (int index = 0; index < LOGAX_MAX_CALLBACKS; index++) {
+    for (; index < LOGAX_MAX_CALLBACKS; index++) {
         logax_logger->callbacks[index] = LOGAX_NULL;
     }
 #endif
@@ -180,7 +186,8 @@ static void logax_init_logger_ws(LogaxLogger *logax_logger, FILE *output_stream)
 
 */
 static unsigned logax_logger_add_callback(LogaxLogger *logax_logger, logax_callback callback) {
-    for (int index = 0; index < LOGAX_MAX_CALLBACKS; index++) {
+    int index = 0;;
+    for (; index < LOGAX_MAX_CALLBACKS; index++) {
         if (logax_logger->callbacks[index] == LOGAX_NULL) {
             logax_logger->callbacks[index] = callback;
             return index;
@@ -293,26 +300,26 @@ static void logax_extract_name_only(char const* const file_path, char formatted_
 */
 static void logax_write_text_format_to_stream_final__internal__(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args) {
     if (flags & LOGAX_OPTION_QUITE) return;
-    unsigned is_colored = (flags & LOGAX_OPTION_COLORED);
+    unsigned is_colored = (flags & LOGAX_OPTION_COLORED || (flags & LOGAX_OPTION_ALL));
     /* date and time */
 #ifndef LOGAX_NO_TIME
     time_t time_raw = time(LOGAX_NULL);
     struct tm *current_time = localtime(&time_raw);
-    if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE)) {
+    if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE || (flags & LOGAX_OPTION_ALL))) {
         char date_buffer[16];
         date_buffer[strftime(date_buffer, sizeof(date_buffer), "%Y-%m-%d", current_time)] = '\0';
         fprintf(stream, "%s", date_buffer);
     }
-    if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_TIME)) {
+    if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_TIME || (flags & LOGAX_OPTION_ALL))) {
         char time_buffer[16];
         time_buffer[strftime(time_buffer, sizeof(time_buffer), "%H:%M:%S", current_time)] = '\0';
-        if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE)) {
+        if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE || (flags & LOGAX_OPTION_ALL))) {
             fprintf(stream, " ");
         }
         fprintf(stream, "%s", time_buffer);
     }
 #endif
-    /* logging level */
+    /* logging level *//* todo conditional space before level text */
     if (flags & LOGAX_LEVEL_TRACE) {
         LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" ", TRACE, "");
     } else if (flags & LOGAX_LEVEL_DEBUG) {
@@ -327,7 +334,7 @@ static void logax_write_text_format_to_stream_final__internal__(FILE *stream, in
         LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" ", FATAL, "");
     }
     /* file path and line number */
-    if ((flags & LOGAX_OPTION_FILE_PATH) || (flags & LOGAX_OPTION_FILE_NAME_ONLY)) {
+    if ((flags & LOGAX_OPTION_FILE_PATH) || (flags & LOGAX_OPTION_FILE_NAME_ONLY) || (flags & LOGAX_OPTION_ALL)) {
         char formatted_file_name[logax_cstr_length((char *)file_path)];
         if (flags & LOGAX_OPTION_FILE_PATH) {
             logax_replace_char((char *)file_path, formatted_file_name, '\\', '/');
@@ -337,13 +344,13 @@ static void logax_write_text_format_to_stream_final__internal__(FILE *stream, in
             fprintf(stream, " %s", formatted_file_name);
         }
     }
-    if (flags & LOGAX_OPTION_LINE_NUMBER) {
-        if (!((flags & LOGAX_OPTION_FILE_PATH) || (flags & LOGAX_OPTION_FILE_NAME_ONLY))) {
+    if (flags & LOGAX_OPTION_LINE_NUMBER || (flags & LOGAX_OPTION_ALL)) {
+        if (!((flags & LOGAX_OPTION_FILE_PATH) || (flags & LOGAX_OPTION_FILE_NAME_ONLY) || (flags & LOGAX_OPTION_ALL))) {
             fprintf(stream, " ");
         }
         fprintf(stream, ":%zu", line_number);
     }
-    if (flags & LOGAX_OPTION_FUNCTION) {
+    if (flags & LOGAX_OPTION_FUNCTION || (flags & LOGAX_OPTION_ALL)) {
         fprintf(stream, " --- [%s\t]", function_name);
     }
     fprintf(stream, " ");
@@ -371,20 +378,20 @@ static void logax_write_text_format_to_stream__internal__(FILE *stream, int flag
 */
 static void logax_write_key_value_format_to_stream_final__internal__(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args) {
     if (flags & LOGAX_OPTION_QUITE) return;
-    unsigned is_colored = 0;
+    unsigned is_colored = 0; /* TODO conditional key value no color */
     /* date and time */
 #ifndef LOGAX_NO_TIME
     time_t time_raw = time(LOGAX_NULL);
     struct tm *current_time = localtime(&time_raw);
-    if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE)) {
+    if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE || (flags & LOGAX_OPTION_ALL))) {
         char date_buffer[16];
         date_buffer[strftime(date_buffer, sizeof(date_buffer), "%Y-%m-%d", current_time)] = '\0';
         fprintf(stream, "date=\"%s\"", date_buffer);
     }
-    if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_TIME)) {
+    if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_TIME || (flags & LOGAX_OPTION_ALL))) {
         char time_buffer[16];
         time_buffer[strftime(time_buffer, sizeof(time_buffer), "%H:%M:%S", current_time)] = '\0';
-        if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE)) {
+        if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE || (flags & LOGAX_OPTION_ALL))) {
             fprintf(stream, " ");
         }
         fprintf(stream, "time=\"%s\"", time_buffer);
@@ -405,7 +412,7 @@ static void logax_write_key_value_format_to_stream_final__internal__(FILE *strea
         LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(" level=\"", FATAL, "\"");
     }
     /* file path and line number */
-    if ((flags & LOGAX_OPTION_FILE_PATH) || (flags & LOGAX_OPTION_FILE_NAME_ONLY)) {
+    if ((flags & LOGAX_OPTION_FILE_PATH) || (flags & LOGAX_OPTION_FILE_NAME_ONLY) || (flags & LOGAX_OPTION_ALL)) {
         char formatted_file_name[logax_cstr_length((char *)file_path)];
         if (flags & LOGAX_OPTION_FILE_PATH) {
             logax_replace_char((char *)file_path, formatted_file_name, '\\', '/');
@@ -415,10 +422,10 @@ static void logax_write_key_value_format_to_stream_final__internal__(FILE *strea
             fprintf(stream, " file=\"%s\"", formatted_file_name);
         }
     }
-    if (flags & LOGAX_OPTION_LINE_NUMBER) {
+    if (flags & LOGAX_OPTION_LINE_NUMBER || (flags & LOGAX_OPTION_ALL)) {
         fprintf(stream, " line_number=%zu", line_number);
     }
-    if (flags & LOGAX_OPTION_FUNCTION) {
+    if (flags & LOGAX_OPTION_FUNCTION || (flags & LOGAX_OPTION_ALL)) {
         fprintf(stream, " function=\"%s\"", function_name);
     }
     fprintf(stream, " message=\"");
@@ -447,13 +454,13 @@ static void logax_write_key_value_format_to_stream__internal__(FILE *stream, int
 static void logax_write_json_format_to_stream_final__internal__(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args) {
     if (flags & LOGAX_OPTION_QUITE) return;
     unsigned is_colored = 0;
-    unsigned print_with_colored = (flags & LOGAX_OPTION_COLORED);
+    unsigned print_with_colored = (flags & LOGAX_OPTION_COLORED || (flags & LOGAX_OPTION_ALL));
     /* date and time */
     fprintf(stream, "{");
 #ifndef LOGAX_NO_TIME
     time_t time_raw = time(LOGAX_NULL);
     struct tm *current_time = localtime(&time_raw);
-    if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE)) {
+    if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE || (flags & LOGAX_OPTION_ALL))) {
         char date_buffer[16];
           date_buffer[strftime(date_buffer, sizeof(date_buffer), "%Y-%m-%d", current_time)] = '\0';
         fprintf(stream, "\"date\":\"%s\"", date_buffer);
@@ -461,7 +468,7 @@ static void logax_write_json_format_to_stream_final__internal__(FILE *stream, in
     if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_TIME)) {
         char time_buffer[16];
           time_buffer[strftime(time_buffer, sizeof(time_buffer), "%H:%M:%S", current_time)] = '\0';
-        if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE)) {
+        if ((flags & LOGAX_OPTION_DATE_TIME) || (flags & LOGAX_OPTION_DATE || (flags & LOGAX_OPTION_ALL))) {
             fprintf(stream, ",");
         }
         fprintf(stream, "\"time\":\"%s\"", time_buffer);
@@ -482,7 +489,7 @@ static void logax_write_json_format_to_stream_final__internal__(FILE *stream, in
         LOGAX_WRITE_LEVEL_COLOR__INTERNALL__(",\"level\":\"", FATAL, "\"");
     }
     /* file path and line number */
-    if ((flags & LOGAX_OPTION_FILE_PATH) || (flags & LOGAX_OPTION_FILE_NAME_ONLY)) {
+    if ((flags & LOGAX_OPTION_FILE_PATH) || (flags & LOGAX_OPTION_FILE_NAME_ONLY) || (flags & LOGAX_OPTION_ALL)) {
         char formatted_file_name[logax_cstr_length((char *)file_path)];
         if (flags & LOGAX_OPTION_FILE_PATH) {
             logax_replace_char((char *)file_path, formatted_file_name, '\\', '/');
@@ -492,10 +499,10 @@ static void logax_write_json_format_to_stream_final__internal__(FILE *stream, in
             fprintf(stream, ",\"file\":\"%s\"", formatted_file_name);
         }
     }
-    if (flags & LOGAX_OPTION_LINE_NUMBER) {
+    if (flags & LOGAX_OPTION_LINE_NUMBER || (flags & LOGAX_OPTION_ALL)) {
         fprintf(stream, ",\"line_number\":%zu", line_number);
     }
-    if (flags & LOGAX_OPTION_FUNCTION) {
+    if (flags & LOGAX_OPTION_FUNCTION || (flags & LOGAX_OPTION_ALL)) {
         fprintf(stream, ",\"function\":\"%s\"", function_name);
     }
     fprintf(stream, ",\"message\":\"");
@@ -540,24 +547,6 @@ static void logax_logger_write(LogaxLogger *logax_logger, int level, const char 
     }
     va_end(args);
     logax_logger->flags &= ~level;
-#ifndef LOGAX_NO_TIME
-    time_t time_raw = time(LOGAX_NULL);
-    struct tm *current_time = localtime(&time_raw);
-    char date_buffer[16];
-    date_buffer[strftime(date_buffer, sizeof(date_buffer), "%Y-%m-%d", current_time)] = '\0';
-    char time_buffer[16];
-    time_buffer[strftime(time_buffer, sizeof(time_buffer), "%H:%M:%S", current_time)] = '\0';
-#else
-    char *date_buffer = "";
-    char *time_buffer = "";
-#endif
-    /*for (int index = 0; index < LOGAX_MAX_CALLBACKS; index++) {
-        logax_callback callback = logax_logger->callbacks[index];
-        if (callback != LOGAX_NULL) {
-            //const char *date, const char *time, const int level, const char *file, const size_t line_number, const char *function_name, const char *message
-            callback(date_buffer, time_buffer, level, file_path, line_number, function_name, "Yahoo");
-        }
-    }*/
 }
 
 #ifndef LOGAX_NO_CALLBACK
@@ -566,13 +555,14 @@ static void logax_logger_write(LogaxLogger *logax_logger, int level, const char 
 *//* TODO: Refractor to a function */
 #ifndef LOGAX_NO_TIME
     #define logax_logger_report_to_callback(logax_logger, level, fmt, ...) {\
+            int index = 0;\
+            char time_buffer__logax_tmp_var__[16];\
+            char date_buffer__logax_tmp_var__[16];\
             time_t time_raw__logax_tmp_var__ = time(LOGAX_NULL);\
             struct tm *current_time__logax_tmp_var__ = localtime(&time_raw__logax_tmp_var__);\
-            char date_buffer__logax_tmp_var__[16];\
             date_buffer__logax_tmp_var__[strftime(date_buffer__logax_tmp_var__, sizeof(date_buffer__logax_tmp_var__), "%Y-%m-%d", current_time__logax_tmp_var__)] = '\0';\
-            char time_buffer__logax_tmp_var__[16];\
             time_buffer__logax_tmp_var__[strftime(time_buffer__logax_tmp_var__, sizeof(time_buffer__logax_tmp_var__), "%H:%M:%S", current_time__logax_tmp_var__)] = '\0';\
-            for (int index = 0; index < LOGAX_MAX_CALLBACKS; index++) {\
+            for (; index < LOGAX_MAX_CALLBACKS; index++) {\
                 logax_callback callback = (logax_logger)->callbacks[index];\
                 if (callback != LOGAX_NULL) {\
                     callback(date_buffer__logax_tmp_var__, time_buffer__logax_tmp_var__, level, __FILE__, __LINE__, __LOGAX_FUNCTION__, fmt, __VA_ARGS__);\
@@ -582,9 +572,10 @@ static void logax_logger_write(LogaxLogger *logax_logger, int level, const char 
     #endif
 #else
     #define logax_logger_report_to_callback(logax_logger, level, fmt, ...) {\
+            int index = 0;\
             char *date_buffer = "";\
             char *time_buffer = "";\
-            for (int index = 0; index < LOGAX_MAX_CALLBACKS; index++) {\
+            for (; index < LOGAX_MAX_CALLBACKS; index++) {\
                 logax_callback callback = (logax_logger)->callbacks[index];\
                 if (callback != LOGAX_NULL) {\
                     callback(date_buffer__logax_tmp_var__, time_buffer__logax_tmp_var__, level, __FILE__, __LINE__, __LOGAX_FUNCTION__, fmt, __VA_ARGS__);\

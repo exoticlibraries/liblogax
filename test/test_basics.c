@@ -41,7 +41,7 @@ void on_new_log_callback(const char *date, const char *time, const int level, co
 }
 
 void on_new_log_callback2(const char *date, const char *time, const int level, const char *file, const size_t line_number, const char *function_name, const char *fmt, ...) {
-   printf("LOG:::%d\n", line_number);
+   printf("LOG:::%zu\n", line_number);
 }
 )
 
