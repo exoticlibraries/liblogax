@@ -41,7 +41,7 @@ void on_new_log_callback(const char *date, const char *time, const int level, co
 }
 
 void on_new_log_callback2(const char *date, const char *time, const int level, const char *file, const size_t line_number, const char *function_name, const char *fmt, ...) {
-   printf("LOG:::%zu\n", line_number);
+   printf("LOG:::%s\n", GET_LEVEL_STRING(level));
 }
 )
 
@@ -64,12 +64,12 @@ CESTER_TEST(logax_callback, test_inst, {
 	cester_assert_stdout_stream_content_contain((char *) "level=262144");
 	cester_assert_stdout_stream_content_contain((char *) "level=524288");
 	cester_assert_stdout_stream_content_contain((char *) "line_number=57");
-	cester_assert_stdout_stream_content_contain((char *) "LOG:::57\n");
-	cester_assert_stdout_stream_content_contain((char *) "LOG:::58\n");
-	cester_assert_stdout_stream_content_contain((char *) "LOG:::59\n");
-	cester_assert_stdout_stream_content_contain((char *) "LOG:::60\n");
-	cester_assert_stdout_stream_content_contain((char *) "LOG:::61\n");
-	cester_assert_stdout_stream_content_contain((char *) "LOG:::62\n");
+	cester_assert_stdout_stream_content_contain((char *) "LOG:::TRACE\n");
+	cester_assert_stdout_stream_content_contain((char *) "LOG:::DEBUG\n");
+	cester_assert_stdout_stream_content_contain((char *) "LOG:::INFO\n");
+	cester_assert_stdout_stream_content_contain((char *) "LOG:::WARN\n");
+	cester_assert_stdout_stream_content_contain((char *) "LOG:::ERROR\n");
+	cester_assert_stdout_stream_content_contain((char *) "LOG:::FATAL\n");
 	cester_assert_stdout_stream_content_contain((char *) "message=Logging the test for TRACE\n");
 	cester_assert_stdout_stream_content_contain((char *) "message=Logging the test for DEBUG\n");
 	cester_assert_stdout_stream_content_contain((char *) "message=Logging the test for INFO\n");

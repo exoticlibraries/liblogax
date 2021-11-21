@@ -12,12 +12,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        #os: [macos-latest, ubuntu-latest, windows-latest]
-        os: [windows-latest]
-        #platform: [x86, x64]
-        platform: [x64]
-        #compiler: [gcc, clang]
-        compiler: [gcc]
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        platform: [x86, x64]
+        compiler: [gcc, clang, tcc, msvc]
 
     steps:
       - name: Checkout
@@ -35,6 +32,9 @@ jobs:
             test/
           test-exclude-file-pattern: |
             crash_test.c
+          test-exclude-file-pattern-windows: |
+            test_write_json_format_to_stream.c
+            test_write_key_value_format_to_stream.c
           compiler-options-for-tests: |
             -I. -I../include -I../../include -I../../../include -I./include
           regression-cli-options: |
