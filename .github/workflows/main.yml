@@ -35,16 +35,6 @@ jobs:
             test/
           test-exclude-file-pattern: |
             crash_test.c
-            test_basics.c
-            test_loggers_functional.c
-            test_no_time.c
-            test_no_callback.c
-            test_no_coloring.c
-            test_no_logax_logger_output_stream.c
-            test_no_output_stream.c
-            test_old_console_mode_windows.c
-            test_write_json_format_to_stream.c
-            test_write_key_value_format_to_stream.c
           compiler-options-for-tests: |
             -I. -I../include -I../../include -I../../../include -I./include
           regression-cli-options: |
