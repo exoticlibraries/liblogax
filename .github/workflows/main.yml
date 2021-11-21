@@ -37,6 +37,8 @@ jobs:
             crash_test.c
             test_basics.c
             test_loggers_functional.c
+            test_no_time.c
+            test_no_callback.c
             test_no_coloring.c
             test_no_logax_logger_output_stream.c
             test_no_output_stream.c
