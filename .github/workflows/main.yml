@@ -32,9 +32,6 @@ jobs:
             test/
           test-exclude-file-pattern: |
             crash_test.c
-          test-exclude-file-pattern-windows: |
-            test_write_json_format_to_stream.c
-            test_write_key_value_format_to_stream.c
           compiler-options-for-tests: |
             -I. -I../include -I../../include -I../../../include -I./include
           regression-cli-options: |

@@ -63,7 +63,7 @@ CESTER_TEST(logax_callback, test_inst, {
 
 	cester_assert_stdout_stream_content_contain((char *) "level=262144");
 	cester_assert_stdout_stream_content_contain((char *) "level=524288");
-	cester_assert_stdout_stream_content_contain((char *) "line_number=57");
+	cester_assert_stdout_stream_content_contain((char *) "line_number=");
 	cester_assert_stdout_stream_content_contain((char *) "LOG:::TRACE\n");
 	cester_assert_stdout_stream_content_contain((char *) "LOG:::DEBUG\n");
 	cester_assert_stdout_stream_content_contain((char *) "LOG:::INFO\n");
