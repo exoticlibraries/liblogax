@@ -12,16 +12,19 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-        platform: [x86, x64]
-        compiler: [gcc, clang]
+        #os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [windows-latest]
+        #platform: [x86, x64]
+        platform: [x64]
+        #compiler: [gcc, clang]
+        compiler: [gcc]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         
       - name: Setup Exotic Libraries And Run Regression
-        uses: exoticlibraries/exotic-action@v1.4
+        uses: exoticlibraries/exotic-action@v1.3
         with:
           download-exotic-libraries: true
           run-regression: true
@@ -32,6 +35,14 @@ jobs:
             test/
           test-exclude-file-pattern: |
             crash_test.c
+            test_basics.c
+            test_loggers_functional.c
+            test_no_coloring.c
+            test_no_logax_logger_output_stream.c
+            test_no_output_stream.c
+            test_old_console_mode_windows.c
+            test_write_json_format_to_stream.c
+            test_write_key_value_format_to_stream.c
           compiler-options-for-tests: |
             -I. -I../include -I../../include -I../../../include -I./include
           regression-cli-options: |
@@ -50,7 +61,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Setup Exotic Libraries
-        uses: exoticlibraries/exotic-action@v1.4
+        uses: exoticlibraries/exotic-action@v1.3
         with:
           download-exotic-libraries: true
           run-regression: false

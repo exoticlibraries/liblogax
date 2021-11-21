@@ -105,6 +105,16 @@ CESTER_TEST(logax_write_text_format_to_stream_minimal_no_color, test_inst, {
 	CESTER_RELEASE_STDOUT();
 })
 
+CESTER_TEST(logax_test_environment, test_inst, {
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTIONS_MINIMAL | LOGAX_LEVEL_TRACE, "THE TEMP FOLDER '%s'", getenv("TEMP"));
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTIONS_MINIMAL | LOGAX_LEVEL_TRACE, "%s", "This is a trace output");
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTIONS_MINIMAL | LOGAX_LEVEL_DEBUG, "%s", "This is a debug output");
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTIONS_MINIMAL | LOGAX_LEVEL_INFO, "%s", "This is an info output");
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTIONS_MINIMAL | LOGAX_LEVEL_WARN, "%s", "This is a warning output");
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTIONS_MINIMAL | LOGAX_LEVEL_ERROR, "%s", "This is an error output");
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTIONS_MINIMAL | LOGAX_LEVEL_FATAL, "%s", "This is a fatal output");
+})
+
 CESTER_OPTIONS(
     CESTER_VERBOSE_LEVEL(3);
 )
