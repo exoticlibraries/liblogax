@@ -9,7 +9,7 @@
 #include <exotic/cester.h>
 #include <exotic/logax.h>
 
-CESTER_TEST(log_text_using_old_console_mode_text, test_inst, {
+CESTER_TEST(log_text_using_no_output_stream, test_inst, {
 	LogaxLogger logax_logger;
 	logax_init_logger(&logax_logger);
 	logax_set_formatter(&logax_logger, LOGAX_FORMATTER_TEXT);
@@ -33,7 +33,7 @@ CESTER_TEST(log_text_using_old_console_mode_text, test_inst, {
 	CESTER_RELEASE_STDOUT();
 })
 
-CESTER_TEST(log_key_value_using_old_console_mode_text, test_inst, {
+CESTER_TEST(log_key_value_using_no_output_stream, test_inst, {
 	LogaxLogger logax_logger;
 	logax_init_logger(&logax_logger);
 	logax_set_formatter(&logax_logger, LOGAX_FORMATTER_KEY_VALUE);
@@ -57,7 +57,7 @@ CESTER_TEST(log_key_value_using_old_console_mode_text, test_inst, {
 	CESTER_RELEASE_STDOUT();
 })
 
-CESTER_TEST(log_json_using_old_console_mode_text, test_inst, {
+CESTER_TEST(log_json_using_no_output_stream, test_inst, {
 	LogaxLogger logax_logger;
 	logax_init_logger(&logax_logger);
 	logax_set_formatter(&logax_logger, LOGAX_FORMATTER_JSON);

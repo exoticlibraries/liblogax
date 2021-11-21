@@ -5,7 +5,7 @@
 
 Blazing fast, simple and modular header-only logging library with zero allocation for C and C++, implemented in C90. Allow logging into various output formats such as Key-Value and JSON.
 
-Time and space are very important concepts in programming, a logging library should slow down the program or add to the memory ussage hence why logax's API is designed with speed and modularity in mind, each components can be removed to adjust to an environment or increase compile/runtime speed by defining the [exclusion macro](#exclusion-macros) for that component.
+Time and space are very important concepts in programming, a logging library should slow down the program or add to the memory ussage hence why logax's API is designed with speed and modularity in mind, each components can be removed to adjust to an environment or increase compile/runtime speed by defining the [exclusion macro](#modularity) for that component.
 
 ```c
 #include <exotic/logax.h>
@@ -25,7 +25,7 @@ Output
 ![](https://raw.githubusercontent.com/exoticlibraries/exoticlibraries.github.io/main/assets/images/liblogax/crash_test_output.png)
 
 
-The log oputput can be formatted to the following output [text](#text), [key value](#key_value) and [json](#json), and in case where the output is not required or the platform does not have any output stream (e.g. andruino, stm32) a callback can be registered that will receive the log event to be processed whichever way.
+The log oputput can be formatted to the following output [text](#text), [key value](#key-value) and [json](#json), and in case where the output is not required or the platform does not have any output stream (e.g. andruino, stm32) a callback can be registered that will receive the log event to be processed whichever way.
 
 ___
 
@@ -49,6 +49,12 @@ ___
 		- [Key Value](#key-value)
 		- [JSON](#json)
 - [Modularity](#modularity)
+	- [LOGAX_USE_OLD_CONSOLE_MODE](#logax_use_old_console_mode)
+	- [LOGAX_NO_OUTPUT_STREAM](#logax_no_output_stream)
+	- [LOGAX_LOGGER_NO_CALLBACK](#logax_logger_no_callback)
+	- [LOGAX_LOGGER_NO_OUTPUT_STREAM](#logax_logger_no_output_stream)
+	- [LOGAX_NO_TIME](#logax_no_time)
+	- [LOGAX_NO_COLORING](#logax_no_coloring)
 - [How it works](#how-it-works)
 - [Contributing](#contributing)
 - [References](#references)
@@ -120,23 +126,348 @@ it allows the log to be reported to custom function with optional printing to ou
 
 ### Logging without LogaxLogger
 
+The library can be used to output log without need to setup the `LogaxLogger` struct, this will require the platform to have output stream or can write to file. If the macro LOGAX_NO_LOGGER is defined before including the logax.h geader file, the LogaxLogger struct and all related functions will not be compiled. The following functions provides the API to write to output stream in the supported formats
+
+- logax_write_text_format_to_stream
+- logax_write_key_value_format_to_stream
+- logax_write_json_format_to_stream
+
+`logax_write_text_format_to_stream` write the output in plain text format, the first paramater is the stream, followed by the options, the options is the combinations of any of the LOGAX_OPTION_*, LOGAX_LEVEL_* and LOGAX_FORMATTER_* macros.
+
+```c
+#include <exotic/logax.h>
+
+int main(int argc, char **argv) {
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_TRACE, "%s", "Enemy approching from X=108,Y=877");
+}
+
+// output
+// 2021-11-21 06:34:07 TRACE crash_test.c:13 Logging the test for TRACE
+```
+
+`logax_write_key_value_format_to_stream` write the output in a key-value format coloring is ignored in this format, the first paramater is the stream, followed by the options, the options is the combinations of any of the LOGAX_OPTION_*, LOGAX_LEVEL_* and LOGAX_FORMATTER_* macros.
+
+```c
+#include <exotic/logax.h>
+
+int main(int argc, char **argv) {
+	logax_write_key_value_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_TRACE, "%s", "Enemy approching from X=108,Y=877");
+}
+
+// output
+// date="2021-11-21" time="06:41:34" level="TRACE" file="crash_test.c" line_number=8 function="main" message="This is a trace output"
+```
+
+`logax_write_json_format_to_stream` write the output in a json format, the first paramater is the stream, followed by the options, the options is the combinations of any of the LOGAX_OPTION_*, LOGAX_LEVEL_* and LOGAX_FORMATTER_* macros.
+
+```c
+#include <exotic/logax.h>
+
+int main(int argc, char **argv) {
+	logax_write_json_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_TRACE, "%s", "Enemy approching from X=108,Y=877");
+}
+
+// output
+// {"date":"2021-11-21","time":"06:42:25","level":"TRACE","file":"crash_test.c","line_number":8,"function":"main","message":"This is a trace output"},
+```
+
 ### Logging with LogaxLogger
+
+In a situation where callback is needed, no FILE* ability on the platform or the flags/options want to be shared across the log, the `LogaxLogger` struct can be used. No memory allocation is required when initaili
 
 #### Initialize LogaxLogger
 
+To initialize the LogaxLogger the function `logax_init_logger` can be used, it not neccessary to call the logax_init_logger function, all it does is set the LogaxLogger flags to default value, output_stream to stdout and fill the empty callbacks with NULL, these can be self-managed.
+
+```c
+#include <exotic/logax.h>
+
+int main(int argc, char **argv) {
+	LogaxLogger logax_logger;
+	logax_init_logger(&logax_logger);
+}
+```
+
 #### LogaxLogger Loggers
+
+For each of the logging level in logax a function is provider that accepts `LogaxLogger` struct as parameter:
+
+- logax_logger_trace
+- logax_logger_debug
+- logax_logger_info
+- logax_logger_warn
+- logax_logger_error
+- logax_logger_fatal
+
+Each of the function above invoke the coresponding `logax_write_*_format_to_stream` respectively, the default formatter when LogaxLogger is nitialize with the function logax_init_logger is `LOGAX_FORMATTER_TEXT`, the output format can be changed using the function `logax_set_formatter`.
+
+```c
+#include <exotic/logax.h>
+
+int main(int argc, char **argv) {
+	LogaxLogger logax_logger;
+	logax_init_logger(&logax_logger);
+
+	logax_set_formatter(&logax_logger, LOGAX_FORMATTER_TEXT);
+	logax_logger_trace(&logax_logger, "%s", "Logging the test for TRACE");
+	logax_logger_debug(&logax_logger, "%s", "Logging the test for DEBUG");
+	logax_logger_info(&logax_logger, "%s", "Logging the test for INFO");
+	logax_logger_warn(&logax_logger, "%s", "Logging the test for WARN");
+	logax_logger_error(&logax_logger, "%s", "Logging the test for ERROR");
+	logax_logger_fatal(&logax_logger, "%s", "Logging the test for FATAL");
+}
+```
 
 ### Callbacks
 
+LogaxLogger supports callback (or hook), the callbacks are invoked when a new log is sent. The callback can be used to create a custom output format or used to changed out the log is processed (e.g. blink bulb on andruino e.t.c). The output stream can be completely disabled by defining the macro `LOGAX_NO_OUTPUT_STREAM` or setiing the option to QUITE using the function `logax_set_quite`, in this case if callbacks are registered they will be invoked with the log event.
+
+The callback function signature is
+
+```c
+typedef void (*logax_callback)(const char *date, const char *time, const int level, const char *file, const size_t line_number, const char *function_name, const char *fmt, ...);
+```
+
+The example belows shows how to register a callback which is invoked when there is a new log
+
+```c
+#include <exotic/logax.h>
+
+void on_new_log_callback(const char *date, const char *time, const int level, const char *file, const size_t line_number, const char *function_name, const char *fmt, ...) {
+	va_list args;
+	printf("<logevent>");
+	printf("\n  <date>%s</date>", date);
+	printf("\n  <time>%s</time>", time);
+	printf("\n  <level>%s</level>", GET_LEVEL_STRING(level));
+	printf("\n  <file>%s</file>", file);
+	printf("\n  <line_number>%d</line_number>", line_number);
+	printf("\n  <function_name>%s</function_name>", function_name);
+	printf("\n  <message>");
+	va_start(args, fmt);vfprintf(stdout, fmt, args);va_end(args);
+	printf("</message>\n</logevent>\n");
+}
+
+int main(int argc, char **argv) {
+	LogaxLogger logax_logger;
+
+	logax_init_logger(&logax_logger);
+	logax_set_quite(&logax_logger, 1);
+	logax_logger_add_callback(&logax_logger, on_new_log_callback);
+	logax_logger_trace(&logax_logger, "%s", "Logging the test for TRACE");
+	logax_logger_debug(&logax_logger, "%s", "Logging the test for DEBUG");
+	logax_logger_info(&logax_logger, "%s", "Logging the test for INFO");
+	logax_logger_warn(&logax_logger, "%s", "Logging the test for WARN");
+	logax_logger_error(&logax_logger, "%s", "Logging the test for ERROR");
+	logax_logger_fatal(&logax_logger, "%s", "Logging the test for FATAL");
+}
+```
+
+This gives the following outputs the in XML format as defined in the `on_new_log_callback` function:
+
+```xml
+<logevent>
+  <date>2021-11-21</date>
+  <time>07:26:02</time>
+  <level>TRACE</level>
+  <file>C:\Users\azeez\Documents\OPEN_SOURCE\EXOTIC_LIBRARIES\liblogax\test\crash_test.c</file>
+  <line_number>25</line_number>
+  <function_name>main</function_name>
+  <message>Logging the test for TRACE</message>
+</logevent>
+<logevent>
+  <date>2021-11-21</date>
+  <time>07:26:02</time>
+  <level>DEBUG</level>
+  <file>C:\Users\azeez\Documents\OPEN_SOURCE\EXOTIC_LIBRARIES\liblogax\test\crash_test.c</file>
+  <line_number>26</line_number>
+  <function_name>main</function_name>
+  <message>Logging the test for DEBUG</message>
+</logevent>
+...
+```
+
 ### Output Formats
+
+liblogax currently support only three output format, which are text, key-value and json. To set the output format of a LogaxLogger struct use the function `logax_set_formatter`. The following are the format options:
+
+- LOGAX_FORMATTER_TEXT
+- LOGAX_FORMATTER_KEY_VALUE
+- LOGAX_FORMATTER_JSON
 
 #### Text
 
+Output as text using `logax_write_text_format_to_stream`
+
+```c
+#include <exotic/logax.h>
+
+int main(int argc, char **argv) {
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_TRACE, "%s", "Enemy approching from X=108,Y=877");
+}
+```
+```
+2021-11-21 08:41:19 TRACE crash_test.c:6  --- [main     ] Enemy approching from X=108,Y=877
+```
+
+Output as text using the `LOGAX_FORMATTER_TEXT` option with LogaxLogger.
+
+```c
+#include <exotic/logax.h>
+
+int main(int argc, char **argv) {
+	LogaxLogger logax_logger;
+
+	logax_init_logger(&logax_logger);
+	logax_set_formatter(&logax_logger, LOGAX_FORMATTER_TEXT);
+	logax_logger_trace(&logax_logger, "%s", "Enemy approching from X=108,Y=877");
+}
+```
+```
+2021-11-21 08:38:38 TRACE crash_test.c:10 Enemy approching from X=108,Y=877
+```
+
 #### Key Value
+
+Output as key value using `logax_write_key_value_format_to_stream`
+
+```c
+#include <exotic/logax.h>
+
+int main(int argc, char **argv) {
+	logax_write_key_value_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_TRACE, "%s", "Enemy approching from X=108,Y=877");
+}
+```
+```
+date="2021-11-21" time="08:43:59" level="TRACE" file="crash_test.c" line_number=6 function="main" message="Enemy approching from X=108,Y=877"
+```
+
+Output as key value using the `LOGAX_FORMATTER_KEY_VALUE` option with LogaxLogger.
+
+```c
+#include <exotic/logax.h>
+
+int main(int argc, char **argv) {
+	LogaxLogger logax_logger;
+
+	logax_init_logger(&logax_logger);
+	logax_set_formatter(&logax_logger, LOGAX_FORMATTER_KEY_VALUE);
+	logax_logger_trace(&logax_logger, "%s", "Enemy approching from X=108,Y=877");
+}
+```
+```
+date="2021-11-21" time="08:46:00" level="TRACE" file="crash_test.c" line_number=10 message="Enemy approching from X=108,Y=877"
+```
 
 #### JSON
 
+Output as json using `logax_write_json_format_to_stream`
+
+```c
+#include <exotic/logax.h>
+
+int main(int argc, char **argv) {
+	logax_write_json_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_TRACE, "%s", "Enemy approching from X=108,Y=877");
+}
+```
+```json
+{"date":"2021-11-21","time":"08:44:58","level":"TRACE","file":"crash_test.c","line_number":6,"function":"main","message":"Enemy approching from X=108,Y=877"},
+```
+
+Output as json using the `LOGAX_FORMATTER_JSON` option with LogaxLogger.
+
+```c
+#include <exotic/logax.h>
+
+int main(int argc, char **argv) {
+	LogaxLogger logax_logger;
+
+	logax_init_logger(&logax_logger);
+	logax_set_formatter(&logax_logger, LOGAX_FORMATTER_JSON);
+	logax_logger_trace(&logax_logger, "%s", "Enemy approching from X=108,Y=877");
+}
+```
+```
+{"date":"2021-11-21","time":"08:45:36","level":"TRACE","file":"crash_test.c","line_number":10,"message":"Enemy approching from X=108,Y=877"},
+```
+
 ## Modularity
+
+liblogax is big on modularity, each component of the library can be excluded at compile time. The following macros if defined will exclude some component from the library:
+
+- LOGAX_USE_OLD_CONSOLE_MODE
+- LOGAX_NO_OUTPUT_STREAM
+- LOGAX_LOGGER_NO_OUTPUT_STREAM
+- LOGAX_LOGGER_NO_CALLBACK
+- LOGAX_NO_COLORING
+- LOGAX_NO_TIME
+
+### LOGAX_USE_OLD_CONSOLE_MODE
+
+If this macro is define the library will use the Windows API to color the log outputs, this macro is only effective on Windows system. This macro is most useful for old windows platform which the console cannot procecess the ANSI Color Codes.
+
+```
+#define LOGAX_USE_OLD_CONSOLE_MODE
+#include <exotic/logax.h>
+
+//...
+```
+
+> Note that there might slight different in the color variation between using Windows Console attributes and ANSI Color codes
+
+### LOGAX_NO_OUTPUT_STREAM
+
+If this macro is defined the library will not be compiled with the writing to stream feature, both explicit write to streams function `logax_write_*_format_to_stream` and LogaxLogger loggers will not write to stream, but the callback will still be invoked is any is registered.
+
+```c
+#define LOGAX_NO_OUTPUT_STREAM
+#include <exotic/logax.h>
+
+//...
+```
+
+### LOGAX_LOGGER_NO_OUTPUT_STREAM
+
+If this macro is defined the LogaxLogger struct will not be compiled with the writing to stream capability, but the explicit writing to stream functions `logax_write_*_format_to_stream` will be have the write to stream capability.
+
+```c
+#define LOGAX_LOGGER_NO_OUTPUT_STREAM
+#include <exotic/logax.h>
+
+//...
+```
+
+### LOGAX_LOGGER_NO_CALLBACK
+
+Define this macro to exclude the callback and hook feature of the library, this does not affect the writing to output stream. You can still write the statement to register hook if needed but it ll have no effect unless this macro is removed.
+
+```c
+#define LOGAX_LOGGER_NO_CALLBACK
+#include <exotic/logax.h>
+
+//...
+```
+
+### LOGAX_NO_COLORING
+
+If this macro is define the library will not be compiled with preety print capability. The flag `LOGAX_OPTION_COLORED` will also not be available for use to customize the output.
+
+```c
+#define LOGAX_NO_COLORING
+#include <exotic/logax.h>
+
+//...
+```
+
+### LOGAX_NO_TIME
+
+On a system that does not have floating point capability or the time headers are anot available this macro can be defined to exclude adding data and time capability to the logging. Defining this macro will make the following macros unavailable `LOGAX_OPTION_DATE`, `LOGAX_OPTION_TIME`, `LOGAX_OPTION_DATE_TIME`.
+
+```c
+#define LOGAX_NO_TIME
+#include <exotic/logax.h>
+
+//...
+```
 
 ## How it works
 

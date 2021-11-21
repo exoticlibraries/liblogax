@@ -104,7 +104,9 @@ enum LogaxOption {
     LOGAX_OPTION_FILE_PATH       = 1 << 5,
     LOGAX_OPTION_FILE_NAME_ONLY  = 1 << 6,
     LOGAX_OPTION_LINE_NUMBER     = 1 << 7,
+#ifndef LOGAX_NO_COLORING
     LOGAX_OPTION_COLORED         = 1 << 8,
+#endif
     LOGAX_OPTION_FUNCTION        = 1 << 9,
     LOGAX_OPTION_ALL             = 1 << 15
 };
@@ -120,6 +122,16 @@ enum LogaxLevel {
     LOGAX_LEVEL_ERROR   = 1 << 20,
     LOGAX_LEVEL_FATAL   = 1 << 21
 };
+
+/**
+
+*/
+#define GET_LEVEL_STRING(level) ((level == LOGAX_LEVEL_TRACE) ? "TRACE" :\
+	(level == LOGAX_LEVEL_DEBUG) ? "DEBUG" :\
+	(level == LOGAX_LEVEL_INFO) ? "INFO" :\
+	(level == LOGAX_LEVEL_WARN) ? "WARN" :\
+	(level == LOGAX_LEVEL_ERROR) ? "ERROR" :\
+	(level == LOGAX_LEVEL_FATAL) ? "FATAL" : "")
 
 /**
     
@@ -153,7 +165,10 @@ typedef struct logax_logger_s LogaxLogger;
 */
 static void logax_init_logger(LogaxLogger *logax_logger) {
     int index = 0;
-    logax_logger->flags = LOGAX_FORMATTER_TEXT | LOGAX_OPTION_COLORED | LOGAX_OPTION_FILE_NAME_ONLY | LOGAX_OPTION_LINE_NUMBER;
+    logax_logger->flags = LOGAX_FORMATTER_TEXT | LOGAX_OPTION_FILE_NAME_ONLY | LOGAX_OPTION_LINE_NUMBER;
+#ifndef LOGAX_NO_COLORING
+    logax_logger->flags |= LOGAX_OPTION_COLORED;
+#endif
 #ifndef LOGAX_NO_TIME
     logax_logger->flags |= LOGAX_OPTION_DATE_TIME;
 #endif
@@ -173,7 +188,10 @@ static void logax_init_logger(LogaxLogger *logax_logger) {
 */
 static void logax_init_logger_ws(LogaxLogger *logax_logger, FILE *output_stream) {
     int index = 0;
-    logax_logger->flags = LOGAX_FORMATTER_TEXT | LOGAX_OPTION_COLORED | LOGAX_OPTION_FILE_NAME_ONLY | LOGAX_OPTION_LINE_NUMBER;
+    logax_logger->flags = LOGAX_FORMATTER_TEXT | LOGAX_OPTION_FILE_NAME_ONLY | LOGAX_OPTION_LINE_NUMBER;
+#ifndef LOGAX_NO_COLORING
+    logax_logger->flags |= LOGAX_OPTION_COLORED;
+#endif
 #ifndef LOGAX_NO_TIME
     logax_logger->flags |= LOGAX_OPTION_DATE_TIME;
 #endif
@@ -186,6 +204,7 @@ static void logax_init_logger_ws(LogaxLogger *logax_logger, FILE *output_stream)
 }
 #endif
 
+#ifndef LOGAX_LOGGER_NO_CALLBACK
 /**
 
 */
@@ -199,6 +218,9 @@ static unsigned logax_logger_add_callback(LogaxLogger *logax_logger, logax_callb
     }
     return -1;
 }
+#else
+#define logax_logger_add_callback(logax_logger, callback)
+#endif
 
 /**
 
@@ -362,7 +384,11 @@ HANDLE logax_hConsole;
 static void logax_write_text_format_to_stream_final__internal__(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args) {
     if (flags & LOGAX_OPTION_QUITE) return;
 	LOGAX_INITIALIZE_HCONSOLE();
+#ifndef LOGAX_NO_COLORING
     unsigned is_colored = (flags & LOGAX_OPTION_COLORED || (flags & LOGAX_OPTION_ALL));
+#else
+    unsigned is_colored = 0;
+#endif
 	unsigned print_comma = 0;
 	unsigned has_any_level = (flags & LOGAX_LEVEL_TRACE) || (flags & LOGAX_LEVEL_DEBUG) || (flags & LOGAX_LEVEL_INFO) || 
 		(flags & LOGAX_LEVEL_WARN) || (flags & LOGAX_LEVEL_ERROR) || (flags & LOGAX_LEVEL_FATAL);
@@ -540,7 +566,11 @@ static void logax_write_key_value_format_to_stream__internal__(FILE *stream, int
 static void logax_write_json_format_to_stream_final__internal__(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args) {
     if (flags & LOGAX_OPTION_QUITE) return;
 	LOGAX_INITIALIZE_HCONSOLE();
+#ifndef LOGAX_NO_COLORING
     unsigned is_colored = (flags & LOGAX_OPTION_COLORED || (flags & LOGAX_OPTION_ALL));
+#else
+    unsigned is_colored = 0;
+#endif
 	unsigned print_comma = 0;
 	unsigned has_any_level = (flags & LOGAX_LEVEL_TRACE) || (flags & LOGAX_LEVEL_DEBUG) || (flags & LOGAX_LEVEL_INFO) || 
 		(flags & LOGAX_LEVEL_WARN) || (flags & LOGAX_LEVEL_ERROR) || (flags & LOGAX_LEVEL_FATAL);
@@ -673,19 +703,19 @@ static void logax_logger_write(LogaxLogger *logax_logger, int level, const char 
                 }\
             }\
         }
-    #endif
 #else
     #define logax_logger_report_to_callback(logax_logger, level, fmt, ...) {\
             int index = 0;\
-            char *date_buffer = "";\
-            char *time_buffer = "";\
             for (; index < LOGAX_MAX_CALLBACKS; index++) {\
                 logax_callback callback = (logax_logger)->callbacks[index];\
                 if (callback != LOGAX_NULL) {\
-                    callback(date_buffer__logax_tmp_var__, time_buffer__logax_tmp_var__, level, __FILE__, __LINE__, __LOGAX_FUNCTION__, fmt, __VA_ARGS__);\
+                    callback(LOGAX_NULL, LOGAX_NULL, level, __FILE__, __LINE__, __LOGAX_FUNCTION__, fmt, __VA_ARGS__);\
                 }\
             }\
         }
+#endif
+#else
+#define logax_logger_report_to_callback(logax_logger, level, fmt, ...)
 #endif
 
 /**
