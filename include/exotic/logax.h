@@ -84,8 +84,10 @@ extern "C" {
 #define LOGAX_MAX_CALLBACKS 5
 #endif
 
-/*
-    
+/**
+    This is the function signature of the callback, any function defined with same signature 
+	can be registered with the LogaxLogger as callback which will be invoked if a new logevent is 
+	sent.
 */
 typedef void (*logax_callback)(const char *date, const char *time, const int level, const char *file, const size_t line_number, const char *function_name, const char *fmt, ...);
 #endif
@@ -95,36 +97,36 @@ typedef void (*logax_callback)(const char *date, const char *time, const int lev
 	backward compatibility
 */
 enum LogaxOption {
-    LOGAX_OPTION_QUITE           = 1 << 1, /**<  binary 0010 */
+    LOGAX_OPTION_QUITE           = 1 << 1, /**< the option to disable writing to output stream */
 #ifndef LOGAX_NO_TIME
-    LOGAX_OPTION_DATE            = 1 << 2, /**<  binary 0100 */
-    LOGAX_OPTION_TIME            = 1 << 3, /**<  binary 1000 */
-    LOGAX_OPTION_DATE_TIME       = 1 << 4,
+    LOGAX_OPTION_DATE            = 1 << 2, /**< option to write/set the date of the log event */
+    LOGAX_OPTION_TIME            = 1 << 3, /**< option to set the time of the log event */
+    LOGAX_OPTION_DATE_TIME       = 1 << 4, /**< the option to set both the date and time of the log event */
 #endif
-    LOGAX_OPTION_FILE_PATH       = 1 << 5,
-    LOGAX_OPTION_FILE_NAME_ONLY  = 1 << 6,
-    LOGAX_OPTION_LINE_NUMBER     = 1 << 7,
+    LOGAX_OPTION_FILE_PATH       = 1 << 5, /**< option to set the full path to the file where the log event was sent from */
+    LOGAX_OPTION_FILE_NAME_ONLY  = 1 << 6, /**< option to set only the name of the file where the log event was sent from */
+    LOGAX_OPTION_LINE_NUMBER     = 1 << 7, /**< option to set the line number where the log even was sent */
 #ifndef LOGAX_NO_COLORING
-    LOGAX_OPTION_COLORED         = 1 << 8,
+    LOGAX_OPTION_COLORED         = 1 << 8, /**< this option is used to enable preety print and colored outputs */
 #endif
-    LOGAX_OPTION_FUNCTION        = 1 << 9,
-    LOGAX_OPTION_ALL             = 1 << 15
+    LOGAX_OPTION_FUNCTION        = 1 << 9, /**< option to write/set the name of the function where the log was set from */
+    LOGAX_OPTION_ALL             = 1 << 15 /**< this option enables all the other options above apart from LOGAX_OPTION_QUITE */
 };
 
 /**
-    
+    The options to classify the log event by level
 */
 enum LogaxLevel {
-    LOGAX_LEVEL_TRACE   = 1 << 16, /**<  ? */
-    LOGAX_LEVEL_DEBUG   = 1 << 17, /**<  ? */
-    LOGAX_LEVEL_INFO    = 1 << 18, /**<  ? */
-    LOGAX_LEVEL_WARN    = 1 << 19,
-    LOGAX_LEVEL_ERROR   = 1 << 20,
-    LOGAX_LEVEL_FATAL   = 1 << 21
+    LOGAX_LEVEL_TRACE   = 1 << 16, /**< Mark the log event as trace */
+    LOGAX_LEVEL_DEBUG   = 1 << 17, /**< Mark the log event as debug */
+    LOGAX_LEVEL_INFO    = 1 << 18, /**< Mark the log event as an information */
+    LOGAX_LEVEL_WARN    = 1 << 19, /**< Mark the log event as a warning */
+    LOGAX_LEVEL_ERROR   = 1 << 20, /**< Mark the log event as an error */
+    LOGAX_LEVEL_FATAL   = 1 << 21  /**< Mark the log event as a critical error */
 };
 
 /**
-
+    Get the string name of the log level.
 */
 #define GET_LEVEL_STRING(level) ((level == LOGAX_LEVEL_TRACE) ? "TRACE" :\
 	(level == LOGAX_LEVEL_DEBUG) ? "DEBUG" :\
@@ -134,24 +136,27 @@ enum LogaxLevel {
 	(level == LOGAX_LEVEL_FATAL) ? "FATAL" : "")
 
 /**
-    
+    The options to specify the format of the log output
 */
 enum LogaxFormatter {
-    LOGAX_FORMATTER_TEXT         = 1 << 25, /**<  ? */
-    LOGAX_FORMATTER_KEY_VALUE    = 1 << 26, /**<  ? */
-    LOGAX_FORMATTER_JSON         = 1 << 27 /**<  ? */
+    LOGAX_FORMATTER_TEXT         = 1 << 25, /**< Format the log output as plain string */
+    LOGAX_FORMATTER_KEY_VALUE    = 1 << 26, /**< Format the log output as a key value entries */
+    LOGAX_FORMATTER_JSON         = 1 << 27  /**< Format the log output as a valid JSON object */
 };
 
 /**
-    
+    The struct that can be used to share stream and flags across log events.
+	The fields are optionals. If the macro **LOGAX_NO_OUTPUT_STREAM** is defined 
+	the output_stream field will not be compiled, and if the macro **LOGAX_LOGGER_NO_CALLBACK** 
+	is defined all callback related operatioon will be disabled in the library.
 */
 struct logax_logger_s {
-    int flags;                /**<  ? */
+    int flags;                /**< The field that holds the flags/option bits */
 #if !defined(LOGAX_NO_OUTPUT_STREAM)
-    FILE *output_stream;        /**<  ? */
+    FILE *output_stream;        /**< The FILE* stream to write the log events */
 #endif
 #ifndef LOGAX_LOGGER_NO_CALLBACK
-    logax_callback callbacks[LOGAX_MAX_CALLBACKS];
+    logax_callback callbacks[LOGAX_MAX_CALLBACKS]; /**< The array that holds the callbacks that was registered to self logax_logger_s */
 #endif
 };
 
