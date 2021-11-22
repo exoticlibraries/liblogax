@@ -12,9 +12,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        #os: [macos-latest, ubuntu-latest, windows-latest]
+        #platform: [x86, x64]
+        #compiler: [gcc, clang, tcc, msvc]
+        os: [windows-latest]
         platform: [x86, x64]
-        compiler: [gcc, clang, tcc, msvc]
+        compiler: [clang, msvc]
 
     steps:
       - name: Checkout

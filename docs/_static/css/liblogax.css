@@ -1,0 +1,25 @@
+
+pre {
+	overflow: auto;
+}
+
+.bodywrapper h1, .bodywrapper h2, .bodywrapper h3, .bodywrapper h4, .bodywrapper h5, .bodywrapper h6 {
+	font-size: 1.5em;
+}
+
+li > p {
+	margin: 0px;
+	display: initial;
+}
+
+ul, li {
+	list-style-position: inside;
+}
+
+.bodywrapper {
+	max-width: 800px;
+	margin: 40px;
+	width: max-content;
+	min-width: 51%;
+}
+

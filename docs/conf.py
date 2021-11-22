@@ -6,7 +6,7 @@ copyright = '2021, Exotic Libraries - MIT License'
 author = 'Adewale Azeez and Other Contributors'
 
 html_theme_path = [themata.get_html_theme_path()]
-html_theme = 'clear'
+html_theme = 'fandango'
 master_doc = 'index'
 html_favicon = 'liblogax.png'
 main_doc = 'index'
@@ -22,16 +22,15 @@ source_suffix = ['.rst', '.md']
 html_theme_options = {
     'index_is_single': False,
     'show_navigators_in_index': False,
-    'collapsible_sidebar': False,
-    'collapsible_sidebar_display': 'block',
+    #'collapsible_sidebar': False,
+    #'collapsible_sidebar_display': 'block',
     'navbar_links': [
-        ('Doc', 'docs/index'),
+        ('Documentation', 'docs/index'),
         ('Reference', 'reference/index'),
-        ('Contribute', 'https://github.com/exoticlibraries/liblogax/'),
-        ('Exotic Libraries', 'https://exoticlibraries.github.io/'),
-        ('Support', 'https://exoticlibraries.github.io/pages/support.html')
+        ('Source Code', 'https://github.com/exoticlibraries/liblogax/'),
+        ('Exotic Libraries', 'https://exoticlibraries.github.io/')
     ],
-    'has_left_sidebar': True,
+    #'has_left_sidebar': True,
     'has_right_sidebar': True,
     'show_navigators': True,
     'social_icons': [
