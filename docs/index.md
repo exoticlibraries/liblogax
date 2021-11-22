@@ -52,4 +52,27 @@ int main(int argc, char **argv) {
 - Simple method to achive options in the logging system using bitwise operations.
 - Detail docuentation with examples and API references.
 
+## Installation
+
+If you install the library file `logax.h` using any of the commands below, it can be included in your test like `<exotic/logax.h>`.
+
+### Windows
+
+Install the library using powershell. It auto detect your insalled C and C++ compilers include directory and install liblogax into the include folder. Execute the command in powershell as admin.
+
+```powershell
+& $([scriptblock]::Create((New-Object Net.WebClient).DownloadString("https://exoticlibraries.github.io/magic/install.ps1"))) liblogax
+```
+
+### Unix, Linux, Mac
+
+Use the remote installation script to install liblogax with bash. If the command is executes with super user priviledge (sudo) it will be installed in the folder /usr/include else it will be installed in the folder /usr/local/include. Or you can specify where to install it using the option `--installfolder=./` 
+
+```bash
+bash <(curl -s https://exoticlibraries.github.io/magic/install.sh) liblogax
+```
+
+### Other platforms
+
+You can simply download the header file `logax.h` from the repo into your project source folder and include it in your project. Download the file from [here](https://github.com/exoticlibraries/liblogax/blob/main/include/exotic/logax.h). Then you can include it in your test relatively like `#include "logax.h"`.
 
