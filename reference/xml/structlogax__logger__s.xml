@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structlogax__logger__s" kind="struct" language="C++" prot="public">
+    <compoundname>logax_logger_s</compoundname>
+    <includes refid="logax_8h" local="no">logax.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structlogax__logger__s_1adafff6f5989e206e405fea9d8aa7bcc0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int logax_logger_s::flags</definition>
+        <argsstring></argsstring>
+        <name>flags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The field that holds the flags/option bits </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="154" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlogax__logger__s_1ae607b9a9787a2e6e223ae9fb008a321e" prot="public" static="no" mutable="no">
+        <type>FILE *</type>
+        <definition>FILE* logax_logger_s::output_stream</definition>
+        <argsstring></argsstring>
+        <name>output_stream</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The FILE* stream to write the log events </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="156" column="10" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlogax__logger__s_1ac7cc25325baa51139297a87f87c15395" prot="public" static="no" mutable="no">
+        <type><ref refid="logax_8h_1a591221f8bc07dd89ba8d51de294f468e" kindref="member">logax_callback</ref></type>
+        <definition>logax_callback logax_logger_s::callbacks[LOGAX_MAX_CALLBACKS]</definition>
+        <argsstring>[LOGAX_MAX_CALLBACKS]</argsstring>
+        <name>callbacks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The array that holds the callbacks that was registered to self <ref refid="structlogax__logger__s" kindref="compound">logax_logger_s</ref> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="159" column="20" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The struct that can be used to share stream and flags across log events. The fields are optionals. If the macro <bold>LOGAX_NO_OUTPUT_STREAM</bold> is defined the output_stream field will not be compiled, and if the macro <bold>LOGAX_LOGGER_NO_CALLBACK</bold> is defined all callback related operatioon will be disabled in the library. </para>
+    </detaileddescription>
+    <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="153" column="21" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="153" bodyend="161"/>
+    <listofallmembers>
+      <member refid="structlogax__logger__s_1ac7cc25325baa51139297a87f87c15395" prot="public" virt="non-virtual"><scope>logax_logger_s</scope><name>callbacks</name></member>
+      <member refid="structlogax__logger__s_1adafff6f5989e206e405fea9d8aa7bcc0" prot="public" virt="non-virtual"><scope>logax_logger_s</scope><name>flags</name></member>
+      <member refid="structlogax__logger__s_1ae607b9a9787a2e6e223ae9fb008a321e" prot="public" virt="non-virtual"><scope>logax_logger_s</scope><name>output_stream</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

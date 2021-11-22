@@ -1,0 +1,1192 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="logax_8h" kind="file" language="C++">
+    <compoundname>logax.h</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdarg.h</includes>
+    <includes local="no">time.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>stdarg.h</label>
+      </node>
+      <node id="1">
+        <label>/home/runner/work/liblogax/liblogax/include/exotic/logax.h</label>
+        <link refid="logax_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>time.h</label>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structlogax__logger__s" prot="public">logax_logger_s</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="logax_8h_1aaa06dc6e232693f0c93cd4a72ea487a6" prot="public" static="no">
+        <name>__LOGAX_FUNCTION__</name>
+        <initializer>&quot;&lt;unknown&gt;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The inline keyword to optimize the function. In C89 and C90 the inline keyword semantic is different from current C standard semantic hence for compilation targeting C89 or C99 the inline keyword is ommited. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="47" column="22" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1aadabf1bd03d9bd6658a6bf602fc3786b" prot="public" static="no">
+        <name>LOGAX_NULL</name>
+        <initializer>0L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="49" column="18" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a059063e36fd367191b54121aa07513e6" prot="public" static="no">
+        <name>LOGAX_RESET_TERMINAL</name>
+        <initializer>&quot;\x1B[0m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>reset the terminal color <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="68" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a9a598f0106a68c1dd872121694a65108" prot="public" static="no">
+        <name>LOGAX_FOREGROUND_TRACE</name>
+        <initializer>&quot;\x1B[36m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>trace terminal foreground color - cyan <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="69" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1ace63de06ef8a4028f2b8b87cc6de6f98" prot="public" static="no">
+        <name>LOGAX_FOREGROUND_DEBUG</name>
+        <initializer>&quot;\x1B[32m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>debug terminal foreground color - green <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="70" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1ae4841bed0659cdfd853215a08e07b4ec" prot="public" static="no">
+        <name>LOGAX_FOREGROUND_INFO</name>
+        <initializer>&quot;\x1B[35m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>info terminal foreground color - magenta <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="71" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a18013c4efdc1a6987003758a3f93787b" prot="public" static="no">
+        <name>LOGAX_FOREGROUND_WARN</name>
+        <initializer>&quot;\x1B[33m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>warn terminal foreground color - yellow <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="72" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1ab69113770b7065c21c3bdbc85a23a10e" prot="public" static="no">
+        <name>LOGAX_FOREGROUND_ERROR</name>
+        <initializer>&quot;\x1B[31m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>error terminal foreground color - red <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="73" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1afbfb83cce7e3333207fd6f9ead1ddcc0" prot="public" static="no">
+        <name>LOGAX_FOREGROUND_FATAL</name>
+        <initializer>&quot;\x1B[31m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>fatal terminal foreground color - red <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="74" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a7767ea6dd2150f10964525196c1e482f" prot="public" static="no">
+        <name>LOGAX_RESET_TERMINAL_ATTR</name>
+        <param></param>
+        <initializer>fprintf(stream, &quot;%s&quot;, LOGAX_RESET_TERMINAL)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>reset the terminal color <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="75" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1af1c825b8eb07e040d59b634a5f48ed0a" prot="public" static="no">
+        <name>LOGAX_MAX_CALLBACKS</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="84" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a1bf66279477f920aa5afe161a335f4ed" prot="public" static="no">
+        <name>GET_LEVEL_STRING</name>
+        <param><defname>level</defname></param>
+        <initializer>	((level == <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9" kindref="member">LOGAX_LEVEL_TRACE</ref>) ? &quot;TRACE&quot; :\
+	(level == <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19ad86f6500cd2833052dca0a563992052d" kindref="member">LOGAX_LEVEL_DEBUG</ref>) ? &quot;DEBUG&quot; :\
+	(level == <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19af8fda1837cc5280ed634d9f6f27242bc" kindref="member">LOGAX_LEVEL_INFO</ref>) ? &quot;INFO&quot; :\
+	(level == <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19ad9f03cfa72140d98bad0d70c26732496" kindref="member">LOGAX_LEVEL_WARN</ref>) ? &quot;WARN&quot; :\
+	(level == <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19a9fc66d044e119f9177d404fa7103f09e" kindref="member">LOGAX_LEVEL_ERROR</ref>) ? &quot;ERROR&quot; :\
+	(level == <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19a56a44e494019e597d8099792b4a42279" kindref="member">LOGAX_LEVEL_FATAL</ref>) ? &quot;FATAL&quot; : &quot;&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the string name of the log level. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="131" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a82da56f39b262a9435c4910cb9a2bc97" prot="public" static="no">
+        <name>logax_add_flag</name>
+        <param><defname>flags</defname></param>
+        <param><defname>flag</defname></param>
+        <initializer>flags |= flag;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="233" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="233" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a89c5f38190773bf9868c82c16002fe4e" prot="public" static="no">
+        <name>logax_set_flag</name>
+        <initializer><ref refid="logax_8h_1a82da56f39b262a9435c4910cb9a2bc97" kindref="member">logax_add_flag</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="238" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="238" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1abec25d5c63ccf1390ae4d9c090d212e3" prot="public" static="no">
+        <name>logax_remove_flag</name>
+        <param><defname>flags</defname></param>
+        <param><defname>flag</defname></param>
+        <initializer>flags &amp;= ~flag;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="243" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1aaf25a11fd360800ed2df6a2bdd7a16a7" prot="public" static="no">
+        <name>logax_clear_flag</name>
+        <initializer><ref refid="logax_8h_1abec25d5c63ccf1390ae4d9c090d212e3" kindref="member">logax_remove_flag</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="248" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a4a4589ded3aa396aad87396ea9dea010" prot="public" static="no">
+        <name>logax_set_formatter</name>
+        <param><defname>logax_logger</defname></param>
+        <param><defname>new_formatter</defname></param>
+        <initializer>        {\
+        if ((logax_logger)-&gt;flags &amp; <ref refid="logax_8h_1ae495419e226be29c3a41dc1be9ce155ea3fa9a595ae0b97412da60031da6dfc7d" kindref="member">LOGAX_FORMATTER_TEXT</ref>) <ref refid="logax_8h_1abec25d5c63ccf1390ae4d9c090d212e3" kindref="member">logax_remove_flag</ref>((logax_logger)-&gt;flags, <ref refid="logax_8h_1ae495419e226be29c3a41dc1be9ce155ea3fa9a595ae0b97412da60031da6dfc7d" kindref="member">LOGAX_FORMATTER_TEXT</ref>);\
+        if ((logax_logger)-&gt;flags &amp; <ref refid="logax_8h_1ae495419e226be29c3a41dc1be9ce155eaf7d9ff28b75d2cafd4926419218e32b3" kindref="member">LOGAX_FORMATTER_KEY_VALUE</ref>) <ref refid="logax_8h_1abec25d5c63ccf1390ae4d9c090d212e3" kindref="member">logax_remove_flag</ref>((logax_logger)-&gt;flags, <ref refid="logax_8h_1ae495419e226be29c3a41dc1be9ce155eaf7d9ff28b75d2cafd4926419218e32b3" kindref="member">LOGAX_FORMATTER_KEY_VALUE</ref>);\
+        if ((logax_logger)-&gt;flags &amp; <ref refid="logax_8h_1ae495419e226be29c3a41dc1be9ce155ea67d581a4395aecb8b0f6fc2256d8b59c" kindref="member">LOGAX_FORMATTER_JSON</ref>) <ref refid="logax_8h_1abec25d5c63ccf1390ae4d9c090d212e3" kindref="member">logax_remove_flag</ref>((logax_logger)-&gt;flags, <ref refid="logax_8h_1ae495419e226be29c3a41dc1be9ce155ea67d581a4395aecb8b0f6fc2256d8b59c" kindref="member">LOGAX_FORMATTER_JSON</ref>);\
+        <ref refid="logax_8h_1a82da56f39b262a9435c4910cb9a2bc97" kindref="member">logax_add_flag</ref>((logax_logger)-&gt;flags, new_formatter);\
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="253" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="253" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1ae7d0520187348781ceefe6451eeef76d" prot="public" static="no">
+        <name>logax_set_quite</name>
+        <param><defname>logax_logger</defname></param>
+        <param><defname>make_quite</defname></param>
+        <initializer>        {\
+        if (!make_quite &amp;&amp; ((logax_logger)-&gt;flags &amp; <ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5" kindref="member">LOGAX_OPTION_QUITE</ref>)) { <ref refid="logax_8h_1abec25d5c63ccf1390ae4d9c090d212e3" kindref="member">logax_remove_flag</ref>((logax_logger)-&gt;flags, <ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5" kindref="member">LOGAX_OPTION_QUITE</ref>); }\
+        else if (make_quite &amp;&amp; !((logax_logger)-&gt;flags &amp; <ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5" kindref="member">LOGAX_OPTION_QUITE</ref>)) { <ref refid="logax_8h_1a82da56f39b262a9435c4910cb9a2bc97" kindref="member">logax_add_flag</ref>((logax_logger)-&gt;flags, <ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5" kindref="member">LOGAX_OPTION_QUITE</ref>); }\
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="263" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="263" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1ae550aea2a437193cbc69327a19ad4fe1" prot="public" static="no">
+        <name>LOGAX_INITIALIZE_HCONSOLE</name>
+        <param></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="359" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="359" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a92f3883c390353155e6b0c858646ba50" prot="public" static="no">
+        <name>LOGAX_DELEGATE_FPRINT_STR</name>
+        <param><defname>foreground</defname></param>
+        <param><defname>text</defname></param>
+        <initializer>if (is_colored) { fprintf(stream, &quot;%s%s%s&quot;, foreground, text, <ref refid="logax_8h_1a059063e36fd367191b54121aa07513e6" kindref="member">LOGAX_RESET_TERMINAL</ref>); } else { fprintf(stream, &quot;%s&quot;, text); }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="362" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="362" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a7c8db6f52bb465af35aef3ce90510187" prot="public" static="no">
+        <name>LOGAX_DELEGATE_FPRINT_SIZE_T</name>
+        <param><defname>foreground</defname></param>
+        <param><defname>text</defname></param>
+        <initializer>if (is_colored) { fprintf(stream, &quot;%s%zu%s&quot;, foreground, text, <ref refid="logax_8h_1a059063e36fd367191b54121aa07513e6" kindref="member">LOGAX_RESET_TERMINAL</ref>); } else { fprintf(stream, &quot;%zu&quot;, text); }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="363" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="363" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a0e9b53fe6966fdcb56114bcf90d12d0a" prot="public" static="no">
+        <name>LOGAX_WRITE_COLOR_CODE</name>
+        <param><defname>color</defname></param>
+        <initializer>if (is_colored) { fprintf(stream, &quot;%s&quot;, color); }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="373" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="373" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1ac66a9a3e199c9e72b5194b8a45850542" prot="public" static="no">
+        <name>LOGAX_WRITE_LEVEL_COLOR__INTERNALL__</name>
+        <param><defname>prefix_value</defname></param>
+        <param><defname>level</defname></param>
+        <param><defname>suffix_value</defname></param>
+        <initializer>    if (is_colored) { <ref refid="logax_8h_1a92f3883c390353155e6b0c858646ba50" kindref="member">LOGAX_DELEGATE_FPRINT_STR</ref>(LOGAX_FOREGROUND_##level, #level); fprintf(stream, &quot;%s&quot;, suffix_value); }\
+    else fprintf(stream, &quot;%s%s%s&quot;, prefix_value, #level, suffix_value);</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="381" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="381" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a10e1dd4027f7f6a2b2384e0f6cedc543" prot="public" static="no">
+        <name>logax_write_text_format_to_stream</name>
+        <param><defname>stream</defname></param>
+        <param><defname>flags</defname></param>
+        <param><defname>fmt</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>logax_write_text_format_to_stream__internal__(stream, flags, __FILE__, __LINE__, <ref refid="logax_8h_1aaa06dc6e232693f0c93cd4a72ea487a6" kindref="member">__LOGAX_FUNCTION__</ref>, fmt, __VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="470" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="470" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a025351fd9bfd126885c7a45be5d696f7" prot="public" static="no">
+        <name>logax_write_key_value_format_to_stream</name>
+        <param><defname>stream</defname></param>
+        <param><defname>flags</defname></param>
+        <param><defname>fmt</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>logax_write_key_value_format_to_stream__internal__(stream, flags, __FILE__, __LINE__, <ref refid="logax_8h_1aaa06dc6e232693f0c93cd4a72ea487a6" kindref="member">__LOGAX_FUNCTION__</ref>, fmt, __VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="552" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="552" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a1b9513d32a4aa3d6e1c8557094163a65" prot="public" static="no">
+        <name>LOGAX_INTERNAL_WRITE_JSON_STR</name>
+        <param><defname>key</defname></param>
+        <param><defname>value</defname></param>
+        <initializer>	<ref refid="logax_8h_1a92f3883c390353155e6b0c858646ba50" kindref="member">LOGAX_DELEGATE_FPRINT_STR</ref>(<ref refid="logax_8h_1ace63de06ef8a4028f2b8b87cc6de6f98" kindref="member">LOGAX_FOREGROUND_DEBUG</ref>, &quot;\&quot;&quot; key &quot;\&quot;&quot;); fprintf(stream, &quot;:&quot;);\
+	<ref refid="logax_8h_1a0e9b53fe6966fdcb56114bcf90d12d0a" kindref="member">LOGAX_WRITE_COLOR_CODE</ref>(<ref refid="logax_8h_1a9a598f0106a68c1dd872121694a65108" kindref="member">LOGAX_FOREGROUND_TRACE</ref>); fprintf(stream, &quot;\&quot;%s\&quot;&quot;, value); if (is_colored) { <ref refid="logax_8h_1a7767ea6dd2150f10964525196c1e482f" kindref="member">LOGAX_RESET_TERMINAL_ATTR</ref>(); }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="557" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="557" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a363d605cb50137e2e3c04015906e7668" prot="public" static="no">
+        <name>LOGAX_INTERNAL_WRITE_JSON_SIZE_T</name>
+        <param><defname>key</defname></param>
+        <param><defname>value</defname></param>
+        <initializer>	<ref refid="logax_8h_1a92f3883c390353155e6b0c858646ba50" kindref="member">LOGAX_DELEGATE_FPRINT_STR</ref>(<ref refid="logax_8h_1ace63de06ef8a4028f2b8b87cc6de6f98" kindref="member">LOGAX_FOREGROUND_DEBUG</ref>, &quot;\&quot;&quot; key &quot;\&quot;&quot;); fprintf(stream, &quot;:&quot;);\
+	<ref refid="logax_8h_1a7c8db6f52bb465af35aef3ce90510187" kindref="member">LOGAX_DELEGATE_FPRINT_SIZE_T</ref>(<ref refid="logax_8h_1a9a598f0106a68c1dd872121694a65108" kindref="member">LOGAX_FOREGROUND_TRACE</ref>, value);</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="564" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="564" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a3b8a4d36e94d72052e051134f6f70cc0" prot="public" static="no">
+        <name>logax_write_json_format_to_stream</name>
+        <param><defname>stream</defname></param>
+        <param><defname>flags</defname></param>
+        <param><defname>fmt</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>logax_write_json_format_to_stream__internal__(stream, flags, __FILE__, __LINE__, <ref refid="logax_8h_1aaa06dc6e232693f0c93cd4a72ea487a6" kindref="member">__LOGAX_FUNCTION__</ref>, fmt, __VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="660" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="660" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1af8e2505e05b83609287c6604336495c0" prot="public" static="no">
+        <name>logax_logger_report_to_callback</name>
+        <param><defname>logax_logger</defname></param>
+        <param><defname>level</defname></param>
+        <param><defname>fmt</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>            {\
+            int index = 0;\
+            char time_buffer__logax_tmp_var__[16];\
+            char date_buffer__logax_tmp_var__[16];\
+            time_t time_raw__logax_tmp_var__ = time(<ref refid="logax_8h_1aadabf1bd03d9bd6658a6bf602fc3786b" kindref="member">LOGAX_NULL</ref>);\
+            struct tm *current_time__logax_tmp_var__ = localtime(&amp;time_raw__logax_tmp_var__);\
+            date_buffer__logax_tmp_var__[strftime(date_buffer__logax_tmp_var__, sizeof(date_buffer__logax_tmp_var__), &quot;%Y-%m-%d&quot;, current_time__logax_tmp_var__)] = &apos;\0&apos;;\
+            time_buffer__logax_tmp_var__[strftime(time_buffer__logax_tmp_var__, sizeof(time_buffer__logax_tmp_var__), &quot;%H:%M:%S&quot;, current_time__logax_tmp_var__)] = &apos;\0&apos;;\
+            for (; index &lt; <ref refid="logax_8h_1af1c825b8eb07e040d59b634a5f48ed0a" kindref="member">LOGAX_MAX_CALLBACKS</ref>; index++) {\
+                <ref refid="logax_8h_1a591221f8bc07dd89ba8d51de294f468e" kindref="member">logax_callback</ref> callback = (logax_logger)-&gt;callbacks[index];\
+                if (callback != <ref refid="logax_8h_1aadabf1bd03d9bd6658a6bf602fc3786b" kindref="member">LOGAX_NULL</ref>) {\
+                    callback(date_buffer__logax_tmp_var__, time_buffer__logax_tmp_var__, level, __FILE__, __LINE__, <ref refid="logax_8h_1aaa06dc6e232693f0c93cd4a72ea487a6" kindref="member">__LOGAX_FUNCTION__</ref>, fmt, __VA_ARGS__);\
+                }\
+            }\
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="696" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="696" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1ad458079c436922a57f40d1edd6c41fa5" prot="public" static="no">
+        <name>logax_logger_trace</name>
+        <param><defname>logax_logger</defname></param>
+        <param><defname>fmt</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>    logax_logger_write(logax_logger, <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9" kindref="member">LOGAX_LEVEL_TRACE</ref>, __FILE__, __LINE__, <ref refid="logax_8h_1aaa06dc6e232693f0c93cd4a72ea487a6" kindref="member">__LOGAX_FUNCTION__</ref>, fmt, __VA_ARGS__);\
+    <ref refid="logax_8h_1af8e2505e05b83609287c6604336495c0" kindref="member">logax_logger_report_to_callback</ref>(logax_logger, <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9" kindref="member">LOGAX_LEVEL_TRACE</ref>, fmt, __VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="729" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="729" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1adde55752181d16cd209cf4b4f6ca4cfd" prot="public" static="no">
+        <name>logax_logger_debug</name>
+        <param><defname>logax_logger</defname></param>
+        <param><defname>fmt</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>    logax_logger_write(logax_logger, <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19ad86f6500cd2833052dca0a563992052d" kindref="member">LOGAX_LEVEL_DEBUG</ref>, __FILE__, __LINE__, <ref refid="logax_8h_1aaa06dc6e232693f0c93cd4a72ea487a6" kindref="member">__LOGAX_FUNCTION__</ref>, fmt, __VA_ARGS__);\
+    <ref refid="logax_8h_1af8e2505e05b83609287c6604336495c0" kindref="member">logax_logger_report_to_callback</ref>(logax_logger, <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19ad86f6500cd2833052dca0a563992052d" kindref="member">LOGAX_LEVEL_DEBUG</ref>, fmt, __VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="735" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="735" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1aeae79d20c930ad343fa0ae9dd9c77102" prot="public" static="no">
+        <name>logax_logger_info</name>
+        <param><defname>logax_logger</defname></param>
+        <param><defname>fmt</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>    logax_logger_write(logax_logger, <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19af8fda1837cc5280ed634d9f6f27242bc" kindref="member">LOGAX_LEVEL_INFO</ref>, __FILE__, __LINE__, <ref refid="logax_8h_1aaa06dc6e232693f0c93cd4a72ea487a6" kindref="member">__LOGAX_FUNCTION__</ref>, fmt, __VA_ARGS__);\
+    <ref refid="logax_8h_1af8e2505e05b83609287c6604336495c0" kindref="member">logax_logger_report_to_callback</ref>(logax_logger, <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19af8fda1837cc5280ed634d9f6f27242bc" kindref="member">LOGAX_LEVEL_INFO</ref>, fmt, __VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="741" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="741" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a93356a610b71fc0c74a21f4b7d95d89f" prot="public" static="no">
+        <name>logax_logger_warn</name>
+        <param><defname>logax_logger</defname></param>
+        <param><defname>fmt</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>    logax_logger_write(logax_logger, <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19ad9f03cfa72140d98bad0d70c26732496" kindref="member">LOGAX_LEVEL_WARN</ref>, __FILE__, __LINE__, <ref refid="logax_8h_1aaa06dc6e232693f0c93cd4a72ea487a6" kindref="member">__LOGAX_FUNCTION__</ref>, fmt, __VA_ARGS__);\
+    <ref refid="logax_8h_1af8e2505e05b83609287c6604336495c0" kindref="member">logax_logger_report_to_callback</ref>(logax_logger, <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19ad9f03cfa72140d98bad0d70c26732496" kindref="member">LOGAX_LEVEL_WARN</ref>, fmt, __VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="747" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="747" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a72537f377caa26ee5d8c7d5bb4f44ff0" prot="public" static="no">
+        <name>logax_logger_error</name>
+        <param><defname>logax_logger</defname></param>
+        <param><defname>fmt</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>    logax_logger_write(logax_logger, <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19a9fc66d044e119f9177d404fa7103f09e" kindref="member">LOGAX_LEVEL_ERROR</ref>, __FILE__, __LINE__, <ref refid="logax_8h_1aaa06dc6e232693f0c93cd4a72ea487a6" kindref="member">__LOGAX_FUNCTION__</ref>, fmt, __VA_ARGS__);\
+    <ref refid="logax_8h_1af8e2505e05b83609287c6604336495c0" kindref="member">logax_logger_report_to_callback</ref>(logax_logger, <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19a9fc66d044e119f9177d404fa7103f09e" kindref="member">LOGAX_LEVEL_ERROR</ref>, fmt, __VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="753" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="753" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a26c1e50583b289d821420ffe6a898b19" prot="public" static="no">
+        <name>logax_logger_fatal</name>
+        <param><defname>logax_logger</defname></param>
+        <param><defname>fmt</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>    logax_logger_write(logax_logger, <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19a56a44e494019e597d8099792b4a42279" kindref="member">LOGAX_LEVEL_FATAL</ref>, __FILE__, __LINE__, <ref refid="logax_8h_1aaa06dc6e232693f0c93cd4a72ea487a6" kindref="member">__LOGAX_FUNCTION__</ref>, fmt, __VA_ARGS__);\
+    <ref refid="logax_8h_1af8e2505e05b83609287c6604336495c0" kindref="member">logax_logger_report_to_callback</ref>(logax_logger, <ref refid="logax_8h_1afad712dc25618fe276b8ec7b8b905d19a56a44e494019e597d8099792b4a42279" kindref="member">LOGAX_LEVEL_FATAL</ref>, fmt, __VA_ARGS__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="759" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="759" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1" prot="public" static="no" strong="no">
+        <type></type>
+        <name>LogaxOption</name>
+        <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5" prot="public">
+          <name>LOGAX_OPTION_QUITE</name>
+          <initializer>= 1 &lt;&lt; 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>the option to disable writing to output stream </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1abddee66c241d6b820890ec055c96506d" prot="public">
+          <name>LOGAX_OPTION_DATE</name>
+          <initializer>= 1 &lt;&lt; 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>option to write/set the date of the log event </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a6af43bb97231c5d294acf2cf811bb9cb" prot="public">
+          <name>LOGAX_OPTION_TIME</name>
+          <initializer>= 1 &lt;&lt; 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>option to set the time of the log event </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1affb44b715383dad1ba6999ff2d727b4a" prot="public">
+          <name>LOGAX_OPTION_DATE_TIME</name>
+          <initializer>= 1 &lt;&lt; 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>the option to set both the date and time of the log event </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a74cfb22278e519d1d2f14071d1c3ac2e" prot="public">
+          <name>LOGAX_OPTION_FILE_PATH</name>
+          <initializer>= 1 &lt;&lt; 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>option to set the full path to the file where the log event was sent from </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a11accd58dec177b309045cebd35c1e5a" prot="public">
+          <name>LOGAX_OPTION_FILE_NAME_ONLY</name>
+          <initializer>= 1 &lt;&lt; 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>option to set only the name of the file where the log event was sent from </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1af4b229b67b1d512e43458a9319c86001" prot="public">
+          <name>LOGAX_OPTION_LINE_NUMBER</name>
+          <initializer>= 1 &lt;&lt; 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>option to set the line number where the log even was sent </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a26446dad901f86c56a5519670e866b41" prot="public">
+          <name>LOGAX_OPTION_COLORED</name>
+          <initializer>= 1 &lt;&lt; 8</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>this option is used to enable preety print and colored outputs </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a9d77f9520d36686556830ac9b395a283" prot="public">
+          <name>LOGAX_OPTION_FUNCTION</name>
+          <initializer>= 1 &lt;&lt; 9</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>option to write/set the name of the function where the log was set from </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4" prot="public">
+          <name>LOGAX_OPTION_ALL</name>
+          <initializer>= 1 &lt;&lt; 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>this option enables all the other options above apart from LOGAX_OPTION_QUITE </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>More bit location is reserved till 15 to accomodate new options without breaking backward compatibility </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="99" column="17" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="99" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="enum" id="logax_8h_1afad712dc25618fe276b8ec7b8b905d19" prot="public" static="no" strong="no">
+        <type></type>
+        <name>LogaxLevel</name>
+        <enumvalue id="logax_8h_1afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9" prot="public">
+          <name>LOGAX_LEVEL_TRACE</name>
+          <initializer>= 1 &lt;&lt; 16</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Mark the log event as trace </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1afad712dc25618fe276b8ec7b8b905d19ad86f6500cd2833052dca0a563992052d" prot="public">
+          <name>LOGAX_LEVEL_DEBUG</name>
+          <initializer>= 1 &lt;&lt; 17</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Mark the log event as debug </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1afad712dc25618fe276b8ec7b8b905d19af8fda1837cc5280ed634d9f6f27242bc" prot="public">
+          <name>LOGAX_LEVEL_INFO</name>
+          <initializer>= 1 &lt;&lt; 18</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Mark the log event as an information </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1afad712dc25618fe276b8ec7b8b905d19ad9f03cfa72140d98bad0d70c26732496" prot="public">
+          <name>LOGAX_LEVEL_WARN</name>
+          <initializer>= 1 &lt;&lt; 19</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Mark the log event as a warning </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1afad712dc25618fe276b8ec7b8b905d19a9fc66d044e119f9177d404fa7103f09e" prot="public">
+          <name>LOGAX_LEVEL_ERROR</name>
+          <initializer>= 1 &lt;&lt; 20</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Mark the log event as an error </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1afad712dc25618fe276b8ec7b8b905d19a56a44e494019e597d8099792b4a42279" prot="public">
+          <name>LOGAX_LEVEL_FATAL</name>
+          <initializer>= 1 &lt;&lt; 21</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Mark the log event as a critical error </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The options to classify the log event by level </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="119" column="16" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="119" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="enum" id="logax_8h_1ae495419e226be29c3a41dc1be9ce155e" prot="public" static="no" strong="no">
+        <type></type>
+        <name>LogaxFormatter</name>
+        <enumvalue id="logax_8h_1ae495419e226be29c3a41dc1be9ce155ea3fa9a595ae0b97412da60031da6dfc7d" prot="public">
+          <name>LOGAX_FORMATTER_TEXT</name>
+          <initializer>= 1 &lt;&lt; 25</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Format the log output as plain string </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1ae495419e226be29c3a41dc1be9ce155eaf7d9ff28b75d2cafd4926419218e32b3" prot="public">
+          <name>LOGAX_FORMATTER_KEY_VALUE</name>
+          <initializer>= 1 &lt;&lt; 26</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Format the log output as a key value entries </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="logax_8h_1ae495419e226be29c3a41dc1be9ce155ea67d581a4395aecb8b0f6fc2256d8b59c" prot="public">
+          <name>LOGAX_FORMATTER_JSON</name>
+          <initializer>= 1 &lt;&lt; 27</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Format the log output as a valid JSON object </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The options to specify the format of the log output </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="141" column="20" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="141" bodyend="145"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="logax_8h_1a591221f8bc07dd89ba8d51de294f468e" prot="public" static="no">
+        <type>void(*</type>
+        <definition>typedef void(* logax_callback) (const char *date, const char *time, const int level, const char *file, const size_t line_number, const char *function_name, const char *fmt,...)</definition>
+        <argsstring>)(const char *date, const char *time, const int level, const char *file, const size_t line_number, const char *function_name, const char *fmt,...)</argsstring>
+        <name>logax_callback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the function signature of the callback, any function defined with same signature can be registered with the LogaxLogger as callback which will be invoked if a new logevent is sent. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="92" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="logax_8h_1a96af86afb48664f089ea2770369be31d" prot="public" static="no">
+        <type>struct <ref refid="structlogax__logger__s" kindref="compound">logax_logger_s</ref></type>
+        <definition>typedef struct logax_logger_s LogaxLogger</definition>
+        <argsstring></argsstring>
+        <name>LogaxLogger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="92" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="logax_8h_1a1c1587d7f0f23aafa826f968583e716d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void logax_init_logger</definition>
+        <argsstring>(LogaxLogger *logax_logger)</argsstring>
+        <name>logax_init_logger</name>
+        <param>
+          <type><ref refid="logax_8h_1a96af86afb48664f089ea2770369be31d" kindref="member">LogaxLogger</ref> *</type>
+          <declname>logax_logger</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="171" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="171" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="logax_8h_1ac725cc7a0a460de28db8fc9efa4bd61b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void logax_init_logger_ws</definition>
+        <argsstring>(LogaxLogger *logax_logger, FILE *output_stream)</argsstring>
+        <name>logax_init_logger_ws</name>
+        <param>
+          <type><ref refid="logax_8h_1a96af86afb48664f089ea2770369be31d" kindref="member">LogaxLogger</ref> *</type>
+          <declname>logax_logger</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>output_stream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="194" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="194" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="logax_8h_1a77da1098e4e2b0026c4d329ba3d9005c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned</type>
+        <definition>static unsigned logax_logger_add_callback</definition>
+        <argsstring>(LogaxLogger *logax_logger, logax_callback callback)</argsstring>
+        <name>logax_logger_add_callback</name>
+        <param>
+          <type><ref refid="logax_8h_1a96af86afb48664f089ea2770369be31d" kindref="member">LogaxLogger</ref> *</type>
+          <declname>logax_logger</declname>
+        </param>
+        <param>
+          <type><ref refid="logax_8h_1a591221f8bc07dd89ba8d51de294f468e" kindref="member">logax_callback</ref></type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="216" column="17" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="216" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="logax_8h_1a64c8b00cccbd70699e4493b5ffe8b142" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>static size_t logax_cstr_length</definition>
+        <argsstring>(char char_array[])</argsstring>
+        <name>logax_cstr_length</name>
+        <param>
+          <type>char</type>
+          <declname>char_array</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="272" column="15" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="272" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="logax_8h_1a4f4e473120063638009b47b2fbf54470" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void logax_replace_char</definition>
+        <argsstring>(char const *const file_path, char formatted_file_name[], char old_char, char new_char)</argsstring>
+        <name>logax_replace_char</name>
+        <param>
+          <type>char const *const</type>
+          <declname>file_path</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>formatted_file_name</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>old_char</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>new_char</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="284" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="284" bodyend="295"/>
+      </memberdef>
+      <memberdef kind="function" id="logax_8h_1ae1cd18faf596baa11b0d800232e20cb6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void logax_extract_name_only</definition>
+        <argsstring>(char const *const file_path, char formatted_file_name[])</argsstring>
+        <name>logax_extract_name_only</name>
+        <param>
+          <type>char const *const</type>
+          <declname>file_path</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>formatted_file_name</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="300" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="300" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="logax_8h_1af48bb103d445eafa244e7239ce5e10f7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void logax_write_text_format_to_stream_final__internal__</definition>
+        <argsstring>(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args)</argsstring>
+        <name>logax_write_text_format_to_stream_final__internal__</name>
+        <param>
+          <type>FILE *</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flags</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file_path</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>line_number</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>function_name</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>fmt</declname>
+        </param>
+        <param>
+          <type>va_list</type>
+          <declname>va_args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="389" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="389" bodyend="455"/>
+      </memberdef>
+      <memberdef kind="function" id="logax_8h_1ad5bafb1a2e21fba2609cc8941490e022" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void logax_write_text_format_to_stream__internal__</definition>
+        <argsstring>(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt,...)</argsstring>
+        <name>logax_write_text_format_to_stream__internal__</name>
+        <param>
+          <type>FILE *</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flags</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file_path</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>line_number</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>function_name</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>fmt</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="460" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="460" bodyend="465"/>
+      </memberdef>
+      <memberdef kind="function" id="logax_8h_1aa6ea01ad2fa8c7007c537523134a15d0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void logax_write_key_value_format_to_stream_final__internal__</definition>
+        <argsstring>(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args)</argsstring>
+        <name>logax_write_key_value_format_to_stream_final__internal__</name>
+        <param>
+          <type>FILE *</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flags</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file_path</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>line_number</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>function_name</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>fmt</declname>
+        </param>
+        <param>
+          <type>va_list</type>
+          <declname>va_args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="475" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="475" bodyend="537"/>
+      </memberdef>
+      <memberdef kind="function" id="logax_8h_1a2c15008874ef2c1a08ac08a4899636c7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void logax_write_key_value_format_to_stream__internal__</definition>
+        <argsstring>(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt,...)</argsstring>
+        <name>logax_write_key_value_format_to_stream__internal__</name>
+        <param>
+          <type>FILE *</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flags</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file_path</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>line_number</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>function_name</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>fmt</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="542" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="542" bodyend="547"/>
+      </memberdef>
+      <memberdef kind="function" id="logax_8h_1ae67c98b38b1c5ca12dcdb89a923d63d8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void logax_write_json_format_to_stream_final__internal__</definition>
+        <argsstring>(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args)</argsstring>
+        <name>logax_write_json_format_to_stream_final__internal__</name>
+        <param>
+          <type>FILE *</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flags</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file_path</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>line_number</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>function_name</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>fmt</declname>
+        </param>
+        <param>
+          <type>va_list</type>
+          <declname>va_args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="571" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="571" bodyend="645"/>
+      </memberdef>
+      <memberdef kind="function" id="logax_8h_1a42ee1d3d3776eac1f39e54921b7ae824" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void logax_write_json_format_to_stream__internal__</definition>
+        <argsstring>(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt,...)</argsstring>
+        <name>logax_write_json_format_to_stream__internal__</name>
+        <param>
+          <type>FILE *</type>
+          <declname>stream</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flags</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file_path</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>line_number</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>function_name</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>fmt</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="650" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="650" bodyend="655"/>
+      </memberdef>
+      <memberdef kind="function" id="logax_8h_1a7782a8b327ec69159954aa06b11058c1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void logax_logger_write</definition>
+        <argsstring>(LogaxLogger *logax_logger, int level, const char *file_path, const size_t line_number, const char *function_name, const char *fmt,...)</argsstring>
+        <name>logax_logger_write</name>
+        <param>
+          <type><ref refid="logax_8h_1a96af86afb48664f089ea2770369be31d" kindref="member">LogaxLogger</ref> *</type>
+          <declname>logax_logger</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file_path</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>line_number</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>function_name</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>fmt</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="672" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="672" bodyend="686"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="copyright"><para>MIT License Copyright (c) 2021, Adewale Azeez </para>
+</simplesect>
+<simplesect kind="author"><para>Adewale Azeez <ulink url="mailto:iamthecarisma@gmail.com">iamthecarisma@gmail.com</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>18 Nov 2021 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,159 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Features &#8212; liblogax  documentation</title>
+    <link rel="stylesheet" href="_static/css/fandango.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/liblogax.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="shortcut icon" href="_static/liblogax.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Callback and Hook" href="docs/callbacks.html" />
+   
+  
+  
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
+    
+    <meta name="description" content="liblogax is a header only automated testing framework for the C programming language, it requires no dependency and can be downloaded and used in a project immediately.">
+    <meta name="keywords" content="thecarisma, c, cpp, c++, unit testing, framework, exoticlibraries, exotic, libraries, regression, test">
+    <meta name="author" content="Adewale Azeez">
+    <meta property="og:url" content="https://exoticlibraries.github.io/liblogax/index.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="A robust header only unit testing framework for C programming language." />
+    <meta property="og:description" content="liblogax is a header only automated testing framework for the C programming language, it requires no dependency and can be downloaded and used in a project immediately." />
+    <meta property="og:image" content="https://raw.githubusercontent.com/exoticlibraries/liblogax/main/docs/liblogax.png" />
+    
+  
+  
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@exoticlibs" />
+    <meta name="twitter:creator" content="@iamthecarisma" />
+    <meta name="twitter:title" content="A robust header only unit testing framework for C programming language." />
+    <meta name="twitter:description" content="liblogax is a header only automated testing framework for the C programming language, it requires no dependency and can be downloaded and used in a project immediately." />
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/exoticlibraries/liblogax/main/docs/liblogax.png" />
+    
+  
+
+  </head><body>
+
+    <div class="document">
+    <header>
+        <div class="topnavbar">
+            <div style="float:left;">
+                
+                    <img class="icon" src="_static/liblogax.png"></img>
+                
+                <a href="#" class="title">liblogax</a>
+            </div>
+            <div>
+                
+                    
+                        <a href="docs/index.html">Documentation</a>
+                    
+                
+                    
+                        <a href="reference/index.html">Reference</a>
+                    
+                
+                    
+                        <a href="https://github.com/exoticlibraries/liblogax/">Source Code</a> 
+                    
+                
+                    
+                        <a href="https://exoticlibraries.github.io/">Exotic Libraries</a> 
+                    
+                
+            </div>
+        </div>
+        
+            <div class="topnavbar-sec" style="padding:0;"></div>
+        
+    </header>
+    <div class="documentwrapper" id="documentwrapper">
+        <div class="bodywrapper">
+                
+  <div class="toctree-wrapper compound" id="docs-nav">
+</div>
+<div class="toctree-wrapper compound" id="docs-how-it-works">
+</div>
+<p>liblogax is a blazing fast, simple and modular header-only logging library with zero allocation for C and C++, implemented in C90. Allow logging into various output formats such as Key-Value and JSON.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;exotic/logax.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;This is a trace output&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_DEBUG</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;This is a debug output&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_INFO</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;This is an info output&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_WARN</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;This is a warning output&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_ERROR</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;This is an error output&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_FATAL</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;This is a fatal output&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<a class="reference external image-reference" href="https://raw.githubusercontent.com/exoticlibraries/exoticlibraries.github.io/main/assets/images/liblogax/crash_test_output.png"><img alt="liblogax test result" src="https://raw.githubusercontent.com/exoticlibraries/exoticlibraries.github.io/main/assets/images/liblogax/crash_test_output.png" /></a>
+<div class="section" id="features">
+<h1>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Single header only, just download logax.h and you are good to go.</li>
+<li>Speed. logax was developed with speed and zero performance intrusion in mind.</li>
+<li>Modular, excluded un-used features from your test, <a class="reference external" href="https://exoticlibraries.github.io/liblogax/docs/modularity.html">modularity</a>.</li>
+<li>Zero allocation, No memory allocation.</li>
+<li>Levelled logging to customize and differenciate the outputs.</li>
+<li>Support for callbacks and hooks.</li>
+<li>Very portable, compatiple with ANSI C and C++98 without any trade off in functionalities.</li>
+<li>Output log in text, key-value and JSON encoding formats.</li>
+<li>Pretty logging for all supported output formats.</li>
+<li>Simple method to achive options in the logging system using bitwise operations.</li>
+<li>Detail docuentation with examples and API references.</li>
+</ul>
+</div>
+
+
+                </br>
+                 
+                    
+                
+        </div>
+        
+            
+                
+            
+        
+        <div style="clear:both"></div>
+    </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        
+        <div class="social">
+            
+                <a href="https://twitter.com/exoticlibs"><i class="fab fa-twitter"></i></a>
+            
+                <a href="https://github.com/exoticlibraries/liblogax/"><i class="fab fa-github"></i></a>
+            
+        </div>
+        
+        <div class="footer-col1">
+            
+        </div>
+        
+        <div class="doc-sphinx-info">
+                    &copy; Copyright 2021, Exotic Libraries - MIT License.
+                Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5
+                with <a href="https://thecarisma.github.io/themata/fandango/index.html">fandango</a> theme.
+        </div>
+    </div>
+
+  </body>
+</html>
