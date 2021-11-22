@@ -14,10 +14,10 @@ jobs:
       matrix:
         #os: [macos-latest, ubuntu-latest, windows-latest]
         #platform: [x86, x64]
-        #compiler: [gcc, clang, tcc, msvc]
+        #compiler: [gcc, clang, tcc]
         os: [windows-latest]
         platform: [x86, x64]
-        compiler: [clang, msvc]
+        compiler: [clang]
 
     steps:
       - name: Checkout
