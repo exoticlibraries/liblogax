@@ -118,6 +118,28 @@
 <li>Detail docuentation with examples and API references.</li>
 </ul>
 </div>
+<div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>If you install the library file <code class="docutils literal notranslate"><span class="pre">logax.h</span></code> using any of the commands below, it can be included in your test like <code class="docutils literal notranslate"><span class="pre">&lt;exotic/logax.h&gt;</span></code>.</p>
+<div class="section" id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<p>Install the library using powershell. It auto detect your insalled C and C++ compilers include directory and install liblogax into the include folder. Execute the command in powershell as admin.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span> <span class="p">$(</span><span class="no">[scriptblock]</span><span class="p">::</span><span class="n">Create</span><span class="p">((</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s2">&quot;https://exoticlibraries.github.io/magic/install.ps1&quot;</span><span class="p">)))</span> <span class="n">liblogax</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unix-linux-mac">
+<h2>Unix, Linux, Mac<a class="headerlink" href="#unix-linux-mac" title="Permalink to this headline">¶</a></h2>
+<p>Use the remote installation script to install liblogax with bash. If the command is executes with super user priviledge (sudo) it will be installed in the folder /usr/include else it will be installed in the folder /usr/local/include. Or you can specify where to install it using the option <code class="docutils literal notranslate"><span class="pre">--installfolder=./</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash &lt;<span class="o">(</span>curl -s https://exoticlibraries.github.io/magic/install.sh<span class="o">)</span> liblogax
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-platforms">
+<h2>Other platforms<a class="headerlink" href="#other-platforms" title="Permalink to this headline">¶</a></h2>
+<p>You can simply download the header file <code class="docutils literal notranslate"><span class="pre">logax.h</span></code> from the repo into your project source folder and include it in your project. Download the file from <a class="reference external" href="https://github.com/exoticlibraries/liblogax/blob/main/include/exotic/logax.h">here</a>. Then you can include it in your test relatively like <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;logax.h&quot;</span></code>.</p>
+</div>
+</div>
 
 
                 </br>
