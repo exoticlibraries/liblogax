@@ -7,7 +7,7 @@ liblogax uses the bitwise arithmetic to manage the options and flags, the flag v
 
 This enum is used to declare the basic options for the library, the bit size from (1 << 1) to (1 << 9) and (1 << 15) are used, (1 << 10) to (1 << 14) are reserved in case a new option is needed to be added. The following options are declared in the LogaxOption enum:
 
-- LOGAX_OPTION_QUITE
+- LOGAX_OPTION_QUIET
 - LOGAX_OPTION_DATE
 - LOGAX_OPTION_TIME
 - LOGAX_OPTION_DATE_TIME
@@ -18,7 +18,7 @@ This enum is used to declare the basic options for the library, the bit size fro
 - LOGAX_OPTION_FUNCTION
 - LOGAX_OPTION_ALL
 
-# LOGAX_OPTION_QUITE
+# LOGAX_OPTION_QUIET
 
 This option disable writing the log to the output stream even if the program is compiled with write to output stream functionality. Bit value is `1 << 1`.
 

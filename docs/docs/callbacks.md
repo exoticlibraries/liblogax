@@ -1,7 +1,7 @@
 
 # Callback and Hook
 
-LogaxLogger supports callback (or hook), the callbacks are invoked when a new log is sent. The callback can be used to create a custom output format or used to changed out the log is processed (e.g. blink bulb on andruino e.t.c). The output stream can be completely disabled by defining the macro `LOGAX_NO_OUTPUT_STREAM` or setiing the option to QUITE using the function `logax_set_quite`, in this case if callbacks are registered they will be invoked with the log event.
+LogaxLogger supports callback (or hook), the callbacks are invoked when a new log is sent. The callback can be used to create a custom output format or used to changed out the log is processed (e.g. blink bulb on andruino e.t.c). The output stream can be completely disabled by defining the macro `LOGAX_NO_OUTPUT_STREAM` or setting the option to QUIET using the function `logax_set_quiet`, in this case if callbacks are registered they will be invoked with the log event.
 
 The callback function signature is
 
@@ -9,7 +9,7 @@ The callback function signature is
 typedef void (*logax_callback)(const char *date, const char *time, const int level, const char *file, const size_t line_number, const char *function_name, const char *fmt, ...);
 ```
 
-The example belows shows how to register a callback which is invoked when there is a new log
+The example below shows how to register a callback which is invoked when there is a new log
 
 ```c
 #include <exotic/logax.h>
@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
 	LogaxLogger logax_logger;
 
 	logax_init_logger(&logax_logger);
-	logax_set_quite(&logax_logger, 1);
+	logax_set_quiet(&logax_logger, 1);
 	logax_logger_add_callback(&logax_logger, on_new_log_callback);
 	logax_logger_trace(&logax_logger, "%s", "Logging the test for TRACE");
 	logax_logger_debug(&logax_logger, "%s", "Logging the test for DEBUG");
