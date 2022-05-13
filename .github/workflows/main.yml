@@ -14,7 +14,8 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
         platform: [x86, x64]
-        compiler: [gcc, clang, tcc]
+        compiler: [gcc, tcc]
+        #compiler: [gcc, clang, tcc]
 
     steps:
       - name: Checkout
