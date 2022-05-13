@@ -24,6 +24,7 @@
   
   
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    
   
     
     <meta name="description" content="liblogax is a header only automated testing framework for the C programming language, it requires no dependency and can be downloaded and used in a project immediately.">
@@ -46,6 +47,24 @@
     <meta name="twitter:image" content="https://raw.githubusercontent.com/exoticlibraries/liblogax/main/docs/liblogax.png" />
     
   
+  
+  <script>
+      const __themataOnloadCallbacks = [];
+      const __themataJsLoadedCallbacks = [];
+      const themataCurrentPageTitle = "Output Formats";
+      const themataCurrentProject = "liblogax";
+      const themataCurrentProjectGithubLocation = "";
+      const themataCurrentPagePath = "docs/output_formats.md";
+      const themataCurrentPageLocation = "https://github.com/exoticlibraries/liblogax/edit/main/docs/docs/output_formats.md".replace("/edit/", "/blob/");
+      const themataGithubFeedbackProjectTemplate = ``;
+      const themataGithubFeedbackPageTemplate = ``;
+      function themataRegisterOnloadCallback(cb) {
+        __themataJsLoadedCallbacks.push(cb);
+      }
+      function themataRegisterJsLoadedCallback(cb) {
+        __themataOnloadCallbacks.push(cb);
+      }
+  </script>
 
   </head><body>
 
@@ -99,11 +118,11 @@
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;exotic/logax.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mi">19</span> <span class="n">TRACE</span> <span class="n">crash_test</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">6</span>  <span class="o">---</span> <span class="p">[</span><span class="n">main</span>     <span class="p">]</span> <span class="n">Enemy</span> <span class="n">approching</span> <span class="kn">from</span> <span class="nn">X</span><span class="o">=</span><span class="mi">108</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="mi">877</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mi">19</span> <span class="n">TRACE</span> <span class="n">crash_test</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">6</span>  <span class="o">---</span> <span class="p">[</span><span class="n">main</span>     <span class="p">]</span> <span class="n">Enemy</span> <span class="n">approaching</span> <span class="kn">from</span> <span class="nn">X</span><span class="o">=</span><span class="mi">108</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="mi">877</span>
 </pre></div>
 </div>
 <p>Output as text using the <code class="docutils literal notranslate"><span class="pre">LOGAX_FORMATTER_TEXT</span></code> option with LogaxLogger.</p>
@@ -114,11 +133,11 @@
 
     <span class="n">logax_init_logger</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">);</span>
     <span class="n">logax_set_formatter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="n">LOGAX_FORMATTER_TEXT</span><span class="p">);</span>
-    <span class="n">logax_logger_trace</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_logger_trace</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">38</span> <span class="n">TRACE</span> <span class="n">crash_test</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">10</span> <span class="n">Enemy</span> <span class="n">approching</span> <span class="kn">from</span> <span class="nn">X</span><span class="o">=</span><span class="mi">108</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="mi">877</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2021</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">38</span> <span class="n">TRACE</span> <span class="n">crash_test</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">10</span> <span class="n">Enemy</span> <span class="n">approaching</span> <span class="kn">from</span> <span class="nn">X</span><span class="o">=</span><span class="mi">108</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="mi">877</span>
 </pre></div>
 </div>
 </div>
@@ -128,11 +147,11 @@
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;exotic/logax.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">logax_write_key_value_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_key_value_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">date</span><span class="o">=</span><span class="s2">&quot;2021-11-21&quot;</span> <span class="n">time</span><span class="o">=</span><span class="s2">&quot;08:43:59&quot;</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;TRACE&quot;</span> <span class="n">file</span><span class="o">=</span><span class="s2">&quot;crash_test.c&quot;</span> <span class="n">line_number</span><span class="o">=</span><span class="mi">6</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;main&quot;</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Enemy approching from X=108,Y=877&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">date</span><span class="o">=</span><span class="s2">&quot;2021-11-21&quot;</span> <span class="n">time</span><span class="o">=</span><span class="s2">&quot;08:43:59&quot;</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;TRACE&quot;</span> <span class="n">file</span><span class="o">=</span><span class="s2">&quot;crash_test.c&quot;</span> <span class="n">line_number</span><span class="o">=</span><span class="mi">6</span> <span class="n">function</span><span class="o">=</span><span class="s2">&quot;main&quot;</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Enemy approaching from X=108,Y=877&quot;</span>
 </pre></div>
 </div>
 <p>Output as key value using the <code class="docutils literal notranslate"><span class="pre">LOGAX_FORMATTER_KEY_VALUE</span></code> option with LogaxLogger.</p>
@@ -143,11 +162,11 @@
 
     <span class="n">logax_init_logger</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">);</span>
     <span class="n">logax_set_formatter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="n">LOGAX_FORMATTER_KEY_VALUE</span><span class="p">);</span>
-    <span class="n">logax_logger_trace</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_logger_trace</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">date</span><span class="o">=</span><span class="s2">&quot;2021-11-21&quot;</span> <span class="n">time</span><span class="o">=</span><span class="s2">&quot;08:46:00&quot;</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;TRACE&quot;</span> <span class="n">file</span><span class="o">=</span><span class="s2">&quot;crash_test.c&quot;</span> <span class="n">line_number</span><span class="o">=</span><span class="mi">10</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Enemy approching from X=108,Y=877&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">date</span><span class="o">=</span><span class="s2">&quot;2021-11-21&quot;</span> <span class="n">time</span><span class="o">=</span><span class="s2">&quot;08:46:00&quot;</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;TRACE&quot;</span> <span class="n">file</span><span class="o">=</span><span class="s2">&quot;crash_test.c&quot;</span> <span class="n">line_number</span><span class="o">=</span><span class="mi">10</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Enemy approaching from X=108,Y=877&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -157,11 +176,11 @@
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;exotic/logax.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">logax_write_json_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_json_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{&quot;date&quot;:&quot;2021-11-21&quot;,&quot;time&quot;:&quot;08:44:58&quot;,&quot;level&quot;:&quot;TRACE&quot;,&quot;file&quot;:&quot;crash_test.c&quot;,&quot;line_number&quot;:6,&quot;function&quot;:&quot;main&quot;,&quot;message&quot;:&quot;Enemy approching from X=108,Y=877&quot;},
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{&quot;date&quot;:&quot;2021-11-21&quot;,&quot;time&quot;:&quot;08:44:58&quot;,&quot;level&quot;:&quot;TRACE&quot;,&quot;file&quot;:&quot;crash_test.c&quot;,&quot;line_number&quot;:6,&quot;function&quot;:&quot;main&quot;,&quot;message&quot;:&quot;Enemy approaching from X=108,Y=877&quot;},
 </pre></div>
 </div>
 <p>Output as json using the <code class="docutils literal notranslate"><span class="pre">LOGAX_FORMATTER_JSON</span></code> option with LogaxLogger.</p>
@@ -172,11 +191,11 @@
 
     <span class="n">logax_init_logger</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">);</span>
     <span class="n">logax_set_formatter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="n">LOGAX_FORMATTER_JSON</span><span class="p">);</span>
-    <span class="n">logax_logger_trace</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_logger_trace</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="p">:</span><span class="s2">&quot;2021-11-21&quot;</span><span class="p">,</span><span class="s2">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;08:45:36&quot;</span><span class="p">,</span><span class="s2">&quot;level&quot;</span><span class="p">:</span><span class="s2">&quot;TRACE&quot;</span><span class="p">,</span><span class="s2">&quot;file&quot;</span><span class="p">:</span><span class="s2">&quot;crash_test.c&quot;</span><span class="p">,</span><span class="s2">&quot;line_number&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">},</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="p">:</span><span class="s2">&quot;2021-11-21&quot;</span><span class="p">,</span><span class="s2">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;08:45:36&quot;</span><span class="p">,</span><span class="s2">&quot;level&quot;</span><span class="p">:</span><span class="s2">&quot;TRACE&quot;</span><span class="p">,</span><span class="s2">&quot;file&quot;</span><span class="p">:</span><span class="s2">&quot;crash_test.c&quot;</span><span class="p">,</span><span class="s2">&quot;line_number&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">},</span>
 </pre></div>
 </div>
 </div>
@@ -196,6 +215,7 @@
                                   
                         </div>
                         <hr/>
+                        
                         </br>
                     
                 
@@ -276,6 +296,15 @@
                 with <a href="https://thecarisma.github.io/themata/fandango/index.html">fandango</a> theme.
         </div>
     </div>
+    <script>
+                const themataSyntaxHighlighter = "highlightjs";
+                const themataCodeBlockIsEditable = false;
+                const themataSyntaxHighlighterTheme = "a11y-dark";
+                const themataStaticAssetsDir = "../_static/";
+                const themataSyntaxHighlighterIframeEmbed = false;
+                $("pre").parent().css("display", "none");
+            </script>
+    <script src="../_static/themata.js"></script>
 
   </body>
 </html>

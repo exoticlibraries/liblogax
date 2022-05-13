@@ -24,6 +24,7 @@
   
   
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    
   
     
     <meta name="description" content="liblogax is a header only automated testing framework for the C programming language, it requires no dependency and can be downloaded and used in a project immediately.">
@@ -46,6 +47,24 @@
     <meta name="twitter:image" content="https://raw.githubusercontent.com/exoticlibraries/liblogax/main/docs/liblogax.png" />
     
   
+  
+  <script>
+      const __themataOnloadCallbacks = [];
+      const __themataJsLoadedCallbacks = [];
+      const themataCurrentPageTitle = "Callback and Hook";
+      const themataCurrentProject = "liblogax";
+      const themataCurrentProjectGithubLocation = "";
+      const themataCurrentPagePath = "docs/callbacks.md";
+      const themataCurrentPageLocation = "https://github.com/exoticlibraries/liblogax/edit/main/docs/docs/callbacks.md".replace("/edit/", "/blob/");
+      const themataGithubFeedbackProjectTemplate = ``;
+      const themataGithubFeedbackPageTemplate = ``;
+      function themataRegisterOnloadCallback(cb) {
+        __themataJsLoadedCallbacks.push(cb);
+      }
+      function themataRegisterJsLoadedCallback(cb) {
+        __themataOnloadCallbacks.push(cb);
+      }
+  </script>
 
   </head><body>
 
@@ -87,12 +106,12 @@
                 
   <div class="section" id="callback-and-hook">
 <h1>Callback and Hook<a class="headerlink" href="#callback-and-hook" title="Permalink to this headline">¶</a></h1>
-<p>LogaxLogger supports callback (or hook), the callbacks are invoked when a new log is sent. The callback can be used to create a custom output format or used to changed out the log is processed (e.g. blink bulb on andruino e.t.c). The output stream can be completely disabled by defining the macro <code class="docutils literal notranslate"><span class="pre">LOGAX_NO_OUTPUT_STREAM</span></code> or setiing the option to QUITE using the function <code class="docutils literal notranslate"><span class="pre">logax_set_quite</span></code>, in this case if callbacks are registered they will be invoked with the log event.</p>
+<p>LogaxLogger supports callback (or hook), the callbacks are invoked when a new log is sent. The callback can be used to create a custom output format or used to changed out the log is processed (e.g. blink bulb on andruino e.t.c). The output stream can be completely disabled by defining the macro <code class="docutils literal notranslate"><span class="pre">LOGAX_NO_OUTPUT_STREAM</span></code> or setting the option to QUIET using the function <code class="docutils literal notranslate"><span class="pre">logax_set_quiet</span></code>, in this case if callbacks are registered they will be invoked with the log event.</p>
 <p>The callback function signature is</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">logax_callback</span><span class="p">)(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">date</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">time</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">level</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">file</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">line_number</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">function_name</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span><span class="p">,</span> <span class="p">...);</span>
 </pre></div>
 </div>
-<p>The example belows shows how to register a callback which is invoked when there is a new log</p>
+<p>The example below shows how to register a callback which is invoked when there is a new log</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;exotic/logax.h&gt;</span><span class="cp"></span>
 
 <span class="kt">void</span> <span class="nf">on_new_log_callback</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">date</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">time</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">level</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">file</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">line_number</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">function_name</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span><span class="p">,</span> <span class="p">...)</span> <span class="p">{</span>
@@ -113,7 +132,7 @@
     <span class="n">LogaxLogger</span> <span class="n">logax_logger</span><span class="p">;</span>
 
     <span class="n">logax_init_logger</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">);</span>
-    <span class="n">logax_set_quite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">logax_set_quiet</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
     <span class="n">logax_logger_add_callback</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="n">on_new_log_callback</span><span class="p">);</span>
     <span class="n">logax_logger_trace</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Logging the test for TRACE&quot;</span><span class="p">);</span>
     <span class="n">logax_logger_debug</span><span class="p">(</span><span class="o">&amp;</span><span class="n">logax_logger</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Logging the test for DEBUG&quot;</span><span class="p">);</span>
@@ -162,6 +181,7 @@
                                   
                         </div>
                         <hr/>
+                        
                         </br>
                     
                 
@@ -237,6 +257,15 @@
                 with <a href="https://thecarisma.github.io/themata/fandango/index.html">fandango</a> theme.
         </div>
     </div>
+    <script>
+                const themataSyntaxHighlighter = "highlightjs";
+                const themataCodeBlockIsEditable = false;
+                const themataSyntaxHighlighterTheme = "a11y-dark";
+                const themataStaticAssetsDir = "../_static/";
+                const themataSyntaxHighlighterIframeEmbed = false;
+                $("pre").parent().css("display", "none");
+            </script>
+    <script src="../_static/themata.js"></script>
 
   </body>
 </html>

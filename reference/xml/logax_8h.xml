@@ -167,6 +167,17 @@
         </inbodydescription>
         <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="84" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="84" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="define" id="logax_8h_1a6afec2af3cf9d484b8653f2360f423ca" prot="public" static="no">
+        <name>LOGAX_OPTION_QUITE</name>
+        <initializer><ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b" kindref="member">LOGAX_OPTION_QUIET</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="119" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="define" id="logax_8h_1a1bf66279477f920aa5afe161a335f4ed" prot="public" static="no">
         <name>GET_LEVEL_STRING</name>
         <param><defname>level</defname></param>
@@ -183,7 +194,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="131" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="131" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="136" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="136" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a82da56f39b262a9435c4910cb9a2bc97" prot="public" static="no">
         <name>logax_add_flag</name>
@@ -196,7 +207,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="233" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="233" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="238" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="238" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a89c5f38190773bf9868c82c16002fe4e" prot="public" static="no">
         <name>logax_set_flag</name>
@@ -207,7 +218,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="238" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="238" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="243" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="243" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1abec25d5c63ccf1390ae4d9c090d212e3" prot="public" static="no">
         <name>logax_remove_flag</name>
@@ -220,7 +231,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="243" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="243" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="248" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="248" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1aaf25a11fd360800ed2df6a2bdd7a16a7" prot="public" static="no">
         <name>logax_clear_flag</name>
@@ -231,7 +242,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="248" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="248" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="253" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="253" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a4a4589ded3aa396aad87396ea9dea010" prot="public" static="no">
         <name>logax_set_formatter</name>
@@ -249,15 +260,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="253" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="253" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="258" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="258" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="define" id="logax_8h_1ae7d0520187348781ceefe6451eeef76d" prot="public" static="no">
-        <name>logax_set_quite</name>
+      <memberdef kind="define" id="logax_8h_1ad3cafc5ec2273b6130d11338dc275e8b" prot="public" static="no">
+        <name>logax_set_quiet</name>
         <param><defname>logax_logger</defname></param>
-        <param><defname>make_quite</defname></param>
+        <param><defname>make_quiet</defname></param>
         <initializer>        {\
-        if (!make_quite &amp;&amp; ((logax_logger)-&gt;flags &amp; <ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5" kindref="member">LOGAX_OPTION_QUITE</ref>)) { <ref refid="logax_8h_1abec25d5c63ccf1390ae4d9c090d212e3" kindref="member">logax_remove_flag</ref>((logax_logger)-&gt;flags, <ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5" kindref="member">LOGAX_OPTION_QUITE</ref>); }\
-        else if (make_quite &amp;&amp; !((logax_logger)-&gt;flags &amp; <ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5" kindref="member">LOGAX_OPTION_QUITE</ref>)) { <ref refid="logax_8h_1a82da56f39b262a9435c4910cb9a2bc97" kindref="member">logax_add_flag</ref>((logax_logger)-&gt;flags, <ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5" kindref="member">LOGAX_OPTION_QUITE</ref>); }\
+        if (!make_quiet &amp;&amp; ((logax_logger)-&gt;flags &amp; <ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b" kindref="member">LOGAX_OPTION_QUIET</ref>)) { <ref refid="logax_8h_1abec25d5c63ccf1390ae4d9c090d212e3" kindref="member">logax_remove_flag</ref>((logax_logger)-&gt;flags, <ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b" kindref="member">LOGAX_OPTION_QUIET</ref>); }\
+        else if (make_quiet &amp;&amp; !((logax_logger)-&gt;flags &amp; <ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b" kindref="member">LOGAX_OPTION_QUIET</ref>)) { <ref refid="logax_8h_1a82da56f39b262a9435c4910cb9a2bc97" kindref="member">logax_add_flag</ref>((logax_logger)-&gt;flags, <ref refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b" kindref="member">LOGAX_OPTION_QUIET</ref>); }\
     }</initializer>
         <briefdescription>
         </briefdescription>
@@ -265,10 +276,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="263" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="263" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="268" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="268" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="define" id="logax_8h_1ae550aea2a437193cbc69327a19ad4fe1" prot="public" static="no">
-        <name>LOGAX_INITIALIZE_HCONSOLE</name>
+      <memberdef kind="define" id="logax_8h_1a40b4a5442596bbe504b624abdd4d6a81" prot="public" static="no">
+        <name>logax_set_quite</name>
+        <initializer><ref refid="logax_8h_1ad3cafc5ec2273b6130d11338dc275e8b" kindref="member">logax_set_quiet</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Alias for logax_set_quiet, for backward compatibility </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="276" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="276" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logax_8h_1a8c3622e8b44eaaa24513501da85ac607" prot="public" static="no">
+        <name>LOGAX_Iinitialized_HCONSOLE</name>
         <param></param>
         <briefdescription>
         </briefdescription>
@@ -276,7 +299,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="359" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="359" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="369" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="369" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a92f3883c390353155e6b0c858646ba50" prot="public" static="no">
         <name>LOGAX_DELEGATE_FPRINT_STR</name>
@@ -289,7 +312,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="362" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="362" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="372" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="372" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a7c8db6f52bb465af35aef3ce90510187" prot="public" static="no">
         <name>LOGAX_DELEGATE_FPRINT_SIZE_T</name>
@@ -302,7 +325,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="363" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="363" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="373" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="373" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a0e9b53fe6966fdcb56114bcf90d12d0a" prot="public" static="no">
         <name>LOGAX_WRITE_COLOR_CODE</name>
@@ -314,7 +337,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="373" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="373" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="383" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="383" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1ac66a9a3e199c9e72b5194b8a45850542" prot="public" static="no">
         <name>LOGAX_WRITE_LEVEL_COLOR__INTERNALL__</name>
@@ -329,7 +352,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="381" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="381" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="391" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="391" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a10e1dd4027f7f6a2b2384e0f6cedc543" prot="public" static="no">
         <name>logax_write_text_format_to_stream</name>
@@ -344,7 +367,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="470" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="470" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="480" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="480" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a025351fd9bfd126885c7a45be5d696f7" prot="public" static="no">
         <name>logax_write_key_value_format_to_stream</name>
@@ -359,7 +382,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="552" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="552" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="562" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="562" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a1b9513d32a4aa3d6e1c8557094163a65" prot="public" static="no">
         <name>LOGAX_INTERNAL_WRITE_JSON_STR</name>
@@ -373,7 +396,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="557" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="557" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="567" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="567" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a363d605cb50137e2e3c04015906e7668" prot="public" static="no">
         <name>LOGAX_INTERNAL_WRITE_JSON_SIZE_T</name>
@@ -387,7 +410,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="564" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="564" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="574" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="574" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a3b8a4d36e94d72052e051134f6f70cc0" prot="public" static="no">
         <name>logax_write_json_format_to_stream</name>
@@ -402,7 +425,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="660" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="660" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="670" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="670" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1af8e2505e05b83609287c6604336495c0" prot="public" static="no">
         <name>logax_logger_report_to_callback</name>
@@ -431,7 +454,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="696" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="696" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="706" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="706" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1ad458079c436922a57f40d1edd6c41fa5" prot="public" static="no">
         <name>logax_logger_trace</name>
@@ -446,7 +469,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="729" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="729" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="739" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="739" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1adde55752181d16cd209cf4b4f6ca4cfd" prot="public" static="no">
         <name>logax_logger_debug</name>
@@ -461,7 +484,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="735" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="735" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="745" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="745" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1aeae79d20c930ad343fa0ae9dd9c77102" prot="public" static="no">
         <name>logax_logger_info</name>
@@ -476,7 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="741" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="741" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="751" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="751" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a93356a610b71fc0c74a21f4b7d95d89f" prot="public" static="no">
         <name>logax_logger_warn</name>
@@ -491,7 +514,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="747" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="747" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="757" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="757" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a72537f377caa26ee5d8c7d5bb4f44ff0" prot="public" static="no">
         <name>logax_logger_error</name>
@@ -506,7 +529,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="753" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="753" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="763" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="763" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="logax_8h_1a26c1e50583b289d821420ffe6a898b19" prot="public" static="no">
         <name>logax_logger_fatal</name>
@@ -521,15 +544,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="759" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="759" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="769" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="769" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="enum">
       <memberdef kind="enum" id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1" prot="public" static="no" strong="no">
         <type></type>
         <name>LogaxOption</name>
-        <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5" prot="public">
-          <name>LOGAX_OPTION_QUITE</name>
+        <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b" prot="public">
+          <name>LOGAX_OPTION_QUIET</name>
           <initializer>= 1 &lt;&lt; 1</initializer>
           <briefdescription>
           </briefdescription>
@@ -597,7 +620,7 @@
           <briefdescription>
           </briefdescription>
           <detaileddescription>
-<para>this option is used to enable preety print and colored outputs </para>
+<para>this option is used to enable pretty print and colored outputs </para>
           </detaileddescription>
         </enumvalue>
         <enumvalue id="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a9d77f9520d36686556830ac9b395a283" prot="public">
@@ -615,7 +638,7 @@
           <briefdescription>
           </briefdescription>
           <detaileddescription>
-<para>this option enables all the other options above apart from LOGAX_OPTION_QUITE </para>
+<para>this option enables all the other options above apart from LOGAX_OPTION_QUIET </para>
           </detaileddescription>
         </enumvalue>
         <briefdescription>
@@ -691,7 +714,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="119" column="16" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="119" bodyend="126"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="124" column="16" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="124" bodyend="131"/>
       </memberdef>
       <memberdef kind="enum" id="logax_8h_1ae495419e226be29c3a41dc1be9ce155e" prot="public" static="no" strong="no">
         <type></type>
@@ -730,7 +753,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="141" column="20" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="141" bodyend="145"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="146" column="20" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="146" bodyend="150"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="typedef">
@@ -759,7 +782,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="92" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="166" bodyend="-1"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="92" column="9" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="171" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
@@ -778,7 +801,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="171" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="171" bodyend="188"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="176" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="176" bodyend="193"/>
       </memberdef>
       <memberdef kind="function" id="logax_8h_1ac725cc7a0a460de28db8fc9efa4bd61b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -799,7 +822,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="194" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="194" bodyend="209"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="199" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="199" bodyend="214"/>
       </memberdef>
       <memberdef kind="function" id="logax_8h_1a77da1098e4e2b0026c4d329ba3d9005c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>unsigned</type>
@@ -820,7 +843,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="216" column="17" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="216" bodyend="225"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="221" column="17" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="221" bodyend="230"/>
       </memberdef>
       <memberdef kind="function" id="logax_8h_1a64c8b00cccbd70699e4493b5ffe8b142" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>size_t</type>
@@ -838,7 +861,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="272" column="15" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="272" bodyend="279"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="282" column="15" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="282" bodyend="289"/>
       </memberdef>
       <memberdef kind="function" id="logax_8h_1a4f4e473120063638009b47b2fbf54470" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -868,7 +891,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="284" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="284" bodyend="295"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="294" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="294" bodyend="305"/>
       </memberdef>
       <memberdef kind="function" id="logax_8h_1ae1cd18faf596baa11b0d800232e20cb6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -890,7 +913,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="300" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="300" bodyend="312"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="310" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="310" bodyend="322"/>
       </memberdef>
       <memberdef kind="function" id="logax_8h_1af48bb103d445eafa244e7239ce5e10f7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -931,7 +954,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="389" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="389" bodyend="455"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="399" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="399" bodyend="465"/>
       </memberdef>
       <memberdef kind="function" id="logax_8h_1ad5bafb1a2e21fba2609cc8941490e022" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -971,7 +994,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="460" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="460" bodyend="465"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="470" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="470" bodyend="475"/>
       </memberdef>
       <memberdef kind="function" id="logax_8h_1aa6ea01ad2fa8c7007c537523134a15d0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1012,7 +1035,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="475" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="475" bodyend="537"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="485" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="485" bodyend="547"/>
       </memberdef>
       <memberdef kind="function" id="logax_8h_1a2c15008874ef2c1a08ac08a4899636c7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1052,7 +1075,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="542" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="542" bodyend="547"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="552" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="552" bodyend="557"/>
       </memberdef>
       <memberdef kind="function" id="logax_8h_1ae67c98b38b1c5ca12dcdb89a923d63d8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1093,7 +1116,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="571" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="571" bodyend="645"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="581" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="581" bodyend="655"/>
       </memberdef>
       <memberdef kind="function" id="logax_8h_1a42ee1d3d3776eac1f39e54921b7ae824" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1133,7 +1156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="650" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="650" bodyend="655"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="660" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="660" bodyend="665"/>
       </memberdef>
       <memberdef kind="function" id="logax_8h_1a7782a8b327ec69159954aa06b11058c1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1173,7 +1196,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="672" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="672" bodyend="686"/>
+        <location file="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" line="682" column="13" bodyfile="/home/runner/work/liblogax/liblogax/include/exotic/logax.h" bodystart="682" bodyend="696"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

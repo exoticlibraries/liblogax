@@ -69,7 +69,7 @@ $(function() {
 <h1><a class="anchor" id="autotoc_md0"></a>
 liblogax</h1>
 <p>Blazing fast, simple and modular header-only logging library with zero allocation for C and C++, implemented in C90. Allow logging into various output formats such as Key-Value and JSON.</p>
-<p>Time and space are very important concepts in programming, a logging library should slow down the program or add to the memory ussage hence why logax's API is designed with speed and modularity in mind, each components can be removed to adjust to an environment or increase compile/runtime speed by defining the <a href="#modularity">exclusion macro</a> for that component.</p>
+<p>Logax is designed with speed and modularity in mind,. It requires no heap-allocated memory. Each components can be excluded by defining an <a href="#modularity">exclusion macro</a>, to adjust to an environment or increase compile/runtime speed.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
@@ -82,7 +82,7 @@ liblogax</h1>
 <div class="line">}</div>
 </div><!-- fragment --><p>Output</p>
 <p><img src="https://raw.githubusercontent.com/exoticlibraries/exoticlibraries.github.io/main/assets/images/liblogax/crash_test_output.png" alt="" class="inline"/></p>
-<p>The log oputput can be formatted to the following output <a href="#text">text</a>, <a href="#key-value">key value</a> and <a href="#json">json</a>, and in case where the output is not required or the platform does not have any output stream (e.g. andruino, stm32) a callback can be registered that will receive the log event to be processed whichever way.</p>
+<p>The log output can be formatted as text, key/value or json. Where the output is not required or the platform does not have any output stream (e.g. Arduino, stm32) a callback can be registered that will process the log event.</p>
 <hr  />
 <h2><a class="anchor" id="autotoc_md1"></a>
 Table of content</h2>
@@ -102,7 +102,7 @@ Table of content</h2>
 <li><a href="#usage">Usage</a><ul>
 <li><a href="#logging-without-logaxLogger">Logging without LogaxLogger</a></li>
 <li><a href="#logging-with-logaxLogger">Logging with LogaxLogger</a><ul>
-<li><a href="#initialize-logaxLogger">Initialize LogaxLogger</a></li>
+<li><a href="#iinitialized-logaxLogger">Iinitialized LogaxLogger</a></li>
 <li><a href="#logaxLogger-loggers">LogaxLogger Loggers</a></li>
 </ul>
 </li>
@@ -136,13 +136,13 @@ Features</h2>
 <li>Speed. logax was developed with speed and zero performance intrusion in mind.</li>
 <li>Modular, excluded un-used features from your test, <a href="https://exoticlibraries.github.io/liblogax/docs/modularity.html">modularity</a>.</li>
 <li>Zero allocation, No memory allocation.</li>
-<li>Levelled logging to customize and differenciate the outputs.</li>
+<li>Levelled logging to customize and differentiate the outputs.</li>
 <li>Support for callbacks and hooks.</li>
-<li>Very portable, compatiple with ANSI C and C++98 without any trade off in functionalities.</li>
+<li>Very portable, compatible with ANSI C and C++98 without any trade off in functionalities.</li>
 <li>Output log in text, key-value and JSON encoding formats.</li>
 <li>Pretty logging for all supported output formats.</li>
-<li>Simple method to achive options in the logging system using bitwise operations.</li>
-<li>Detail docuentation with examples and API references.</li>
+<li>Simple method to achieve options in the logging system using bitwise operations.</li>
+<li>Detail documentation with examples and API references.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md3"></a>
 Standards Compliance and Portability</h2>
@@ -154,7 +154,7 @@ Installation</h2>
 <p>If you install the library file <code><a class="el" href="logax_8h.html">logax.h</a></code> using any of the commands below, it can be included in your test like <code>&lt;<a class="el" href="logax_8h.html">exotic/logax.h</a>&gt;</code>.</p>
 <h3><a class="anchor" id="autotoc_md5"></a>
 Windows</h3>
-<p>Install the library using powershell. It auto detect your insalled C and C++ compilers include directory and install liblogax into the include folder. Execute the command in powershell as admin.</p>
+<p>Install the library using powershell. It auto detect your installed C and C++ compilers include directory and install liblogax into the include folder. Execute the command in powershell as admin.</p>
 <div class="fragment"><div class="line">&amp; $([scriptblock]::Create((New-Object Net.WebClient).DownloadString(&quot;https://exoticlibraries.github.io/magic/install.ps1&quot;))) liblogax</div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md6"></a>
 Unix, Linux, Mac</h3>
@@ -182,45 +182,45 @@ Usage</h2>
 <p>it allows the log to be reported to custom function with optional printing to output stream. The default maximum number of callback that can be registered is 5.</p>
 <h3><a class="anchor" id="autotoc_md10"></a>
 Logging without LogaxLogger</h3>
-<p>The library can be used to output log without need to setup the <code>LogaxLogger</code> struct, this will require the platform to have output stream or can write to file. If the macro LOGAX_NO_LOGGER is defined before including the <a class="el" href="logax_8h.html">logax.h</a> geader file, the LogaxLogger struct and all related functions will not be compiled. The following functions provides the API to write to output stream in the supported formats</p>
+<p>The library can be used to output log without need to setup the <code>LogaxLogger</code> struct, this will require the platform to have output stream or can write to file. If the macro LOGAX_NO_LOGGER is defined before including the <a class="el" href="logax_8h.html">logax.h</a> header file, the LogaxLogger struct and all related functions will not be compiled. The following functions provides the API to write to output stream in the supported formats</p>
 <ul>
 <li>logax_write_text_format_to_stream</li>
 <li>logax_write_key_value_format_to_stream</li>
 <li>logax_write_json_format_to_stream</li>
 </ul>
-<p><code>logax_write_text_format_to_stream</code> write the output in plain text format, the first paramater is the stream, followed by the options, the options is the combinations of any of the LOGAX_OPTION_*, LOGAX_LEVEL_* and LOGAX_FORMATTER_* macros.</p>
+<p><code>logax_write_text_format_to_stream</code> write the output in plain text format, the first parameter is the stream, followed by the options, the options is the combinations of any of the LOGAX_OPTION_*, LOGAX_LEVEL_* and LOGAX_FORMATTER_* macros.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
-<div class="line">    <a class="code" href="logax_8h.html#a10e1dd4027f7f6a2b2384e0f6cedc543">logax_write_text_format_to_stream</a>(stdout, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a> | <a class="code" href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a>, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approching from X=108,Y=877&quot;</span>);</div>
+<div class="line">    <a class="code" href="logax_8h.html#a10e1dd4027f7f6a2b2384e0f6cedc543">logax_write_text_format_to_stream</a>(stdout, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a> | <a class="code" href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a>, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approaching from X=108,Y=877&quot;</span>);</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// output</span></div>
 <div class="line"><span class="comment">// 2021-11-21 06:34:07 TRACE crash_test.c:13 Logging the test for TRACE</span></div>
-</div><!-- fragment --><p><code>logax_write_key_value_format_to_stream</code> write the output in a key-value format coloring is ignored in this format, the first paramater is the stream, followed by the options, the options is the combinations of any of the LOGAX_OPTION_*, LOGAX_LEVEL_* and LOGAX_FORMATTER_* macros.</p>
+</div><!-- fragment --><p><code>logax_write_key_value_format_to_stream</code> write the output in a key-value format coloring is ignored in this format, the first parameter is the stream, followed by the options, the options is the combinations of any of the LOGAX_OPTION_*, LOGAX_LEVEL_* and LOGAX_FORMATTER_* macros.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
-<div class="line">    <a class="code" href="logax_8h.html#a025351fd9bfd126885c7a45be5d696f7">logax_write_key_value_format_to_stream</a>(stdout, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a> | <a class="code" href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a>, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approching from X=108,Y=877&quot;</span>);</div>
+<div class="line">    <a class="code" href="logax_8h.html#a025351fd9bfd126885c7a45be5d696f7">logax_write_key_value_format_to_stream</a>(stdout, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a> | <a class="code" href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a>, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approaching from X=108,Y=877&quot;</span>);</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// output</span></div>
 <div class="line"><span class="comment">// date=&quot;2021-11-21&quot; time=&quot;06:41:34&quot; level=&quot;TRACE&quot; file=&quot;crash_test.c&quot; line_number=8 function=&quot;main&quot; message=&quot;This is a trace output&quot;</span></div>
-</div><!-- fragment --><p><code>logax_write_json_format_to_stream</code> write the output in a json format, the first paramater is the stream, followed by the options, the options is the combinations of any of the LOGAX_OPTION_*, LOGAX_LEVEL_* and LOGAX_FORMATTER_* macros.</p>
+</div><!-- fragment --><p><code>logax_write_json_format_to_stream</code> write the output in a json format, the first parameter is the stream, followed by the options, the options is the combinations of any of the LOGAX_OPTION_*, LOGAX_LEVEL_* and LOGAX_FORMATTER_* macros.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
-<div class="line">    <a class="code" href="logax_8h.html#a3b8a4d36e94d72052e051134f6f70cc0">logax_write_json_format_to_stream</a>(stdout, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a> | <a class="code" href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a>, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approching from X=108,Y=877&quot;</span>);</div>
+<div class="line">    <a class="code" href="logax_8h.html#a3b8a4d36e94d72052e051134f6f70cc0">logax_write_json_format_to_stream</a>(stdout, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a> | <a class="code" href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a>, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approaching from X=108,Y=877&quot;</span>);</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// output</span></div>
 <div class="line"><span class="comment">// {&quot;date&quot;:&quot;2021-11-21&quot;,&quot;time&quot;:&quot;06:42:25&quot;,&quot;level&quot;:&quot;TRACE&quot;,&quot;file&quot;:&quot;crash_test.c&quot;,&quot;line_number&quot;:8,&quot;function&quot;:&quot;main&quot;,&quot;message&quot;:&quot;This is a trace output&quot;},</span></div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md11"></a>
 Logging with LogaxLogger</h3>
-<p>In a situation where callback is needed, no FILE* ability on the platform or the flags/options want to be shared across the log, the <code>LogaxLogger</code> struct can be used. No memory allocation is required when initaili</p>
+<p>In a situation where callback is needed, no FILE* ability on the platform or the flags/options want to be shared across the log, the <code>LogaxLogger</code> struct can be used. No memory allocation is required when initialized.</p>
 <h4><a class="anchor" id="autotoc_md12"></a>
-Initialize LogaxLogger</h4>
-<p>To initialize the LogaxLogger the function <code>logax_init_logger</code> can be used, it not neccessary to call the logax_init_logger function, all it does is set the LogaxLogger flags to default value, output_stream to stdout and fill the empty callbacks with NULL, these can be self-managed.</p>
+Iinitialized LogaxLogger</h4>
+<p>To iinitialized the LogaxLogger the function <code>logax_init_logger</code> can be used, it not necessary to call the logax_init_logger function, all it does is set the LogaxLogger flags to default value, output_stream to stdout and fill the empty callbacks with NULL, these can be self-managed.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
@@ -238,7 +238,7 @@ LogaxLogger Loggers</h4>
 <li>logax_logger_error</li>
 <li>logax_logger_fatal</li>
 </ul>
-<p>Each of the function above invoke the coresponding <code>logax_write_*_format_to_stream</code> respectively, the default formatter when LogaxLogger is nitialize with the function logax_init_logger is <code>LOGAX_FORMATTER_TEXT</code>, the output format can be changed using the function <code>logax_set_formatter</code>.</p>
+<p>Each of the function above invoke the corresponding <code>logax_write_*_format_to_stream</code> respectively, the default formatter when LogaxLogger is initialized with the function logax_init_logger is <code>LOGAX_FORMATTER_TEXT</code>, the output format can be changed using the function <code>logax_set_formatter</code>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
@@ -255,10 +255,10 @@ LogaxLogger Loggers</h4>
 <div class="line">}</div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md14"></a>
 Callbacks</h3>
-<p>LogaxLogger supports callback (or hook), the callbacks are invoked when a new log is sent. The callback can be used to create a custom output format or used to changed out the log is processed (e.g. blink bulb on andruino e.t.c). The output stream can be completely disabled by defining the macro <code>LOGAX_NO_OUTPUT_STREAM</code> or setiing the option to QUITE using the function <code>logax_set_quite</code>, in this case if callbacks are registered they will be invoked with the log event.</p>
+<p>LogaxLogger supports callback (or hook), the callbacks are invoked when a new log is sent. The callback can be used to create a custom output format or used to changed out the log is processed (e.g. blink bulb on andruino e.t.c). The output stream can be completely disabled by defining the macro <code>LOGAX_NO_OUTPUT_STREAM</code> or setting the option to QUIET using the function <code>logax_set_quiet</code>, in this case if callbacks are registered they will be invoked with the log event.</p>
 <p>The callback function signature is</p>
 <div class="fragment"><div class="line"><span class="keyword">typedef</span> void (*<a class="code" href="logax_8h.html#a591221f8bc07dd89ba8d51de294f468e">logax_callback</a>)(<span class="keyword">const</span> <span class="keywordtype">char</span> *date, <span class="keyword">const</span> <span class="keywordtype">char</span> *time, <span class="keyword">const</span> <span class="keywordtype">int</span> level, <span class="keyword">const</span> <span class="keywordtype">char</span> *file, <span class="keyword">const</span> <span class="keywordtype">size_t</span> line_number, <span class="keyword">const</span> <span class="keywordtype">char</span> *function_name, <span class="keyword">const</span> <span class="keywordtype">char</span> *fmt, ...);</div>
-</div><!-- fragment --><p>The example belows shows how to register a callback which is invoked when there is a new log</p>
+</div><!-- fragment --><p>The example below shows how to register a callback which is invoked when there is a new log</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> on_new_log_callback(<span class="keyword">const</span> <span class="keywordtype">char</span> *date, <span class="keyword">const</span> <span class="keywordtype">char</span> *time, <span class="keyword">const</span> <span class="keywordtype">int</span> level, <span class="keyword">const</span> <span class="keywordtype">char</span> *file, <span class="keyword">const</span> <span class="keywordtype">size_t</span> line_number, <span class="keyword">const</span> <span class="keywordtype">char</span> *function_name, <span class="keyword">const</span> <span class="keywordtype">char</span> *fmt, ...) {</div>
@@ -279,7 +279,7 @@ Callbacks</h3>
 <div class="line">    <a class="code" href="structlogax__logger__s.html">LogaxLogger</a> logax_logger;</div>
 <div class="line"> </div>
 <div class="line">    logax_init_logger(&amp;logax_logger);</div>
-<div class="line">    <a class="code" href="logax_8h.html#ae7d0520187348781ceefe6451eeef76d">logax_set_quite</a>(&amp;logax_logger, 1);</div>
+<div class="line">    <a class="code" href="logax_8h.html#ad3cafc5ec2273b6130d11338dc275e8b">logax_set_quiet</a>(&amp;logax_logger, 1);</div>
 <div class="line">    logax_logger_add_callback(&amp;logax_logger, on_new_log_callback);</div>
 <div class="line">    <a class="code" href="logax_8h.html#ad458079c436922a57f40d1edd6c41fa5">logax_logger_trace</a>(&amp;logax_logger, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Logging the test for TRACE&quot;</span>);</div>
 <div class="line">    <a class="code" href="logax_8h.html#adde55752181d16cd209cf4b4f6ca4cfd">logax_logger_debug</a>(&amp;logax_logger, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Logging the test for DEBUG&quot;</span>);</div>
@@ -322,9 +322,9 @@ Text</h4>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
-<div class="line">    <a class="code" href="logax_8h.html#a10e1dd4027f7f6a2b2384e0f6cedc543">logax_write_text_format_to_stream</a>(stdout, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a> | <a class="code" href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a>, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approching from X=108,Y=877&quot;</span>);</div>
+<div class="line">    <a class="code" href="logax_8h.html#a10e1dd4027f7f6a2b2384e0f6cedc543">logax_write_text_format_to_stream</a>(stdout, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a> | <a class="code" href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a>, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approaching from X=108,Y=877&quot;</span>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><div class="fragment"><div class="line">2021-11-21 08:41:19 TRACE crash_test.c:6  --- [main     ] Enemy approching from X=108,Y=877</div>
+</div><!-- fragment --><div class="fragment"><div class="line">2021-11-21 08:41:19 TRACE crash_test.c:6  --- [main     ] Enemy approaching from X=108,Y=877</div>
 </div><!-- fragment --><p>Output as text using the <code>LOGAX_FORMATTER_TEXT</code> option with LogaxLogger.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
@@ -333,18 +333,18 @@ Text</h4>
 <div class="line"> </div>
 <div class="line">    logax_init_logger(&amp;logax_logger);</div>
 <div class="line">    <a class="code" href="logax_8h.html#a4a4589ded3aa396aad87396ea9dea010">logax_set_formatter</a>(&amp;logax_logger, <a class="code" href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155ea3fa9a595ae0b97412da60031da6dfc7d">LOGAX_FORMATTER_TEXT</a>);</div>
-<div class="line">    <a class="code" href="logax_8h.html#ad458079c436922a57f40d1edd6c41fa5">logax_logger_trace</a>(&amp;logax_logger, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approching from X=108,Y=877&quot;</span>);</div>
+<div class="line">    <a class="code" href="logax_8h.html#ad458079c436922a57f40d1edd6c41fa5">logax_logger_trace</a>(&amp;logax_logger, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approaching from X=108,Y=877&quot;</span>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><div class="fragment"><div class="line">2021-11-21 08:38:38 TRACE crash_test.c:10 Enemy approching from X=108,Y=877</div>
+</div><!-- fragment --><div class="fragment"><div class="line">2021-11-21 08:38:38 TRACE crash_test.c:10 Enemy approaching from X=108,Y=877</div>
 </div><!-- fragment --><h4><a class="anchor" id="autotoc_md17"></a>
 Key Value</h4>
 <p>Output as key value using <code>logax_write_key_value_format_to_stream</code></p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
-<div class="line">    <a class="code" href="logax_8h.html#a025351fd9bfd126885c7a45be5d696f7">logax_write_key_value_format_to_stream</a>(stdout, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a> | <a class="code" href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a>, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approching from X=108,Y=877&quot;</span>);</div>
+<div class="line">    <a class="code" href="logax_8h.html#a025351fd9bfd126885c7a45be5d696f7">logax_write_key_value_format_to_stream</a>(stdout, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a> | <a class="code" href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a>, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approaching from X=108,Y=877&quot;</span>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><div class="fragment"><div class="line">date=&quot;2021-11-21&quot; time=&quot;08:43:59&quot; level=&quot;TRACE&quot; file=&quot;crash_test.c&quot; line_number=6 function=&quot;main&quot; message=&quot;Enemy approching from X=108,Y=877&quot;</div>
+</div><!-- fragment --><div class="fragment"><div class="line">date=&quot;2021-11-21&quot; time=&quot;08:43:59&quot; level=&quot;TRACE&quot; file=&quot;crash_test.c&quot; line_number=6 function=&quot;main&quot; message=&quot;Enemy approaching from X=108,Y=877&quot;</div>
 </div><!-- fragment --><p>Output as key value using the <code>LOGAX_FORMATTER_KEY_VALUE</code> option with LogaxLogger.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
@@ -353,18 +353,18 @@ Key Value</h4>
 <div class="line"> </div>
 <div class="line">    logax_init_logger(&amp;logax_logger);</div>
 <div class="line">    <a class="code" href="logax_8h.html#a4a4589ded3aa396aad87396ea9dea010">logax_set_formatter</a>(&amp;logax_logger, <a class="code" href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155eaf7d9ff28b75d2cafd4926419218e32b3">LOGAX_FORMATTER_KEY_VALUE</a>);</div>
-<div class="line">    <a class="code" href="logax_8h.html#ad458079c436922a57f40d1edd6c41fa5">logax_logger_trace</a>(&amp;logax_logger, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approching from X=108,Y=877&quot;</span>);</div>
+<div class="line">    <a class="code" href="logax_8h.html#ad458079c436922a57f40d1edd6c41fa5">logax_logger_trace</a>(&amp;logax_logger, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approaching from X=108,Y=877&quot;</span>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><div class="fragment"><div class="line">date=&quot;2021-11-21&quot; time=&quot;08:46:00&quot; level=&quot;TRACE&quot; file=&quot;crash_test.c&quot; line_number=10 message=&quot;Enemy approching from X=108,Y=877&quot;</div>
+</div><!-- fragment --><div class="fragment"><div class="line">date=&quot;2021-11-21&quot; time=&quot;08:46:00&quot; level=&quot;TRACE&quot; file=&quot;crash_test.c&quot; line_number=10 message=&quot;Enemy approaching from X=108,Y=877&quot;</div>
 </div><!-- fragment --><h4><a class="anchor" id="autotoc_md18"></a>
 JSON</h4>
 <p>Output as json using <code>logax_write_json_format_to_stream</code></p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
-<div class="line">    <a class="code" href="logax_8h.html#a3b8a4d36e94d72052e051134f6f70cc0">logax_write_json_format_to_stream</a>(stdout, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a> | <a class="code" href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a>, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approching from X=108,Y=877&quot;</span>);</div>
+<div class="line">    <a class="code" href="logax_8h.html#a3b8a4d36e94d72052e051134f6f70cc0">logax_write_json_format_to_stream</a>(stdout, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a> | <a class="code" href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a>, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approaching from X=108,Y=877&quot;</span>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><div class="fragment"><div class="line">{&quot;date&quot;:&quot;2021-11-21&quot;,&quot;time&quot;:&quot;08:44:58&quot;,&quot;level&quot;:&quot;TRACE&quot;,&quot;file&quot;:&quot;crash_test.c&quot;,&quot;line_number&quot;:6,&quot;function&quot;:&quot;main&quot;,&quot;message&quot;:&quot;Enemy approching from X=108,Y=877&quot;},</div>
+</div><!-- fragment --><div class="fragment"><div class="line">{&quot;date&quot;:&quot;2021-11-21&quot;,&quot;time&quot;:&quot;08:44:58&quot;,&quot;level&quot;:&quot;TRACE&quot;,&quot;file&quot;:&quot;crash_test.c&quot;,&quot;line_number&quot;:6,&quot;function&quot;:&quot;main&quot;,&quot;message&quot;:&quot;Enemy approaching from X=108,Y=877&quot;},</div>
 </div><!-- fragment --><p>Output as json using the <code>LOGAX_FORMATTER_JSON</code> option with LogaxLogger.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
@@ -373,9 +373,9 @@ JSON</h4>
 <div class="line"> </div>
 <div class="line">    logax_init_logger(&amp;logax_logger);</div>
 <div class="line">    <a class="code" href="logax_8h.html#a4a4589ded3aa396aad87396ea9dea010">logax_set_formatter</a>(&amp;logax_logger, <a class="code" href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155ea67d581a4395aecb8b0f6fc2256d8b59c">LOGAX_FORMATTER_JSON</a>);</div>
-<div class="line">    <a class="code" href="logax_8h.html#ad458079c436922a57f40d1edd6c41fa5">logax_logger_trace</a>(&amp;logax_logger, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approching from X=108,Y=877&quot;</span>);</div>
+<div class="line">    <a class="code" href="logax_8h.html#ad458079c436922a57f40d1edd6c41fa5">logax_logger_trace</a>(&amp;logax_logger, <span class="stringliteral">&quot;%s&quot;</span>, <span class="stringliteral">&quot;Enemy approaching from X=108,Y=877&quot;</span>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><div class="fragment"><div class="line">{&quot;date&quot;:&quot;2021-11-21&quot;,&quot;time&quot;:&quot;08:45:36&quot;,&quot;level&quot;:&quot;TRACE&quot;,&quot;file&quot;:&quot;crash_test.c&quot;,&quot;line_number&quot;:10,&quot;message&quot;:&quot;Enemy approching from X=108,Y=877&quot;},</div>
+</div><!-- fragment --><div class="fragment"><div class="line">{&quot;date&quot;:&quot;2021-11-21&quot;,&quot;time&quot;:&quot;08:45:36&quot;,&quot;level&quot;:&quot;TRACE&quot;,&quot;file&quot;:&quot;crash_test.c&quot;,&quot;line_number&quot;:10,&quot;message&quot;:&quot;Enemy approaching from X=108,Y=877&quot;},</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md19"></a>
 Modularity</h2>
 <p>liblogax is big on modularity, each component of the library can be excluded at compile time. The following macros if defined will exclude some component from the library:</p>
@@ -389,7 +389,7 @@ Modularity</h2>
 </ul>
 <h3><a class="anchor" id="autotoc_md20"></a>
 LOGAX_USE_OLD_CONSOLE_MODE</h3>
-<p>If this macro is define the library will use the Windows API to color the log outputs, this macro is only effective on Windows system. This macro is most useful for old windows platform which the console cannot procecess the ANSI Color Codes.</p>
+<p>If this macro is define the library will use the Windows API to color the log outputs, this macro is only effective on Windows system. This macro is most useful for old windows platform which the console cannot process the ANSI Color Codes.</p>
 <div class="fragment"><div class="line">#define LOGAX_USE_OLD_CONSOLE_MODE</div>
 <div class="line">#include &lt;exotic/logax.h&gt;</div>
 <div class="line"> </div>
@@ -420,14 +420,14 @@ LOGAX_LOGGER_NO_CALLBACK</h3>
 <div class="line"><span class="comment">//...</span></div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md24"></a>
 LOGAX_NO_COLORING</h3>
-<p>If this macro is define the library will not be compiled with preety print capability. The flag <code>LOGAX_OPTION_COLORED</code> will also not be available for use to customize the output.</p>
+<p>If this macro is define the library will not be compiled with pretty print capability. The flag <code>LOGAX_OPTION_COLORED</code> will also not be available for use to customize the output.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define LOGAX_NO_COLORING</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//...</span></div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md25"></a>
 LOGAX_NO_TIME</h3>
-<p>On a system that does not have floating point capability or the time headers are anot available this macro can be defined to exclude adding data and time capability to the logging. Defining this macro will make the following macros unavailable <code>LOGAX_OPTION_DATE</code>, <code>LOGAX_OPTION_TIME</code>, <code>LOGAX_OPTION_DATE_TIME</code>.</p>
+<p>On a system that does not have floating point capability or the time headers are not available this macro can be defined to exclude adding data and time capability to the logging. Defining this macro will make the following macros unavailable <code>LOGAX_OPTION_DATE</code>, <code>LOGAX_OPTION_TIME</code>, <code>LOGAX_OPTION_DATE_TIME</code>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define LOGAX_NO_TIME</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="logax_8h.html">exotic/logax.h</a>&gt;</span></div>
 <div class="line"> </div>
@@ -439,8 +439,8 @@ How it works</h2>
 <li>logax_write_key_value_format_to_stream</li>
 <li>logax_write_json_format_to_stream</li>
 </ul>
-<p>The functions accept variadic parameters, the first 3 parameters are culmpulsory and the followed X parameters are for the vfprintf function for formating. The first parameter is the output stream <code>FILE *</code>, the second parameters is the flags to customize the outputs, the third parameter is the fmt to processes the variadic values.</p>
-<p><code>LogaxLogger</code> struct allows logging properties and output stream to be shared across function calls, it internally uses the 3 functions above to otput the log. The special feature of LogaxLogger is the callback. On new log entry all the registered callbacks are invoked with the log event.</p>
+<p>The functions accept variadic parameters, the first 3 parameters are compulsory and the followed X parameters are for the vfprintf function for formatting. The first parameter is the output stream <code>FILE *</code>, the second parameters is the flags to customize the outputs, the third parameter is the fmt to processes the variadic values.</p>
+<p><code>LogaxLogger</code> struct allows logging properties and output stream to be shared across function calls, it internally uses the 3 functions above to output the log. The special feature of LogaxLogger is the callback. On new log entry all the registered callbacks are invoked with the log event.</p>
 <p>See the pages at <a href="https://exoticlibraries.github.io/liblogax/how_it_works/index.html">how it works</a> for more explanation.</p>
 <h2><a class="anchor" id="autotoc_md27"></a>
 Contributing</h2>
@@ -458,31 +458,31 @@ License</h2>
 <p>MIT License Copyright (c) 2021, Adewale Azeez </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
-<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19a9fc66d044e119f9177d404fa7103f09e"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a9fc66d044e119f9177d404fa7103f09e">LOGAX_LEVEL_ERROR</a></div><div class="ttdeci">@ LOGAX_LEVEL_ERROR</div><div class="ttdef"><b>Definition:</b> logax.h:124</div></div>
-<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19ad9f03cfa72140d98bad0d70c26732496"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19ad9f03cfa72140d98bad0d70c26732496">LOGAX_LEVEL_WARN</a></div><div class="ttdeci">@ LOGAX_LEVEL_WARN</div><div class="ttdef"><b>Definition:</b> logax.h:123</div></div>
-<div class="ttc" id="alogax_8h_html_ae495419e226be29c3a41dc1be9ce155ea67d581a4395aecb8b0f6fc2256d8b59c"><div class="ttname"><a href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155ea67d581a4395aecb8b0f6fc2256d8b59c">LOGAX_FORMATTER_JSON</a></div><div class="ttdeci">@ LOGAX_FORMATTER_JSON</div><div class="ttdef"><b>Definition:</b> logax.h:144</div></div>
+<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19a9fc66d044e119f9177d404fa7103f09e"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a9fc66d044e119f9177d404fa7103f09e">LOGAX_LEVEL_ERROR</a></div><div class="ttdeci">@ LOGAX_LEVEL_ERROR</div><div class="ttdef"><b>Definition:</b> logax.h:129</div></div>
+<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19ad9f03cfa72140d98bad0d70c26732496"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19ad9f03cfa72140d98bad0d70c26732496">LOGAX_LEVEL_WARN</a></div><div class="ttdeci">@ LOGAX_LEVEL_WARN</div><div class="ttdef"><b>Definition:</b> logax.h:128</div></div>
+<div class="ttc" id="alogax_8h_html_ae495419e226be29c3a41dc1be9ce155ea67d581a4395aecb8b0f6fc2256d8b59c"><div class="ttname"><a href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155ea67d581a4395aecb8b0f6fc2256d8b59c">LOGAX_FORMATTER_JSON</a></div><div class="ttdeci">@ LOGAX_FORMATTER_JSON</div><div class="ttdef"><b>Definition:</b> logax.h:149</div></div>
 <div class="ttc" id="alogax_8h_html_a591221f8bc07dd89ba8d51de294f468e"><div class="ttname"><a href="logax_8h.html#a591221f8bc07dd89ba8d51de294f468e">logax_callback</a></div><div class="ttdeci">void(* logax_callback)(const char *date, const char *time, const int level, const char *file, const size_t line_number, const char *function_name, const char *fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:92</div></div>
-<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19af8fda1837cc5280ed634d9f6f27242bc"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19af8fda1837cc5280ed634d9f6f27242bc">LOGAX_LEVEL_INFO</a></div><div class="ttdeci">@ LOGAX_LEVEL_INFO</div><div class="ttdef"><b>Definition:</b> logax.h:122</div></div>
-<div class="ttc" id="alogax_8h_html_a3b8a4d36e94d72052e051134f6f70cc0"><div class="ttname"><a href="logax_8h.html#a3b8a4d36e94d72052e051134f6f70cc0">logax_write_json_format_to_stream</a></div><div class="ttdeci">#define logax_write_json_format_to_stream(stream, flags, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:660</div></div>
-<div class="ttc" id="alogax_8h_html_ae7d0520187348781ceefe6451eeef76d"><div class="ttname"><a href="logax_8h.html#ae7d0520187348781ceefe6451eeef76d">logax_set_quite</a></div><div class="ttdeci">#define logax_set_quite(logax_logger, make_quite)</div><div class="ttdef"><b>Definition:</b> logax.h:263</div></div>
-<div class="ttc" id="alogax_8h_html_a4a4589ded3aa396aad87396ea9dea010"><div class="ttname"><a href="logax_8h.html#a4a4589ded3aa396aad87396ea9dea010">logax_set_formatter</a></div><div class="ttdeci">#define logax_set_formatter(logax_logger, new_formatter)</div><div class="ttdef"><b>Definition:</b> logax.h:253</div></div>
-<div class="ttc" id="alogax_8h_html_a1bf66279477f920aa5afe161a335f4ed"><div class="ttname"><a href="logax_8h.html#a1bf66279477f920aa5afe161a335f4ed">GET_LEVEL_STRING</a></div><div class="ttdeci">#define GET_LEVEL_STRING(level)</div><div class="ttdef"><b>Definition:</b> logax.h:131</div></div>
-<div class="ttc" id="alogax_8h_html_a26c1e50583b289d821420ffe6a898b19"><div class="ttname"><a href="logax_8h.html#a26c1e50583b289d821420ffe6a898b19">logax_logger_fatal</a></div><div class="ttdeci">#define logax_logger_fatal(logax_logger, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:759</div></div>
-<div class="ttc" id="astructlogax__logger__s_html"><div class="ttname"><a href="structlogax__logger__s.html">logax_logger_s</a></div><div class="ttdef"><b>Definition:</b> logax.h:153</div></div>
-<div class="ttc" id="alogax_8h_html_a10e1dd4027f7f6a2b2384e0f6cedc543"><div class="ttname"><a href="logax_8h.html#a10e1dd4027f7f6a2b2384e0f6cedc543">logax_write_text_format_to_stream</a></div><div class="ttdeci">#define logax_write_text_format_to_stream(stream, flags, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:470</div></div>
-<div class="ttc" id="alogax_8h_html_aeae79d20c930ad343fa0ae9dd9c77102"><div class="ttname"><a href="logax_8h.html#aeae79d20c930ad343fa0ae9dd9c77102">logax_logger_info</a></div><div class="ttdeci">#define logax_logger_info(logax_logger, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:741</div></div>
-<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a></div><div class="ttdeci">@ LOGAX_LEVEL_TRACE</div><div class="ttdef"><b>Definition:</b> logax.h:120</div></div>
-<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19a56a44e494019e597d8099792b4a42279"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a56a44e494019e597d8099792b4a42279">LOGAX_LEVEL_FATAL</a></div><div class="ttdeci">@ LOGAX_LEVEL_FATAL</div><div class="ttdef"><b>Definition:</b> logax.h:125</div></div>
-<div class="ttc" id="alogax_8h_html_ad458079c436922a57f40d1edd6c41fa5"><div class="ttname"><a href="logax_8h.html#ad458079c436922a57f40d1edd6c41fa5">logax_logger_trace</a></div><div class="ttdeci">#define logax_logger_trace(logax_logger, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:729</div></div>
+<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19af8fda1837cc5280ed634d9f6f27242bc"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19af8fda1837cc5280ed634d9f6f27242bc">LOGAX_LEVEL_INFO</a></div><div class="ttdeci">@ LOGAX_LEVEL_INFO</div><div class="ttdef"><b>Definition:</b> logax.h:127</div></div>
+<div class="ttc" id="alogax_8h_html_a3b8a4d36e94d72052e051134f6f70cc0"><div class="ttname"><a href="logax_8h.html#a3b8a4d36e94d72052e051134f6f70cc0">logax_write_json_format_to_stream</a></div><div class="ttdeci">#define logax_write_json_format_to_stream(stream, flags, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:670</div></div>
+<div class="ttc" id="alogax_8h_html_a4a4589ded3aa396aad87396ea9dea010"><div class="ttname"><a href="logax_8h.html#a4a4589ded3aa396aad87396ea9dea010">logax_set_formatter</a></div><div class="ttdeci">#define logax_set_formatter(logax_logger, new_formatter)</div><div class="ttdef"><b>Definition:</b> logax.h:258</div></div>
+<div class="ttc" id="alogax_8h_html_a1bf66279477f920aa5afe161a335f4ed"><div class="ttname"><a href="logax_8h.html#a1bf66279477f920aa5afe161a335f4ed">GET_LEVEL_STRING</a></div><div class="ttdeci">#define GET_LEVEL_STRING(level)</div><div class="ttdef"><b>Definition:</b> logax.h:136</div></div>
+<div class="ttc" id="alogax_8h_html_a26c1e50583b289d821420ffe6a898b19"><div class="ttname"><a href="logax_8h.html#a26c1e50583b289d821420ffe6a898b19">logax_logger_fatal</a></div><div class="ttdeci">#define logax_logger_fatal(logax_logger, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:769</div></div>
+<div class="ttc" id="astructlogax__logger__s_html"><div class="ttname"><a href="structlogax__logger__s.html">logax_logger_s</a></div><div class="ttdef"><b>Definition:</b> logax.h:158</div></div>
+<div class="ttc" id="alogax_8h_html_a10e1dd4027f7f6a2b2384e0f6cedc543"><div class="ttname"><a href="logax_8h.html#a10e1dd4027f7f6a2b2384e0f6cedc543">logax_write_text_format_to_stream</a></div><div class="ttdeci">#define logax_write_text_format_to_stream(stream, flags, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:480</div></div>
+<div class="ttc" id="alogax_8h_html_aeae79d20c930ad343fa0ae9dd9c77102"><div class="ttname"><a href="logax_8h.html#aeae79d20c930ad343fa0ae9dd9c77102">logax_logger_info</a></div><div class="ttdeci">#define logax_logger_info(logax_logger, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:751</div></div>
+<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a></div><div class="ttdeci">@ LOGAX_LEVEL_TRACE</div><div class="ttdef"><b>Definition:</b> logax.h:125</div></div>
+<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19a56a44e494019e597d8099792b4a42279"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a56a44e494019e597d8099792b4a42279">LOGAX_LEVEL_FATAL</a></div><div class="ttdeci">@ LOGAX_LEVEL_FATAL</div><div class="ttdef"><b>Definition:</b> logax.h:130</div></div>
+<div class="ttc" id="alogax_8h_html_ad458079c436922a57f40d1edd6c41fa5"><div class="ttname"><a href="logax_8h.html#ad458079c436922a57f40d1edd6c41fa5">logax_logger_trace</a></div><div class="ttdeci">#define logax_logger_trace(logax_logger, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:739</div></div>
 <div class="ttc" id="alogax_8h_html"><div class="ttname"><a href="logax_8h.html">logax.h</a></div></div>
 <div class="ttc" id="alogax_8h_html_a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4"><div class="ttname"><a href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4">LOGAX_OPTION_ALL</a></div><div class="ttdeci">@ LOGAX_OPTION_ALL</div><div class="ttdef"><b>Definition:</b> logax.h:113</div></div>
-<div class="ttc" id="alogax_8h_html_ae495419e226be29c3a41dc1be9ce155eaf7d9ff28b75d2cafd4926419218e32b3"><div class="ttname"><a href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155eaf7d9ff28b75d2cafd4926419218e32b3">LOGAX_FORMATTER_KEY_VALUE</a></div><div class="ttdeci">@ LOGAX_FORMATTER_KEY_VALUE</div><div class="ttdef"><b>Definition:</b> logax.h:143</div></div>
-<div class="ttc" id="alogax_8h_html_a025351fd9bfd126885c7a45be5d696f7"><div class="ttname"><a href="logax_8h.html#a025351fd9bfd126885c7a45be5d696f7">logax_write_key_value_format_to_stream</a></div><div class="ttdeci">#define logax_write_key_value_format_to_stream(stream, flags, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:552</div></div>
-<div class="ttc" id="alogax_8h_html_a93356a610b71fc0c74a21f4b7d95d89f"><div class="ttname"><a href="logax_8h.html#a93356a610b71fc0c74a21f4b7d95d89f">logax_logger_warn</a></div><div class="ttdeci">#define logax_logger_warn(logax_logger, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:747</div></div>
-<div class="ttc" id="alogax_8h_html_a72537f377caa26ee5d8c7d5bb4f44ff0"><div class="ttname"><a href="logax_8h.html#a72537f377caa26ee5d8c7d5bb4f44ff0">logax_logger_error</a></div><div class="ttdeci">#define logax_logger_error(logax_logger, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:753</div></div>
-<div class="ttc" id="alogax_8h_html_ae495419e226be29c3a41dc1be9ce155ea3fa9a595ae0b97412da60031da6dfc7d"><div class="ttname"><a href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155ea3fa9a595ae0b97412da60031da6dfc7d">LOGAX_FORMATTER_TEXT</a></div><div class="ttdeci">@ LOGAX_FORMATTER_TEXT</div><div class="ttdef"><b>Definition:</b> logax.h:142</div></div>
-<div class="ttc" id="alogax_8h_html_adde55752181d16cd209cf4b4f6ca4cfd"><div class="ttname"><a href="logax_8h.html#adde55752181d16cd209cf4b4f6ca4cfd">logax_logger_debug</a></div><div class="ttdeci">#define logax_logger_debug(logax_logger, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:735</div></div>
-<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19ad86f6500cd2833052dca0a563992052d"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19ad86f6500cd2833052dca0a563992052d">LOGAX_LEVEL_DEBUG</a></div><div class="ttdeci">@ LOGAX_LEVEL_DEBUG</div><div class="ttdef"><b>Definition:</b> logax.h:121</div></div>
+<div class="ttc" id="alogax_8h_html_ae495419e226be29c3a41dc1be9ce155eaf7d9ff28b75d2cafd4926419218e32b3"><div class="ttname"><a href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155eaf7d9ff28b75d2cafd4926419218e32b3">LOGAX_FORMATTER_KEY_VALUE</a></div><div class="ttdeci">@ LOGAX_FORMATTER_KEY_VALUE</div><div class="ttdef"><b>Definition:</b> logax.h:148</div></div>
+<div class="ttc" id="alogax_8h_html_a025351fd9bfd126885c7a45be5d696f7"><div class="ttname"><a href="logax_8h.html#a025351fd9bfd126885c7a45be5d696f7">logax_write_key_value_format_to_stream</a></div><div class="ttdeci">#define logax_write_key_value_format_to_stream(stream, flags, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:562</div></div>
+<div class="ttc" id="alogax_8h_html_a93356a610b71fc0c74a21f4b7d95d89f"><div class="ttname"><a href="logax_8h.html#a93356a610b71fc0c74a21f4b7d95d89f">logax_logger_warn</a></div><div class="ttdeci">#define logax_logger_warn(logax_logger, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:757</div></div>
+<div class="ttc" id="alogax_8h_html_a72537f377caa26ee5d8c7d5bb4f44ff0"><div class="ttname"><a href="logax_8h.html#a72537f377caa26ee5d8c7d5bb4f44ff0">logax_logger_error</a></div><div class="ttdeci">#define logax_logger_error(logax_logger, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:763</div></div>
+<div class="ttc" id="alogax_8h_html_ae495419e226be29c3a41dc1be9ce155ea3fa9a595ae0b97412da60031da6dfc7d"><div class="ttname"><a href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155ea3fa9a595ae0b97412da60031da6dfc7d">LOGAX_FORMATTER_TEXT</a></div><div class="ttdeci">@ LOGAX_FORMATTER_TEXT</div><div class="ttdef"><b>Definition:</b> logax.h:147</div></div>
+<div class="ttc" id="alogax_8h_html_adde55752181d16cd209cf4b4f6ca4cfd"><div class="ttname"><a href="logax_8h.html#adde55752181d16cd209cf4b4f6ca4cfd">logax_logger_debug</a></div><div class="ttdeci">#define logax_logger_debug(logax_logger, fmt,...)</div><div class="ttdef"><b>Definition:</b> logax.h:745</div></div>
+<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19ad86f6500cd2833052dca0a563992052d"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19ad86f6500cd2833052dca0a563992052d">LOGAX_LEVEL_DEBUG</a></div><div class="ttdeci">@ LOGAX_LEVEL_DEBUG</div><div class="ttdef"><b>Definition:</b> logax.h:126</div></div>
+<div class="ttc" id="alogax_8h_html_ad3cafc5ec2273b6130d11338dc275e8b"><div class="ttname"><a href="logax_8h.html#ad3cafc5ec2273b6130d11338dc275e8b">logax_set_quiet</a></div><div class="ttdeci">#define logax_set_quiet(logax_logger, make_quiet)</div><div class="ttdef"><b>Definition:</b> logax.h:268</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

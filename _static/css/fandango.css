@@ -81,7 +81,7 @@ table tr:nth-child(even) {
 code,
 .highlight {
     border: none;
-    background-color: #dce2e6 !important; /* theme_code_background_color */
+    
     border-radius: 6px;
     padding: 0px 0px 0px 0px;
     line-height: 1.7;
@@ -96,6 +96,7 @@ code {
 }
 
 pre {
+    
     padding: 16px;
     margin: 0px;
 }
@@ -272,8 +273,6 @@ pre {
 .bodywrapper h4,
 .bodywrapper h5,
 .bodywrapper h6 {
-    font-size: 170%;
-    font-weight: 500;
     text-shadow: 0px 1px 0 white;
     padding-bottom: 1px;
 }
@@ -408,10 +407,14 @@ div.viewcode-block:target {
 .doc-sphinx-info a {
     background: none;
     color: #0490c2 !important; /* theme_header_sec_background_color */
+    
 }
 
 .doc-sphinx-info a:hover {
     text-decoration: underline;
+    
+        color: #0d8aa1 !important; /* theme_footer_highlight_color */
+    
 }
 
 .footer-col1 {

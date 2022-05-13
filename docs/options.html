@@ -24,6 +24,7 @@
   
   
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    
   
     
     <meta name="description" content="liblogax is a header only automated testing framework for the C programming language, it requires no dependency and can be downloaded and used in a project immediately.">
@@ -46,6 +47,24 @@
     <meta name="twitter:image" content="https://raw.githubusercontent.com/exoticlibraries/liblogax/main/docs/liblogax.png" />
     
   
+  
+  <script>
+      const __themataOnloadCallbacks = [];
+      const __themataJsLoadedCallbacks = [];
+      const themataCurrentPageTitle = "Options";
+      const themataCurrentProject = "liblogax";
+      const themataCurrentProjectGithubLocation = "";
+      const themataCurrentPagePath = "docs/options.md";
+      const themataCurrentPageLocation = "https://github.com/exoticlibraries/liblogax/edit/main/docs/docs/options.md".replace("/edit/", "/blob/");
+      const themataGithubFeedbackProjectTemplate = ``;
+      const themataGithubFeedbackPageTemplate = ``;
+      function themataRegisterOnloadCallback(cb) {
+        __themataJsLoadedCallbacks.push(cb);
+      }
+      function themataRegisterJsLoadedCallback(cb) {
+        __themataOnloadCallbacks.push(cb);
+      }
+  </script>
 
   </head><body>
 
@@ -92,7 +111,7 @@
 <h2>LogaxOption<a class="headerlink" href="#logaxoption" title="Permalink to this headline">¶</a></h2>
 <p>This enum is used to declare the basic options for the library, the bit size from (1 &lt;&lt; 1) to (1 &lt;&lt; 9) and (1 &lt;&lt; 15) are used, (1 &lt;&lt; 10) to (1 &lt;&lt; 14) are reserved in case a new option is needed to be added. The following options are declared in the LogaxOption enum:</p>
 <ul class="simple">
-<li>LOGAX_OPTION_QUITE</li>
+<li>LOGAX_OPTION_QUIET</li>
 <li>LOGAX_OPTION_DATE</li>
 <li>LOGAX_OPTION_TIME</li>
 <li>LOGAX_OPTION_DATE_TIME</li>
@@ -103,8 +122,8 @@
 <li>LOGAX_OPTION_FUNCTION</li>
 <li>LOGAX_OPTION_ALL</li>
 </ul>
-<div class="section" id="logax-option-quite">
-<h3>LOGAX_OPTION_QUITE<a class="headerlink" href="#logax-option-quite" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="logax-option-quiet">
+<h3>LOGAX_OPTION_QUIET<a class="headerlink" href="#logax-option-quiet" title="Permalink to this headline">¶</a></h3>
 <p>This option disable writing the log to the output stream even if the program is compiled with write to output stream functionality. Bit value is <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;&lt;</span> <span class="pre">1</span></code>.</p>
 </div>
 <div class="section" id="logax-option-date">
@@ -272,6 +291,7 @@
                                   
                         </div>
                         <hr/>
+                        
                         </br>
                     
                 
@@ -285,7 +305,7 @@
                         <ul>
 <li><a class="reference internal" href="#">Options</a><ul>
 <li><a class="reference internal" href="#logaxoption">LogaxOption</a><ul>
-<li><a class="reference internal" href="#logax-option-quite">LOGAX_OPTION_QUITE</a></li>
+<li><a class="reference internal" href="#logax-option-quiet">LOGAX_OPTION_QUIET</a></li>
 <li><a class="reference internal" href="#logax-option-date">LOGAX_OPTION_DATE</a></li>
 <li><a class="reference internal" href="#logax-option-time">LOGAX_OPTION_TIME</a></li>
 <li><a class="reference internal" href="#logax-option-date-time">LOGAX_OPTION_DATE_TIME</a></li>
@@ -379,6 +399,15 @@
                 with <a href="https://thecarisma.github.io/themata/fandango/index.html">fandango</a> theme.
         </div>
     </div>
+    <script>
+                const themataSyntaxHighlighter = "highlightjs";
+                const themataCodeBlockIsEditable = false;
+                const themataSyntaxHighlighterTheme = "a11y-dark";
+                const themataStaticAssetsDir = "../_static/";
+                const themataSyntaxHighlighterIframeEmbed = false;
+                $("pre").parent().css("display", "none");
+            </script>
+    <script src="../_static/themata.js"></script>
 
   </body>
 </html>

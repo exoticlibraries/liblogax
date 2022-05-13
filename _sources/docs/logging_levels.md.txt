@@ -41,12 +41,12 @@ Trace is a verbose basic logging level and the default logging level, the color 
 #include <exotic/logax.h>
 
 int main(int argc, char **argv) {
-	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_TRACE, "%s", "Enemy approching from X=108,Y=877");
-	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_DEBUG, "%s", "Enemy approching from X=108,Y=877");
-	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_INFO, "%s", "Enemy approching from X=108,Y=877");
-	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_WARN, "%s", "Enemy approching from X=108,Y=877");
-	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_ERROR, "%s", "Enemy approching from X=108,Y=877");
-	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_FATAL, "%s", "Enemy approching from X=108,Y=877");
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_TRACE, "%s", "Enemy approaching from X=108,Y=877");
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_DEBUG, "%s", "Enemy approaching from X=108,Y=877");
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_INFO, "%s", "Enemy approaching from X=108,Y=877");
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_WARN, "%s", "Enemy approaching from X=108,Y=877");
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_ERROR, "%s", "Enemy approaching from X=108,Y=877");
+	logax_write_text_format_to_stream(stdout, LOGAX_OPTION_ALL | LOGAX_LEVEL_FATAL, "%s", "Enemy approaching from X=108,Y=877");
 }
 ```
 

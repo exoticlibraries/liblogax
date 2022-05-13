@@ -114,6 +114,8 @@ Macros</h2></td></tr>
 <tr class="separator:a7767ea6dd2150f10964525196c1e482f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1c825b8eb07e040d59b634a5f48ed0a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#af1c825b8eb07e040d59b634a5f48ed0a">LOGAX_MAX_CALLBACKS</a>&#160;&#160;&#160;5</td></tr>
 <tr class="separator:af1c825b8eb07e040d59b634a5f48ed0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6afec2af3cf9d484b8653f2360f423ca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#a6afec2af3cf9d484b8653f2360f423ca">LOGAX_OPTION_QUITE</a>&#160;&#160;&#160;<a class="el" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b">LOGAX_OPTION_QUIET</a></td></tr>
+<tr class="separator:a6afec2af3cf9d484b8653f2360f423ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bf66279477f920aa5afe161a335f4ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#a1bf66279477f920aa5afe161a335f4ed">GET_LEVEL_STRING</a>(level)</td></tr>
 <tr class="separator:a1bf66279477f920aa5afe161a335f4ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82da56f39b262a9435c4910cb9a2bc97"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#a82da56f39b262a9435c4910cb9a2bc97">logax_add_flag</a>(flags,  flag)&#160;&#160;&#160;flags |= flag;</td></tr>
@@ -126,10 +128,12 @@ Macros</h2></td></tr>
 <tr class="separator:aaf25a11fd360800ed2df6a2bdd7a16a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a4589ded3aa396aad87396ea9dea010"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#a4a4589ded3aa396aad87396ea9dea010">logax_set_formatter</a>(logax_logger,  new_formatter)</td></tr>
 <tr class="separator:a4a4589ded3aa396aad87396ea9dea010"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7d0520187348781ceefe6451eeef76d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#ae7d0520187348781ceefe6451eeef76d">logax_set_quite</a>(logax_logger,  make_quite)</td></tr>
-<tr class="separator:ae7d0520187348781ceefe6451eeef76d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae550aea2a437193cbc69327a19ad4fe1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#ae550aea2a437193cbc69327a19ad4fe1">LOGAX_INITIALIZE_HCONSOLE</a>()</td></tr>
-<tr class="separator:ae550aea2a437193cbc69327a19ad4fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3cafc5ec2273b6130d11338dc275e8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#ad3cafc5ec2273b6130d11338dc275e8b">logax_set_quiet</a>(logax_logger,  make_quiet)</td></tr>
+<tr class="separator:ad3cafc5ec2273b6130d11338dc275e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40b4a5442596bbe504b624abdd4d6a81"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#a40b4a5442596bbe504b624abdd4d6a81">logax_set_quite</a>&#160;&#160;&#160;<a class="el" href="logax_8h.html#ad3cafc5ec2273b6130d11338dc275e8b">logax_set_quiet</a></td></tr>
+<tr class="separator:a40b4a5442596bbe504b624abdd4d6a81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c3622e8b44eaaa24513501da85ac607"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#a8c3622e8b44eaaa24513501da85ac607">LOGAX_Iinitialized_HCONSOLE</a>()</td></tr>
+<tr class="separator:a8c3622e8b44eaaa24513501da85ac607"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92f3883c390353155e6b0c858646ba50"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#a92f3883c390353155e6b0c858646ba50">LOGAX_DELEGATE_FPRINT_STR</a>(foreground,  text)&#160;&#160;&#160;if (is_colored) { fprintf(stream, &quot;%s%s%s&quot;, foreground, text, <a class="el" href="logax_8h.html#a059063e36fd367191b54121aa07513e6">LOGAX_RESET_TERMINAL</a>); } else { fprintf(stream, &quot;%s&quot;, text); }</td></tr>
 <tr class="separator:a92f3883c390353155e6b0c858646ba50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c8db6f52bb465af35aef3ce90510187"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#a7c8db6f52bb465af35aef3ce90510187">LOGAX_DELEGATE_FPRINT_SIZE_T</a>(foreground,  text)&#160;&#160;&#160;if (is_colored) { fprintf(stream, &quot;%s%zu%s&quot;, foreground, text, <a class="el" href="logax_8h.html#a059063e36fd367191b54121aa07513e6">LOGAX_RESET_TERMINAL</a>); } else { fprintf(stream, &quot;%zu&quot;, text); }</td></tr>
@@ -173,7 +177,7 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a1887fba6a0dff43ffdee5439a78d76c1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1">LogaxOption</a> { <br />
-&#160;&#160;<a class="el" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5">LOGAX_OPTION_QUITE</a> = 1 &lt;&lt; 1, 
+&#160;&#160;<a class="el" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b">LOGAX_OPTION_QUIET</a> = 1 &lt;&lt; 1, 
 <a class="el" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1abddee66c241d6b820890ec055c96506d">LOGAX_OPTION_DATE</a> = 1 &lt;&lt; 2, 
 <a class="el" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a6af43bb97231c5d294acf2cf811bb9cb">LOGAX_OPTION_TIME</a> = 1 &lt;&lt; 3, 
 <a class="el" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1affb44b715383dad1ba6999ff2d727b4a">LOGAX_OPTION_DATE_TIME</a> = 1 &lt;&lt; 4, 
@@ -444,14 +448,14 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
-<a id="ae550aea2a437193cbc69327a19ad4fe1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae550aea2a437193cbc69327a19ad4fe1">&#9670;&nbsp;</a></span>LOGAX_INITIALIZE_HCONSOLE</h2>
+<a id="a8c3622e8b44eaaa24513501da85ac607"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c3622e8b44eaaa24513501da85ac607">&#9670;&nbsp;</a></span>LOGAX_Iinitialized_HCONSOLE</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define LOGAX_INITIALIZE_HCONSOLE</td>
+          <td class="memname">#define LOGAX_Iinitialized_HCONSOLE</td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -820,6 +824,20 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
+<a id="a6afec2af3cf9d484b8653f2360f423ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6afec2af3cf9d484b8653f2360f423ca">&#9670;&nbsp;</a></span>LOGAX_OPTION_QUITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOGAX_OPTION_QUITE&#160;&#160;&#160;<a class="el" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b">LOGAX_OPTION_QUIET</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="abec25d5c63ccf1390ae4d9c090d212e3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abec25d5c63ccf1390ae4d9c090d212e3">&#9670;&nbsp;</a></span>logax_remove_flag</h2>
 
@@ -931,14 +949,14 @@ Enumerations</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="ae7d0520187348781ceefe6451eeef76d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7d0520187348781ceefe6451eeef76d">&#9670;&nbsp;</a></span>logax_set_quite</h2>
+<a id="ad3cafc5ec2273b6130d11338dc275e8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3cafc5ec2273b6130d11338dc275e8b">&#9670;&nbsp;</a></span>logax_set_quiet</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define logax_set_quite</td>
+          <td class="memname">#define logax_set_quiet</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">logax_logger, </td>
@@ -947,7 +965,7 @@ Enumerations</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">make_quite&#160;</td>
+          <td class="paramname">make_quiet&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -957,10 +975,25 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">        {\</div>
-<div class="line">        if (!make_quite &amp;&amp; ((logax_logger)-&gt;flags &amp; <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5">LOGAX_OPTION_QUITE</a>)) { <a class="code" href="logax_8h.html#abec25d5c63ccf1390ae4d9c090d212e3">logax_remove_flag</a>((logax_logger)-&gt;flags, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5">LOGAX_OPTION_QUITE</a>); }\</div>
-<div class="line">        else <span class="keywordflow">if</span> (make_quite &amp;&amp; !((logax_logger)-&gt;flags &amp; <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5">LOGAX_OPTION_QUITE</a>)) { <a class="code" href="logax_8h.html#a82da56f39b262a9435c4910cb9a2bc97">logax_add_flag</a>((logax_logger)-&gt;flags, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5">LOGAX_OPTION_QUITE</a>); }\</div>
+<div class="line">        if (!make_quiet &amp;&amp; ((logax_logger)-&gt;flags &amp; <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b">LOGAX_OPTION_QUIET</a>)) { <a class="code" href="logax_8h.html#abec25d5c63ccf1390ae4d9c090d212e3">logax_remove_flag</a>((logax_logger)-&gt;flags, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b">LOGAX_OPTION_QUIET</a>); }\</div>
+<div class="line">        else <span class="keywordflow">if</span> (make_quiet &amp;&amp; !((logax_logger)-&gt;flags &amp; <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b">LOGAX_OPTION_QUIET</a>)) { <a class="code" href="logax_8h.html#a82da56f39b262a9435c4910cb9a2bc97">logax_add_flag</a>((logax_logger)-&gt;flags, <a class="code" href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b">LOGAX_OPTION_QUIET</a>); }\</div>
 <div class="line">    }</div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="a40b4a5442596bbe504b624abdd4d6a81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40b4a5442596bbe504b624abdd4d6a81">&#9670;&nbsp;</a></span>logax_set_quite</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define logax_set_quite&#160;&#160;&#160;<a class="el" href="logax_8h.html#ad3cafc5ec2273b6130d11338dc275e8b">logax_set_quiet</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for logax_set_quiet, for backward compatibility </p>
+
 </div>
 </div>
 <a id="a0e9b53fe6966fdcb56114bcf90d12d0a"></a>
@@ -1233,7 +1266,7 @@ Enumerations</h2></td></tr>
 </div><div class="memdoc">
 <p>More bit location is reserved till 15 to accomodate new options without breaking backward compatibility </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5"></a>LOGAX_OPTION_QUITE&#160;</td><td class="fielddoc"><p>the option to disable writing to output stream </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b"></a>LOGAX_OPTION_QUIET&#160;</td><td class="fielddoc"><p>the option to disable writing to output stream </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a1887fba6a0dff43ffdee5439a78d76c1abddee66c241d6b820890ec055c96506d"></a>LOGAX_OPTION_DATE&#160;</td><td class="fielddoc"><p>option to write/set the date of the log event </p>
 </td></tr>
@@ -1247,34 +1280,34 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="a1887fba6a0dff43ffdee5439a78d76c1af4b229b67b1d512e43458a9319c86001"></a>LOGAX_OPTION_LINE_NUMBER&#160;</td><td class="fielddoc"><p>option to set the line number where the log even was sent </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a1887fba6a0dff43ffdee5439a78d76c1a26446dad901f86c56a5519670e866b41"></a>LOGAX_OPTION_COLORED&#160;</td><td class="fielddoc"><p>this option is used to enable preety print and colored outputs </p>
+<tr><td class="fieldname"><a id="a1887fba6a0dff43ffdee5439a78d76c1a26446dad901f86c56a5519670e866b41"></a>LOGAX_OPTION_COLORED&#160;</td><td class="fielddoc"><p>this option is used to enable pretty print and colored outputs </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a1887fba6a0dff43ffdee5439a78d76c1a9d77f9520d36686556830ac9b395a283"></a>LOGAX_OPTION_FUNCTION&#160;</td><td class="fielddoc"><p>option to write/set the name of the function where the log was set from </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4"></a>LOGAX_OPTION_ALL&#160;</td><td class="fielddoc"><p>this option enables all the other options above apart from LOGAX_OPTION_QUITE </p>
+<tr><td class="fieldname"><a id="a1887fba6a0dff43ffdee5439a78d76c1a942653bdf78ba44e761bc670b3e6bac4"></a>LOGAX_OPTION_ALL&#160;</td><td class="fielddoc"><p>this option enables all the other options above apart from LOGAX_OPTION_QUIET </p>
 </td></tr>
 </table>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19a9fc66d044e119f9177d404fa7103f09e"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a9fc66d044e119f9177d404fa7103f09e">LOGAX_LEVEL_ERROR</a></div><div class="ttdeci">@ LOGAX_LEVEL_ERROR</div><div class="ttdef"><b>Definition:</b> logax.h:124</div></div>
-<div class="ttc" id="alogax_8h_html_a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5"><div class="ttname"><a href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5">LOGAX_OPTION_QUITE</a></div><div class="ttdeci">@ LOGAX_OPTION_QUITE</div><div class="ttdef"><b>Definition:</b> logax.h:100</div></div>
-<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19ad9f03cfa72140d98bad0d70c26732496"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19ad9f03cfa72140d98bad0d70c26732496">LOGAX_LEVEL_WARN</a></div><div class="ttdeci">@ LOGAX_LEVEL_WARN</div><div class="ttdef"><b>Definition:</b> logax.h:123</div></div>
-<div class="ttc" id="alogax_8h_html_ae495419e226be29c3a41dc1be9ce155ea67d581a4395aecb8b0f6fc2256d8b59c"><div class="ttname"><a href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155ea67d581a4395aecb8b0f6fc2256d8b59c">LOGAX_FORMATTER_JSON</a></div><div class="ttdeci">@ LOGAX_FORMATTER_JSON</div><div class="ttdef"><b>Definition:</b> logax.h:144</div></div>
+<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19a9fc66d044e119f9177d404fa7103f09e"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a9fc66d044e119f9177d404fa7103f09e">LOGAX_LEVEL_ERROR</a></div><div class="ttdeci">@ LOGAX_LEVEL_ERROR</div><div class="ttdef"><b>Definition:</b> logax.h:129</div></div>
+<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19ad9f03cfa72140d98bad0d70c26732496"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19ad9f03cfa72140d98bad0d70c26732496">LOGAX_LEVEL_WARN</a></div><div class="ttdeci">@ LOGAX_LEVEL_WARN</div><div class="ttdef"><b>Definition:</b> logax.h:128</div></div>
+<div class="ttc" id="alogax_8h_html_ae495419e226be29c3a41dc1be9ce155ea67d581a4395aecb8b0f6fc2256d8b59c"><div class="ttname"><a href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155ea67d581a4395aecb8b0f6fc2256d8b59c">LOGAX_FORMATTER_JSON</a></div><div class="ttdeci">@ LOGAX_FORMATTER_JSON</div><div class="ttdef"><b>Definition:</b> logax.h:149</div></div>
 <div class="ttc" id="alogax_8h_html_a7767ea6dd2150f10964525196c1e482f"><div class="ttname"><a href="logax_8h.html#a7767ea6dd2150f10964525196c1e482f">LOGAX_RESET_TERMINAL_ATTR</a></div><div class="ttdeci">#define LOGAX_RESET_TERMINAL_ATTR()</div><div class="ttdef"><b>Definition:</b> logax.h:75</div></div>
-<div class="ttc" id="alogax_8h_html_a82da56f39b262a9435c4910cb9a2bc97"><div class="ttname"><a href="logax_8h.html#a82da56f39b262a9435c4910cb9a2bc97">logax_add_flag</a></div><div class="ttdeci">#define logax_add_flag(flags, flag)</div><div class="ttdef"><b>Definition:</b> logax.h:233</div></div>
-<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19af8fda1837cc5280ed634d9f6f27242bc"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19af8fda1837cc5280ed634d9f6f27242bc">LOGAX_LEVEL_INFO</a></div><div class="ttdeci">@ LOGAX_LEVEL_INFO</div><div class="ttdef"><b>Definition:</b> logax.h:122</div></div>
+<div class="ttc" id="alogax_8h_html_a82da56f39b262a9435c4910cb9a2bc97"><div class="ttname"><a href="logax_8h.html#a82da56f39b262a9435c4910cb9a2bc97">logax_add_flag</a></div><div class="ttdeci">#define logax_add_flag(flags, flag)</div><div class="ttdef"><b>Definition:</b> logax.h:238</div></div>
+<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19af8fda1837cc5280ed634d9f6f27242bc"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19af8fda1837cc5280ed634d9f6f27242bc">LOGAX_LEVEL_INFO</a></div><div class="ttdeci">@ LOGAX_LEVEL_INFO</div><div class="ttdef"><b>Definition:</b> logax.h:127</div></div>
 <div class="ttc" id="alogax_8h_html_aadabf1bd03d9bd6658a6bf602fc3786b"><div class="ttname"><a href="logax_8h.html#aadabf1bd03d9bd6658a6bf602fc3786b">LOGAX_NULL</a></div><div class="ttdeci">#define LOGAX_NULL</div><div class="ttdef"><b>Definition:</b> logax.h:49</div></div>
-<div class="ttc" id="alogax_8h_html_a92f3883c390353155e6b0c858646ba50"><div class="ttname"><a href="logax_8h.html#a92f3883c390353155e6b0c858646ba50">LOGAX_DELEGATE_FPRINT_STR</a></div><div class="ttdeci">#define LOGAX_DELEGATE_FPRINT_STR(foreground, text)</div><div class="ttdef"><b>Definition:</b> logax.h:362</div></div>
-<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a></div><div class="ttdeci">@ LOGAX_LEVEL_TRACE</div><div class="ttdef"><b>Definition:</b> logax.h:120</div></div>
-<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19a56a44e494019e597d8099792b4a42279"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a56a44e494019e597d8099792b4a42279">LOGAX_LEVEL_FATAL</a></div><div class="ttdeci">@ LOGAX_LEVEL_FATAL</div><div class="ttdef"><b>Definition:</b> logax.h:125</div></div>
+<div class="ttc" id="alogax_8h_html_a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b"><div class="ttname"><a href="logax_8h.html#a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b">LOGAX_OPTION_QUIET</a></div><div class="ttdeci">@ LOGAX_OPTION_QUIET</div><div class="ttdef"><b>Definition:</b> logax.h:100</div></div>
+<div class="ttc" id="alogax_8h_html_a92f3883c390353155e6b0c858646ba50"><div class="ttname"><a href="logax_8h.html#a92f3883c390353155e6b0c858646ba50">LOGAX_DELEGATE_FPRINT_STR</a></div><div class="ttdeci">#define LOGAX_DELEGATE_FPRINT_STR(foreground, text)</div><div class="ttdef"><b>Definition:</b> logax.h:372</div></div>
+<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a83b80fa0c873308d9f32fbcad80950b9">LOGAX_LEVEL_TRACE</a></div><div class="ttdeci">@ LOGAX_LEVEL_TRACE</div><div class="ttdef"><b>Definition:</b> logax.h:125</div></div>
+<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19a56a44e494019e597d8099792b4a42279"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19a56a44e494019e597d8099792b4a42279">LOGAX_LEVEL_FATAL</a></div><div class="ttdeci">@ LOGAX_LEVEL_FATAL</div><div class="ttdef"><b>Definition:</b> logax.h:130</div></div>
 <div class="ttc" id="alogax_8h_html_af1c825b8eb07e040d59b634a5f48ed0a"><div class="ttname"><a href="logax_8h.html#af1c825b8eb07e040d59b634a5f48ed0a">LOGAX_MAX_CALLBACKS</a></div><div class="ttdeci">#define LOGAX_MAX_CALLBACKS</div><div class="ttdef"><b>Definition:</b> logax.h:84</div></div>
 <div class="ttc" id="alogax_8h_html_aaa06dc6e232693f0c93cd4a72ea487a6"><div class="ttname"><a href="logax_8h.html#aaa06dc6e232693f0c93cd4a72ea487a6">__LOGAX_FUNCTION__</a></div><div class="ttdeci">#define __LOGAX_FUNCTION__</div><div class="ttdef"><b>Definition:</b> logax.h:47</div></div>
-<div class="ttc" id="alogax_8h_html_abec25d5c63ccf1390ae4d9c090d212e3"><div class="ttname"><a href="logax_8h.html#abec25d5c63ccf1390ae4d9c090d212e3">logax_remove_flag</a></div><div class="ttdeci">#define logax_remove_flag(flags, flag)</div><div class="ttdef"><b>Definition:</b> logax.h:243</div></div>
-<div class="ttc" id="alogax_8h_html_ae495419e226be29c3a41dc1be9ce155eaf7d9ff28b75d2cafd4926419218e32b3"><div class="ttname"><a href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155eaf7d9ff28b75d2cafd4926419218e32b3">LOGAX_FORMATTER_KEY_VALUE</a></div><div class="ttdeci">@ LOGAX_FORMATTER_KEY_VALUE</div><div class="ttdef"><b>Definition:</b> logax.h:143</div></div>
-<div class="ttc" id="alogax_8h_html_ae495419e226be29c3a41dc1be9ce155ea3fa9a595ae0b97412da60031da6dfc7d"><div class="ttname"><a href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155ea3fa9a595ae0b97412da60031da6dfc7d">LOGAX_FORMATTER_TEXT</a></div><div class="ttdeci">@ LOGAX_FORMATTER_TEXT</div><div class="ttdef"><b>Definition:</b> logax.h:142</div></div>
-<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19ad86f6500cd2833052dca0a563992052d"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19ad86f6500cd2833052dca0a563992052d">LOGAX_LEVEL_DEBUG</a></div><div class="ttdeci">@ LOGAX_LEVEL_DEBUG</div><div class="ttdef"><b>Definition:</b> logax.h:121</div></div>
+<div class="ttc" id="alogax_8h_html_abec25d5c63ccf1390ae4d9c090d212e3"><div class="ttname"><a href="logax_8h.html#abec25d5c63ccf1390ae4d9c090d212e3">logax_remove_flag</a></div><div class="ttdeci">#define logax_remove_flag(flags, flag)</div><div class="ttdef"><b>Definition:</b> logax.h:248</div></div>
+<div class="ttc" id="alogax_8h_html_ae495419e226be29c3a41dc1be9ce155eaf7d9ff28b75d2cafd4926419218e32b3"><div class="ttname"><a href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155eaf7d9ff28b75d2cafd4926419218e32b3">LOGAX_FORMATTER_KEY_VALUE</a></div><div class="ttdeci">@ LOGAX_FORMATTER_KEY_VALUE</div><div class="ttdef"><b>Definition:</b> logax.h:148</div></div>
+<div class="ttc" id="alogax_8h_html_ae495419e226be29c3a41dc1be9ce155ea3fa9a595ae0b97412da60031da6dfc7d"><div class="ttname"><a href="logax_8h.html#ae495419e226be29c3a41dc1be9ce155ea3fa9a595ae0b97412da60031da6dfc7d">LOGAX_FORMATTER_TEXT</a></div><div class="ttdeci">@ LOGAX_FORMATTER_TEXT</div><div class="ttdef"><b>Definition:</b> logax.h:147</div></div>
+<div class="ttc" id="alogax_8h_html_afad712dc25618fe276b8ec7b8b905d19ad86f6500cd2833052dca0a563992052d"><div class="ttname"><a href="logax_8h.html#afad712dc25618fe276b8ec7b8b905d19ad86f6500cd2833052dca0a563992052d">LOGAX_LEVEL_DEBUG</a></div><div class="ttdeci">@ LOGAX_LEVEL_DEBUG</div><div class="ttdef"><b>Definition:</b> logax.h:126</div></div>
 <div class="ttc" id="alogax_8h_html_ace63de06ef8a4028f2b8b87cc6de6f98"><div class="ttname"><a href="logax_8h.html#ace63de06ef8a4028f2b8b87cc6de6f98">LOGAX_FOREGROUND_DEBUG</a></div><div class="ttdeci">#define LOGAX_FOREGROUND_DEBUG</div><div class="ttdef"><b>Definition:</b> logax.h:70</div></div>
 <div class="ttc" id="alogax_8h_html_a9a598f0106a68c1dd872121694a65108"><div class="ttname"><a href="logax_8h.html#a9a598f0106a68c1dd872121694a65108">LOGAX_FOREGROUND_TRACE</a></div><div class="ttdeci">#define LOGAX_FOREGROUND_TRACE</div><div class="ttdef"><b>Definition:</b> logax.h:69</div></div>
 <!-- start footer part -->

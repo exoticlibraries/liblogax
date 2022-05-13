@@ -12,7 +12,7 @@ liblogax is big on modularity, each component of the library can be excluded at 
 
 ## LOGAX_USE_OLD_CONSOLE_MODE
 
-If this macro is define the library will use the Windows API to color the log outputs, this macro is only effective on Windows system. This macro is most useful for old windows platform which the console cannot procecess the ANSI Color Codes.
+If this macro is define the library will use the Windows API to color the log outputs, this macro is only effective on Windows system. This macro is most useful for old windows platform which the console cannot process the ANSI Color Codes.
 
 ```
 #define LOGAX_USE_OLD_CONSOLE_MODE
@@ -58,7 +58,7 @@ Define this macro to exclude the callback and hook feature of the library, this 
 
 ## LOGAX_NO_COLORING
 
-If this macro is define the library will not be compiled with preety print capability. The flag `LOGAX_OPTION_COLORED` will also not be available for use to customize the output.
+If this macro is define the library will not be compiled with pretty print capability. The flag `LOGAX_OPTION_COLORED` will also not be available for use to customize the output.
 
 ```c
 #define LOGAX_NO_COLORING
@@ -69,7 +69,7 @@ If this macro is define the library will not be compiled with preety print capab
 
 ## LOGAX_NO_TIME
 
-On a system that does not have floating point capability or the time headers are anot available this macro can be defined to exclude adding data and time capability to the logging. Defining this macro will make the following macros unavailable `LOGAX_OPTION_DATE`, `LOGAX_OPTION_TIME`, `LOGAX_OPTION_DATE_TIME`.
+On a system that does not have floating point capability or the time headers are not available this macro can be defined to exclude adding data and time capability to the logging. Defining this macro will make the following macros unavailable `LOGAX_OPTION_DATE`, `LOGAX_OPTION_TIME`, `LOGAX_OPTION_DATE_TIME`.
 
 ```c
 #define LOGAX_NO_TIME

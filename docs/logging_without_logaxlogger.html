@@ -24,6 +24,7 @@
   
   
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    
   
     
     <meta name="description" content="liblogax is a header only automated testing framework for the C programming language, it requires no dependency and can be downloaded and used in a project immediately.">
@@ -46,6 +47,24 @@
     <meta name="twitter:image" content="https://raw.githubusercontent.com/exoticlibraries/liblogax/main/docs/liblogax.png" />
     
   
+  
+  <script>
+      const __themataOnloadCallbacks = [];
+      const __themataJsLoadedCallbacks = [];
+      const themataCurrentPageTitle = "Logging without LogaxLogger";
+      const themataCurrentProject = "liblogax";
+      const themataCurrentProjectGithubLocation = "";
+      const themataCurrentPagePath = "docs/logging_without_logaxlogger.md";
+      const themataCurrentPageLocation = "https://github.com/exoticlibraries/liblogax/edit/main/docs/docs/logging_without_logaxlogger.md".replace("/edit/", "/blob/");
+      const themataGithubFeedbackProjectTemplate = ``;
+      const themataGithubFeedbackPageTemplate = ``;
+      function themataRegisterOnloadCallback(cb) {
+        __themataJsLoadedCallbacks.push(cb);
+      }
+      function themataRegisterJsLoadedCallback(cb) {
+        __themataOnloadCallbacks.push(cb);
+      }
+  </script>
 
   </head><body>
 
@@ -87,39 +106,39 @@
                 
   <div class="section" id="logging-without-logaxlogger">
 <h1>Logging without LogaxLogger<a class="headerlink" href="#logging-without-logaxlogger" title="Permalink to this headline">¶</a></h1>
-<p>The library can be used to output log without need to setup the <code class="docutils literal notranslate"><span class="pre">LogaxLogger</span></code> struct, this will require the platform to have output stream or can write to file. If the macro LOGAX_NO_LOGGER is defined before including the logax.h geader file, the LogaxLogger struct and all related functions will not be compiled. The following functions provides the API to write to output stream in the supported formats</p>
+<p>The library can be used to output log without need to setup the <code class="docutils literal notranslate"><span class="pre">LogaxLogger</span></code> struct, this will require the platform to have output stream or can write to file. If the macro LOGAX_NO_LOGGER is defined before including the logax.h header file, the LogaxLogger struct and all related functions will not be compiled. The following functions provides the API to write to output stream in the supported formats</p>
 <ul class="simple">
 <li>logax_write_text_format_to_stream</li>
 <li>logax_write_key_value_format_to_stream</li>
 <li>logax_write_json_format_to_stream</li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">logax_write_text_format_to_stream</span></code> write the output in plain text format, the first paramater is the stream, followed by the options, the options is the combinations of any of the LOGAX<em>OPTION</em><em>, LOGAX*LEVEL</em>* and LOGAX<em>FORMATTER</em>* macros.</p>
+<p><code class="docutils literal notranslate"><span class="pre">logax_write_text_format_to_stream</span></code> write the output in plain text format, the first parameter is the stream, followed by the options, the options is the combinations of any of the LOGAX<em>OPTION</em><em>, LOGAX*LEVEL</em>* and LOGAX<em>FORMATTER</em>* macros.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;exotic/logax.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="c1">// output</span>
 <span class="c1">// 2021-11-21 06:34:07 TRACE crash_test.c:13 Logging the test for TRACE</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">logax_write_key_value_format_to_stream</span></code> write the output in a key-value format coloring is ignored in this format, the first paramater is the stream, followed by the options, the options is the combinations of any of the LOGAX<em>OPTION</em><em>, LOGAX*LEVEL</em>* and LOGAX<em>FORMATTER</em>* macros.</p>
+<p><code class="docutils literal notranslate"><span class="pre">logax_write_key_value_format_to_stream</span></code> write the output in a key-value format coloring is ignored in this format, the first parameter is the stream, followed by the options, the options is the combinations of any of the LOGAX<em>OPTION</em><em>, LOGAX*LEVEL</em>* and LOGAX<em>FORMATTER</em>* macros.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;exotic/logax.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">logax_write_key_value_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_key_value_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="c1">// output</span>
 <span class="c1">// date=&quot;2021-11-21&quot; time=&quot;06:41:34&quot; level=&quot;TRACE&quot; file=&quot;crash_test.c&quot; line_number=8 function=&quot;main&quot; message=&quot;This is a trace output&quot;</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">logax_write_json_format_to_stream</span></code> write the output in a json format, the first paramater is the stream, followed by the options, the options is the combinations of any of the LOGAX<em>OPTION</em><em>, LOGAX*LEVEL</em>* and LOGAX<em>FORMATTER</em>* macros.</p>
+<p><code class="docutils literal notranslate"><span class="pre">logax_write_json_format_to_stream</span></code> write the output in a json format, the first parameter is the stream, followed by the options, the options is the combinations of any of the LOGAX<em>OPTION</em><em>, LOGAX*LEVEL</em>* and LOGAX<em>FORMATTER</em>* macros.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;exotic/logax.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">logax_write_json_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_json_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="c1">// output</span>
@@ -142,6 +161,7 @@
                                   
                         </div>
                         <hr/>
+                        
                         </br>
                     
                 
@@ -217,6 +237,15 @@
                 with <a href="https://thecarisma.github.io/themata/fandango/index.html">fandango</a> theme.
         </div>
     </div>
+    <script>
+                const themataSyntaxHighlighter = "highlightjs";
+                const themataCodeBlockIsEditable = false;
+                const themataSyntaxHighlighterTheme = "a11y-dark";
+                const themataStaticAssetsDir = "../_static/";
+                const themataSyntaxHighlighterIframeEmbed = false;
+                $("pre").parent().css("display", "none");
+            </script>
+    <script src="../_static/themata.js"></script>
 
   </body>
 </html>

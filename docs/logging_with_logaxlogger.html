@@ -24,6 +24,7 @@
   
   
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    
   
     
     <meta name="description" content="liblogax is a header only automated testing framework for the C programming language, it requires no dependency and can be downloaded and used in a project immediately.">
@@ -46,6 +47,24 @@
     <meta name="twitter:image" content="https://raw.githubusercontent.com/exoticlibraries/liblogax/main/docs/liblogax.png" />
     
   
+  
+  <script>
+      const __themataOnloadCallbacks = [];
+      const __themataJsLoadedCallbacks = [];
+      const themataCurrentPageTitle = "Logging with LogaxLogger";
+      const themataCurrentProject = "liblogax";
+      const themataCurrentProjectGithubLocation = "";
+      const themataCurrentPagePath = "docs/logging_with_logaxlogger.md";
+      const themataCurrentPageLocation = "https://github.com/exoticlibraries/liblogax/edit/main/docs/docs/logging_with_logaxlogger.md".replace("/edit/", "/blob/");
+      const themataGithubFeedbackProjectTemplate = ``;
+      const themataGithubFeedbackPageTemplate = ``;
+      function themataRegisterOnloadCallback(cb) {
+        __themataJsLoadedCallbacks.push(cb);
+      }
+      function themataRegisterJsLoadedCallback(cb) {
+        __themataOnloadCallbacks.push(cb);
+      }
+  </script>
 
   </head><body>
 
@@ -88,9 +107,9 @@
   <div class="section" id="logging-with-logaxlogger">
 <h1>Logging with LogaxLogger<a class="headerlink" href="#logging-with-logaxlogger" title="Permalink to this headline">¶</a></h1>
 <p>In a situation where callback is needed, no FILE* ability on the platform or the flags/options want to be shared across the log, the <code class="docutils literal notranslate"><span class="pre">LogaxLogger</span></code> struct can be used. No memory allocation is required when initaili</p>
-<div class="section" id="initialize-logaxlogger">
-<h2>Initialize LogaxLogger<a class="headerlink" href="#initialize-logaxlogger" title="Permalink to this headline">¶</a></h2>
-<p>To initialize the LogaxLogger the function <code class="docutils literal notranslate"><span class="pre">logax_init_logger</span></code> can be used, it not neccessary to call the logax_init_logger function, all it does is set the LogaxLogger flags to default value, output_stream to stdout and fill the empty callbacks with NULL, these can be self-managed.</p>
+<div class="section" id="iinitialized-logaxlogger">
+<h2>Iinitialized LogaxLogger<a class="headerlink" href="#iinitialized-logaxlogger" title="Permalink to this headline">¶</a></h2>
+<p>To iinitialized the LogaxLogger the function <code class="docutils literal notranslate"><span class="pre">logax_init_logger</span></code> can be used, it not necessary to call the logax_init_logger function, all it does is set the LogaxLogger flags to default value, output_stream to stdout and fill the empty callbacks with NULL, these can be self-managed.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;exotic/logax.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
@@ -111,7 +130,7 @@
 <li>logax_logger_error</li>
 <li>logax_logger_fatal</li>
 </ul>
-<p>Each of the function above invoke the coresponding <code class="docutils literal notranslate"><span class="pre">logax_write_*_format_to_stream</span></code> respectively, the default formatter when LogaxLogger is nitialize with the function logax_init_logger is <code class="docutils literal notranslate"><span class="pre">LOGAX_FORMATTER_TEXT</span></code>, the output format can be changed using the function <code class="docutils literal notranslate"><span class="pre">logax_set_formatter</span></code>.</p>
+<p>Each of the function above invoke the corresponding <code class="docutils literal notranslate"><span class="pre">logax_write_*_format_to_stream</span></code> respectively, the default formatter when LogaxLogger is initialized with the function logax_init_logger is <code class="docutils literal notranslate"><span class="pre">LOGAX_FORMATTER_TEXT</span></code>, the output format can be changed using the function <code class="docutils literal notranslate"><span class="pre">logax_set_formatter</span></code>.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;exotic/logax.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
@@ -145,6 +164,7 @@
                                   
                         </div>
                         <hr/>
+                        
                         </br>
                     
                 
@@ -157,7 +177,7 @@
                         <h2>Page Contents</h2>
                         <ul>
 <li><a class="reference internal" href="#">Logging with LogaxLogger</a><ul>
-<li><a class="reference internal" href="#initialize-logaxlogger">Initialize LogaxLogger</a></li>
+<li><a class="reference internal" href="#iinitialized-logaxlogger">Iinitialized LogaxLogger</a></li>
 <li><a class="reference internal" href="#logaxlogger-loggers">LogaxLogger Loggers</a></li>
 </ul>
 </li>
@@ -224,6 +244,15 @@
                 with <a href="https://thecarisma.github.io/themata/fandango/index.html">fandango</a> theme.
         </div>
     </div>
+    <script>
+                const themataSyntaxHighlighter = "highlightjs";
+                const themataCodeBlockIsEditable = false;
+                const themataSyntaxHighlighterTheme = "a11y-dark";
+                const themataStaticAssetsDir = "../_static/";
+                const themataSyntaxHighlighterIframeEmbed = false;
+                $("pre").parent().css("display", "none");
+            </script>
+    <script src="../_static/themata.js"></script>
 
   </body>
 </html>

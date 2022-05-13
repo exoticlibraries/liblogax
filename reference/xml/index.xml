@@ -17,14 +17,16 @@
     <member refid="logax_8h_1afbfb83cce7e3333207fd6f9ead1ddcc0" kind="define"><name>LOGAX_FOREGROUND_FATAL</name></member>
     <member refid="logax_8h_1a7767ea6dd2150f10964525196c1e482f" kind="define"><name>LOGAX_RESET_TERMINAL_ATTR</name></member>
     <member refid="logax_8h_1af1c825b8eb07e040d59b634a5f48ed0a" kind="define"><name>LOGAX_MAX_CALLBACKS</name></member>
+    <member refid="logax_8h_1a6afec2af3cf9d484b8653f2360f423ca" kind="define"><name>LOGAX_OPTION_QUITE</name></member>
     <member refid="logax_8h_1a1bf66279477f920aa5afe161a335f4ed" kind="define"><name>GET_LEVEL_STRING</name></member>
     <member refid="logax_8h_1a82da56f39b262a9435c4910cb9a2bc97" kind="define"><name>logax_add_flag</name></member>
     <member refid="logax_8h_1a89c5f38190773bf9868c82c16002fe4e" kind="define"><name>logax_set_flag</name></member>
     <member refid="logax_8h_1abec25d5c63ccf1390ae4d9c090d212e3" kind="define"><name>logax_remove_flag</name></member>
     <member refid="logax_8h_1aaf25a11fd360800ed2df6a2bdd7a16a7" kind="define"><name>logax_clear_flag</name></member>
     <member refid="logax_8h_1a4a4589ded3aa396aad87396ea9dea010" kind="define"><name>logax_set_formatter</name></member>
-    <member refid="logax_8h_1ae7d0520187348781ceefe6451eeef76d" kind="define"><name>logax_set_quite</name></member>
-    <member refid="logax_8h_1ae550aea2a437193cbc69327a19ad4fe1" kind="define"><name>LOGAX_INITIALIZE_HCONSOLE</name></member>
+    <member refid="logax_8h_1ad3cafc5ec2273b6130d11338dc275e8b" kind="define"><name>logax_set_quiet</name></member>
+    <member refid="logax_8h_1a40b4a5442596bbe504b624abdd4d6a81" kind="define"><name>logax_set_quite</name></member>
+    <member refid="logax_8h_1a8c3622e8b44eaaa24513501da85ac607" kind="define"><name>LOGAX_Iinitialized_HCONSOLE</name></member>
     <member refid="logax_8h_1a92f3883c390353155e6b0c858646ba50" kind="define"><name>LOGAX_DELEGATE_FPRINT_STR</name></member>
     <member refid="logax_8h_1a7c8db6f52bb465af35aef3ce90510187" kind="define"><name>LOGAX_DELEGATE_FPRINT_SIZE_T</name></member>
     <member refid="logax_8h_1a0e9b53fe6966fdcb56114bcf90d12d0a" kind="define"><name>LOGAX_WRITE_COLOR_CODE</name></member>
@@ -42,7 +44,7 @@
     <member refid="logax_8h_1a72537f377caa26ee5d8c7d5bb4f44ff0" kind="define"><name>logax_logger_error</name></member>
     <member refid="logax_8h_1a26c1e50583b289d821420ffe6a898b19" kind="define"><name>logax_logger_fatal</name></member>
     <member refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1" kind="enum"><name>LogaxOption</name></member>
-    <member refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a3ecc3b7e46173dce9518dc504225c9f5" kind="enumvalue"><name>LOGAX_OPTION_QUITE</name></member>
+    <member refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1ac976bb5efb6edcd7129f79b5796c251b" kind="enumvalue"><name>LOGAX_OPTION_QUIET</name></member>
     <member refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1abddee66c241d6b820890ec055c96506d" kind="enumvalue"><name>LOGAX_OPTION_DATE</name></member>
     <member refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1a6af43bb97231c5d294acf2cf811bb9cb" kind="enumvalue"><name>LOGAX_OPTION_TIME</name></member>
     <member refid="logax_8h_1a1887fba6a0dff43ffdee5439a78d76c1affb44b715383dad1ba6999ff2d727b4a" kind="enumvalue"><name>LOGAX_OPTION_DATE_TIME</name></member>

@@ -24,6 +24,7 @@
   
   
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    
   
     
     <meta name="description" content="liblogax is a header only automated testing framework for the C programming language, it requires no dependency and can be downloaded and used in a project immediately.">
@@ -46,6 +47,24 @@
     <meta name="twitter:image" content="https://raw.githubusercontent.com/exoticlibraries/liblogax/main/docs/liblogax.png" />
     
   
+  
+  <script>
+      const __themataOnloadCallbacks = [];
+      const __themataJsLoadedCallbacks = [];
+      const themataCurrentPageTitle = "Logging levels";
+      const themataCurrentProject = "liblogax";
+      const themataCurrentProjectGithubLocation = "";
+      const themataCurrentPagePath = "docs/logging_levels.md";
+      const themataCurrentPageLocation = "https://github.com/exoticlibraries/liblogax/edit/main/docs/docs/logging_levels.md".replace("/edit/", "/blob/");
+      const themataGithubFeedbackProjectTemplate = ``;
+      const themataGithubFeedbackPageTemplate = ``;
+      function themataRegisterOnloadCallback(cb) {
+        __themataJsLoadedCallbacks.push(cb);
+      }
+      function themataRegisterJsLoadedCallback(cb) {
+        __themataOnloadCallbacks.push(cb);
+      }
+  </script>
 
   </head><body>
 
@@ -125,12 +144,12 @@
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;exotic/logax.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
-    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_DEBUG</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
-    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_INFO</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
-    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_WARN</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
-    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_ERROR</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
-    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_FATAL</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_TRACE</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_DEBUG</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_INFO</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_WARN</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_ERROR</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
+    <span class="n">logax_write_text_format_to_stream</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">LOGAX_OPTION_ALL</span> <span class="o">|</span> <span class="n">LOGAX_LEVEL_FATAL</span><span class="p">,</span> <span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;Enemy approaching from X=108,Y=877&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -152,6 +171,7 @@
                                   
                         </div>
                         <hr/>
+                        
                         </br>
                     
                 
@@ -236,6 +256,15 @@
                 with <a href="https://thecarisma.github.io/themata/fandango/index.html">fandango</a> theme.
         </div>
     </div>
+    <script>
+                const themataSyntaxHighlighter = "highlightjs";
+                const themataCodeBlockIsEditable = false;
+                const themataSyntaxHighlighterTheme = "a11y-dark";
+                const themataStaticAssetsDir = "../_static/";
+                const themataSyntaxHighlighterIframeEmbed = false;
+                $("pre").parent().css("display", "none");
+            </script>
+    <script src="../_static/themata.js"></script>
 
   </body>
 </html>
