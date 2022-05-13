@@ -97,7 +97,7 @@ typedef void (*logax_callback)(const char *date, const char *time, const int lev
 	backward compatibility
 */
 enum LogaxOption {
-    LOGAX_OPTION_QUITE           = 1 << 1, /**< the option to disable writing to output stream */
+    LOGAX_OPTION_QUIET           = 1 << 1, /**< the option to disable writing to output stream */
 #ifndef LOGAX_NO_TIME
     LOGAX_OPTION_DATE            = 1 << 2, /**< option to write/set the date of the log event */
     LOGAX_OPTION_TIME            = 1 << 3, /**< option to set the time of the log event */
@@ -107,11 +107,16 @@ enum LogaxOption {
     LOGAX_OPTION_FILE_NAME_ONLY  = 1 << 6, /**< option to set only the name of the file where the log event was sent from */
     LOGAX_OPTION_LINE_NUMBER     = 1 << 7, /**< option to set the line number where the log even was sent */
 #ifndef LOGAX_NO_COLORING
-    LOGAX_OPTION_COLORED         = 1 << 8, /**< this option is used to enable preety print and colored outputs */
+    LOGAX_OPTION_COLORED         = 1 << 8, /**< this option is used to enable pretty print and colored outputs */
 #endif
     LOGAX_OPTION_FUNCTION        = 1 << 9, /**< option to write/set the name of the function where the log was set from */
-    LOGAX_OPTION_ALL             = 1 << 15 /**< this option enables all the other options above apart from LOGAX_OPTION_QUITE */
+    LOGAX_OPTION_ALL             = 1 << 15 /**< this option enables all the other options above apart from LOGAX_OPTION_QUIET */
 };
+
+/*
+
+*/
+#define LOGAX_OPTION_QUITE LOGAX_OPTION_QUIET
 
 /**
     The options to classify the log event by level
@@ -260,10 +265,15 @@ static unsigned logax_logger_add_callback(LogaxLogger *logax_logger, logax_callb
 /**
 
 */
-#define logax_set_quite(logax_logger, make_quite) {\
-        if (!make_quite && ((logax_logger)->flags & LOGAX_OPTION_QUITE)) { logax_remove_flag((logax_logger)->flags, LOGAX_OPTION_QUITE); }\
-        else if (make_quite && !((logax_logger)->flags & LOGAX_OPTION_QUITE)) { logax_add_flag((logax_logger)->flags, LOGAX_OPTION_QUITE); }\
+#define logax_set_quiet(logax_logger, make_quiet) {\
+        if (!make_quiet && ((logax_logger)->flags & LOGAX_OPTION_QUIET)) { logax_remove_flag((logax_logger)->flags, LOGAX_OPTION_QUIET); }\
+        else if (make_quiet && !((logax_logger)->flags & LOGAX_OPTION_QUIET)) { logax_add_flag((logax_logger)->flags, LOGAX_OPTION_QUIET); }\
     }
+
+/**
+    Alias for logax_set_quiet, for backward compatibility
+*/
+#define logax_set_quite logax_set_quiet
 
 #ifndef LOGAX_NO_OUTPUT_STREAM
 /*
@@ -319,7 +329,7 @@ HANDLE logax_hConsole;
 /**
 
 */
-#define LOGAX_INITIALIZE_HCONSOLE() if (!initialized_h_console) {\
+#define LOGAX_Iinitialized_HCONSOLE() if (!initialized_h_console) {\
 		CONSOLE_SCREEN_BUFFER_INFO info;\
 		if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info)) {\
 			logax_default_color = info.wAttributes;\
@@ -356,7 +366,7 @@ HANDLE logax_hConsole;
 	}
 #else
 
-#define LOGAX_INITIALIZE_HCONSOLE()
+#define LOGAX_Iinitialized_HCONSOLE()
 
 #ifndef LOGAX_NO_COLORING
 #define LOGAX_DELEGATE_FPRINT_STR(foreground, text) if (is_colored) { fprintf(stream, "%s%s%s", foreground, text, LOGAX_RESET_TERMINAL); } else { fprintf(stream, "%s", text); }
@@ -387,8 +397,8 @@ HANDLE logax_hConsole;
 
 */
 static void logax_write_text_format_to_stream_final__internal__(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args) {
-    if (flags & LOGAX_OPTION_QUITE) return;
-	LOGAX_INITIALIZE_HCONSOLE();
+    if (flags & LOGAX_OPTION_QUIET) return;
+	LOGAX_Iinitialized_HCONSOLE();
 #ifndef LOGAX_NO_COLORING
     unsigned is_colored = (flags & LOGAX_OPTION_COLORED || (flags & LOGAX_OPTION_ALL));
 #else
@@ -473,8 +483,8 @@ static void logax_write_text_format_to_stream__internal__(FILE *stream, int flag
 
 */
 static void logax_write_key_value_format_to_stream_final__internal__(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args) {
-    if (flags & LOGAX_OPTION_QUITE) return;
-	LOGAX_INITIALIZE_HCONSOLE();
+    if (flags & LOGAX_OPTION_QUIET) return;
+	LOGAX_Iinitialized_HCONSOLE();
     unsigned is_colored = 0;
 	unsigned print_comma = 0;
 	unsigned has_any_level = (flags & LOGAX_LEVEL_TRACE) || (flags & LOGAX_LEVEL_DEBUG) || (flags & LOGAX_LEVEL_INFO) || 
@@ -569,8 +579,8 @@ static void logax_write_key_value_format_to_stream__internal__(FILE *stream, int
 
 */
 static void logax_write_json_format_to_stream_final__internal__(FILE *stream, int flags, const char *file_path, const size_t line_number, const char *function_name, const char *fmt, va_list va_args) {
-    if (flags & LOGAX_OPTION_QUITE) return;
-	LOGAX_INITIALIZE_HCONSOLE();
+    if (flags & LOGAX_OPTION_QUIET) return;
+	LOGAX_Iinitialized_HCONSOLE();
 #ifndef LOGAX_NO_COLORING
     unsigned is_colored = (flags & LOGAX_OPTION_COLORED || (flags & LOGAX_OPTION_ALL));
 #else

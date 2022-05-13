@@ -28,7 +28,7 @@ CESTER_TEST(logax_no_callback, test_inst, {
 	LogaxLogger logax_logger;
 	logax_init_logger(&logax_logger);
 
-	logax_set_quite(&logax_logger, 1);
+	logax_set_quiet(&logax_logger, 1);
 	logax_logger_add_callback(&logax_logger, on_new_log_callback);
 	logax_logger_add_callback(&logax_logger, on_new_log_callback2);
 

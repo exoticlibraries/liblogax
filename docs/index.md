@@ -44,13 +44,13 @@ int main(int argc, char **argv) {
 - Speed. logax was developed with speed and zero performance intrusion in mind.
 - Modular, excluded un-used features from your test, [modularity](https://exoticlibraries.github.io/liblogax/docs/modularity.html).
 - Zero allocation, No memory allocation.
-- Levelled logging to customize and differenciate the outputs.
+- Levelled logging to customize and differentiate the outputs.
 - Support for callbacks and hooks.
-- Very portable, compatiple with ANSI C and C++98 without any trade off in functionalities.
+- Very portable, compatible with ANSI C and C++98 without any trade off in functionalities.
 - Output log in text, key-value and JSON encoding formats.
 - Pretty logging for all supported output formats.
-- Simple method to achive options in the logging system using bitwise operations.
-- Detail docuentation with examples and API references.
+- Simple method to achieve options in the logging system using bitwise operations.
+- Detail documentation with examples and API references.
 
 ## Installation
 
@@ -58,7 +58,7 @@ If you install the library file `logax.h` using any of the commands below, it ca
 
 ### Windows
 
-Install the library using powershell. It auto detect your insalled C and C++ compilers include directory and install liblogax into the include folder. Execute the command in powershell as admin.
+Install the library using powershell. It auto detect your installed C and C++ compilers include directory and install liblogax into the include folder. Execute the command in powershell as admin.
 
 ```powershell
 & $([scriptblock]::Create((New-Object Net.WebClient).DownloadString("https://exoticlibraries.github.io/magic/install.ps1"))) liblogax

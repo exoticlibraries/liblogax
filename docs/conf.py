@@ -1,11 +1,10 @@
 
-import themata
+import themata.fandango
 
 project = 'liblogax'
 copyright = '2021, Exotic Libraries - MIT License'
 author = 'Adewale Azeez and Other Contributors'
 
-html_theme_path = [themata.get_html_theme_path()]
 html_theme = 'fandango'
 master_doc = 'index'
 html_favicon = 'liblogax.png'
@@ -33,6 +32,10 @@ html_theme_options = {
     #'has_left_sidebar': True,
     'has_right_sidebar': True,
     'show_navigators': True,
+    'syntax_highlighter': 'highlightjs',
+    'code_block_editable': False,
+    'syntax_highlighter_theme': 'a11y-dark',
+    'syntax_highlighter_iframe_embed': False,
     'social_icons': [
         ('fab fa-twitter', 'https://twitter.com/exoticlibs'),
         ('fab fa-github', 'https://github.com/exoticlibraries/liblogax/')

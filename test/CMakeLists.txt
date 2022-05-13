@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.17)
 project(libfio_tests VERSION 1.0)
 
 set(FILE_EXT "")
-set(INCLUDE_PATHS -I${PWD}/../../include/ -I${PWD}/../include/ -I../../include/ -I../include/)
-include_directories(${PWD}/../../include/ ${PWD}/../include/ ../../include/ ../include/)
+set(INCLUDE_PATHS -I${PWD}/../../libcester/include/ -I${PWD}/../include/ -I../../libcester/include/ -I../include/)
+include_directories(${PWD}/../../libcester/include/ ${PWD}/../include/ ../../libcester/include/ ../include/)
 add_executable(logax_test ./empty_c_file.c)
 set_target_properties(logax_test PROPERTIES RUNTIME_OUTPUT_DIRECTORY ./build/ )
 
